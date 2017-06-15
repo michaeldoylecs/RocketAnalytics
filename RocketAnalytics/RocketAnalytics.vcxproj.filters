@@ -34,9 +34,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\replay_binary_data.txt" />
+    <Text Include="Testing\replay_binary_data.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\0A797CAB49E97F824000D9BB757BF7F9.replay" />
+    <None Include="Testing\0A797CAB49E97F824000D9BB757BF7F9.replay" />
   </ItemGroup>
 </Project>
