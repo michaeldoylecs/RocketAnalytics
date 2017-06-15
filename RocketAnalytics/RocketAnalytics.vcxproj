@@ -75,6 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Library\Development\Libraries\boost_1_64_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,6 +112,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Replay.cpp" />
+    <ClCompile Include="ReplayParser.cpp" />
+    <ClCompile Include="RocketAnalytics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Replay.hpp" />
+    <ClInclude Include="ReplayParser.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\replay_binary_data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0A797CAB49E97F824000D9BB757BF7F9.replay" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
