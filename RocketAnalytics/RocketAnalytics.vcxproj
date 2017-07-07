@@ -75,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Library\Development\Libraries\boost_1_64_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Library\Development\Libraries\boost_1_64_0;D:\Library\Development\Libraries\EasyLogging++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,6 +119,7 @@
   <ItemGroup>
     <ClInclude Include="Replay.hpp" />
     <ClInclude Include="ReplayParser.hpp" />
+    <ClInclude Include="ReplayProperty.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Testing\replay_binary_data.txt" />

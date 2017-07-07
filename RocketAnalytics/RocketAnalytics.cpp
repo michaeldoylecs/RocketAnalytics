@@ -13,32 +13,37 @@
 
 int main() {
 	// THIS IS ALL TESTING INFORMATION
-	Replay replay_file("Resources/0A797CAB49E97F824000D9BB757BF7F9.replay");
 
-	std::ifstream replayReader(replay_file.filepath(), std::ios::binary);
+	/*
+	std::ofstream out("test.bin", std::ios_base::binary);
+	int x(13);
+	out.write(reinterpret_cast<char*>(&x), sizeof(int));
 
-	if (!replayReader) {
-		std::cout << "Error opening replay" << std::endl;
-	}
-	else {
-		replayReader.seekg(0, std::ostream::beg);
+	std::ifstream in("test.bin", std::ios_base::binary);
+	int x(0);
 
-		replay_file.parse(replayReader);
+	in.read(reinterpret_cast<char*>(&x), sizeof(int));
 
-		/*
-		replayReader.read(buffer, sizeof(crc) / sizeof(crc[0]));
+	std::cout << x;
 
-		int i;
-		std::cout << "CRC: ";
-		for (i = 0; i < size; i++) {
-			std::cout << std::hex << std::setw(2) << std::setfill('0') << (unsigned int)(unsigned char) buffer[i];
-			std::cout << " ";
-		}
-		std::cout << std::endl;
-		*/
+	std::string filepath = "Resources/0A797CAB49E97F824000D9BB757BF7F9.replay";
+	std::ifstream binary_reader(filepath, std::ios::binary);
+	binary_reader.seekg(0, std::ostream::beg);
 
-		replayReader.close();
-	}
+	std::int32_t raw_int;
+	//char raw_char;
+	binary_reader.read(reinterpret_cast<char *>(&raw_int), sizeof(raw_int));
+	//binary_reader.read(&raw_char, sizeof(raw_char));
+	std::cout << "output: " << std::hex << std::setw(2)
+		<< std::setfill('0') << raw_int << std::endl;
+	//std::cout << "output: " << raw_int << std::endl;
+
+	binary_reader.close();
+	*/
+
+
+	Replay replay_file("Testing/0A797CAB49E97F824000D9BB757BF7F9.replay");
+	replay_file.parse();
 
 	std::cout << replay_file.to_string() << std::endl;
 	std::cout << "Replay Count: " << Replay::replay_count() << std::endl;
