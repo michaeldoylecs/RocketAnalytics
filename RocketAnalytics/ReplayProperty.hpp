@@ -12,8 +12,10 @@
 
 namespace ReplayProperty {
 
+	// 'None' Type
 	const char * PROPERTY_NONE = "None";
 
+	// Replay Property Types
 	enum Type {
 		IntProperty = 0, StrProperty = 1,
 		NameProperty = 2, BoolProperty = 3,
@@ -21,17 +23,13 @@ namespace ReplayProperty {
 		FloatProperty = 6, ArrayProperty = 7
 	};
 
-
+	// String representation of Type enums
 	const char * PROPERTY_TYPE_STRINGS[] = { "IntProperty", "StrProperty",
 											"NameProperty", "BoolProperty",
 											"QWordProperty", "ByteProperty",
 											"FloatProperty", "ArrayProperty" };
-
-	std::string property_type_to_string(Type p_type) {
-		return PROPERTY_TYPE_STRINGS[p_type];
-	}
-
-
+	
+	// Replay Property struct
 	struct Property {
 		std::int32_t key_length;
 		std::string key;
@@ -39,13 +37,30 @@ namespace ReplayProperty {
 		union value {
 			std::int64_t i64;
 			std::int32_t i32;
+			std::int8_t i8;
 			float f;
 			bool b;
 			std::string s;
 			std::vector<Property> v;
+			value() {}
+			~value() {}
 		}value;
+		Property() {}
+		~Property() {}
+		// HACK: (?) Property contructors may be a hack
 	};
 
-}
 
+	// Functions
+
+	// Convert Type ENUM to String
+	std::string type_to_string(Type p_type);
+
+	// Create Property in memory
+	Property * create_property();
+
+	// Destroy Property in memory
+	void destroy_property(Property * property);
+
+}
 #endif

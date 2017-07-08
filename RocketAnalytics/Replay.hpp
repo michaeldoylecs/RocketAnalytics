@@ -22,10 +22,10 @@ class Replay {
 		std::int32_t							version_major_;
 		std::int32_t							version_minor_;
 		std::string								replay_identifier_;
+		std::vector<ReplayProperty::Property *>	properties_;
 		std::int32_t							part2_length_;
 		std::int32_t							part2_crc_;
 		std::int32_t							level_length_;
-		std::vector<ReplayProperty::Property>	properties_;
 
 		// Parsing functions
 		void			parse_part1_length(std::ifstream &br);
@@ -35,9 +35,15 @@ class Replay {
 		void			parse_replay_identifier(std::ifstream &br);
 		void			parse_replay_properties(std::ifstream &br);
 
-		// Helping functions
-		void			read_property_value(std::ifstream &br, char* type, ReplayProperty::Property* property);
-			
+		// Helping property reader functions
+		std::int32_t							read_int_property(std::ifstream &br);
+		std::string								read_str_property(std::ifstream &br);
+		std::string								read_name_property(std::ifstream &br);
+		bool									read_bool_property(std::ifstream &br);
+		std::int64_t							read_qword_property(std::ifstream &br);
+		std::int8_t								read_byte_property(std::ifstream br);
+		float									read_float_property(std::ifstream &br);
+		std::vector<ReplayProperty::Property *> read_array_property(std::ifstream &br);
 			
 
 	public:

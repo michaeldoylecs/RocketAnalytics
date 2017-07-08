@@ -114,6 +114,7 @@
   <ItemGroup>
     <ClCompile Include="Replay.cpp" />
     <ClCompile Include="ReplayParser.cpp" />
+    <ClCompile Include="ReplayProperty.cpp" />
     <ClCompile Include="RocketAnalytics.cpp" />
   </ItemGroup>
   <ItemGroup>

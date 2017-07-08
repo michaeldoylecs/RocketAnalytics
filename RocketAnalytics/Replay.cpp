@@ -27,7 +27,7 @@ Replay::Replay(std::string filepath) {
 // Destructor
 Replay::~Replay(void) {
 	replay_count_--; // Decrement replay count
-	// TODO: Deallocate memory
+	// TODO: Deallocate Replay from memory
 }
 
 
@@ -55,7 +55,8 @@ std::string Replay::to_string(void) {
 		<< "part1_crc: " << part1_crc_ << '\n'
 		<< "version_major: " << version_major_ << '\n'
 		<< "version_minor: " << version_minor_ << '\n'
-		<< "replay_identifier: " << replay_identifier_ << '\n';
+		<< "replay_identifier: " << replay_identifier_ << '\n'
+		<< "properties: \n\t" << properties_.front().key << "\n\t" << properties_.front().value.i32 << '\n';
 	std::string output = output_stream.str();
 	return output;
 }
@@ -66,7 +67,7 @@ void Replay::parse() {
 	std::ifstream binary_reader(filepath_, std::ios::binary);
 
 	if (!binary_reader) {
-		//TODO What happens if replay file does not open?
+		//TODO: What happens if replay file does not open?
 	}
 	else {
 		binary_reader.seekg(0, std::ostream::beg);
@@ -125,13 +126,16 @@ void Replay::parse_replay_identifier(std::ifstream &br) {
 }
 
 void Replay::parse_replay_properties(std::ifstream &br) {
-	ReplayProperty::Property * property = new ReplayProperty::Property; // Initialize zero ReplayProperty
+	std::int32_t key_length;
+	std::string key;
+
+	ReplayProperty::Property * property; // Initialize ReplayProperty
 	std::int32_t size; // Integer to hold length of string to read
 	char * raw_string; // string buffer
 
 	// Read key length
 	br.read(reinterpret_cast<char *>(&size), sizeof(size));
-	property->key_length = size;
+	key_length = size;
 
 	// Read key
 	raw_string = new char[size];
@@ -145,7 +149,7 @@ void Replay::parse_replay_properties(std::ifstream &br) {
 	}
 
 	// Assign key to property
-	property->key = raw_string;
+	key = raw_string;
 	 
 	// Read type length
 	br.read(reinterpret_cast<char *>(&size), sizeof(size));
@@ -154,37 +158,40 @@ void Replay::parse_replay_properties(std::ifstream &br) {
 	raw_string = new char[size];
 	br.read(reinterpret_cast<char *>(&raw_string), size);
 
-	read_property_value(br, raw_string, property);
-}
+	if (raw_string == type_to_string(ReplayProperty::IntProperty)) { // IntProperty
+		std::int32_t value = read_int_property(br);
 
-// TODO: Implement property reading from file
-void Replay::read_property_value(std::ifstream &br, char* type, ReplayProperty::Property* property) {
-	if (type == property_type_to_string(ReplayProperty::IntProperty)) { // IntProperty
-		property->type = ReplayProperty::IntProperty;
-		// Read property value
-		std::int32_t raw_int;
-		br.read(reinterpret_cast<char *>(&raw_int), sizeof(raw_int));
-		property->value.i32 = raw_int;
 	}
-	else if (type == property_type_to_string(ReplayProperty::StrProperty)) { // StrProperty
-		property->type = ReplayProperty::StrProperty;
+	else if (raw_string == type_to_string(ReplayProperty::StrProperty)) { // StrProperty
+		property->type = ReplayProperty::StrProperty;						// Assign property type
+		char * raw_string = new char[size];									// Initialize integer buffer 
+		br.read(reinterpret_cast<char *>(&raw_string), sizeof(raw_string));	// Read integer from replay file
+		property->value.s = raw_string;										// Assign string value to property
+		delete raw_string;
 	}
-	else if (type == property_type_to_string(ReplayProperty::NameProperty)) { // NameProperty
+	else if (raw_string == type_to_string(ReplayProperty::NameProperty)) { // NameProperty
 		property->type = ReplayProperty::NameProperty;
 	}
-	else if (type == property_type_to_string(ReplayProperty::BoolProperty)) { // BoolProperty
+	else if (raw_string == type_to_string(ReplayProperty::BoolProperty)) { // BoolProperty
 		property->type = ReplayProperty::BoolProperty;
 	}
-	else if (type == property_type_to_string(ReplayProperty::QWordProperty)) { // QWordProperty
+	else if (raw_string == type_to_string(ReplayProperty::QWordProperty)) { // QWordProperty
 		property->type = ReplayProperty::QWordProperty;
 	}
-	else if (type == property_type_to_string(ReplayProperty::ByteProperty)) { // ByteProperty
+	else if (raw_string == type_to_string(ReplayProperty::ByteProperty)) { // ByteProperty
 		property->type = ReplayProperty::ByteProperty;
 	}
-	else if (type == property_type_to_string(ReplayProperty::FloatProperty)) { // FloatProperty
+	else if (raw_string == type_to_string(ReplayProperty::FloatProperty)) { // FloatProperty
 		property->type = ReplayProperty::FloatProperty;
 	}
-	else if (type == property_type_to_string(ReplayProperty::ArrayProperty)) { // ArrayProperty
+	else if (raw_string == type_to_string(ReplayProperty::ArrayProperty)) { // ArrayProperty
 		property->type = ReplayProperty::ArrayProperty;
 	}
+}
+
+// Read integer from replay file and return it
+std::int32_t read_int_property(std::ifstream &br) {
+	std::int32_t raw_int;
+	br.read(reinterpret_cast<char *>(&raw_int), sizeof(raw_int));
+	return raw_int;
 }
