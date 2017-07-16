@@ -12,26 +12,24 @@
 
 namespace ReplayProperty {
 
-	// 'None' Type
-	const char * PROPERTY_NONE = "None";
-
 	// Replay Property Types
 	enum Type {
-		IntProperty = 0, StrProperty = 1,
-		NameProperty = 2, BoolProperty = 3,
-		QWordProperty = 4, ByteProperty = 5,
-		FloatProperty = 6, ArrayProperty = 7
+		None = 0,
+		IntProperty = 1, StrProperty = 2,
+		NameProperty = 3, BoolProperty = 4,
+		QWordProperty = 5, ByteProperty = 6,
+		FloatProperty = 7, ArrayProperty = 8,
 	};
 
 	// String representation of Type enums
-	const char * PROPERTY_TYPE_STRINGS[] = { "IntProperty", "StrProperty",
+	const char * PROPERTY_TYPE_STRINGS[] = {"None", 
+											"IntProperty", "StrProperty",
 											"NameProperty", "BoolProperty",
 											"QWordProperty", "ByteProperty",
 											"FloatProperty", "ArrayProperty" };
 	
 	// Replay Property struct
 	struct Property {
-		std::int32_t key_length;
 		std::string key;
 		ReplayProperty::Type type;
 		union value {
@@ -41,7 +39,7 @@ namespace ReplayProperty {
 			float f;
 			bool b;
 			std::string s;
-			std::vector<Property> v;
+			std::vector<std::vector<Property *>> v;
 			value() {}
 			~value() {}
 		}value;

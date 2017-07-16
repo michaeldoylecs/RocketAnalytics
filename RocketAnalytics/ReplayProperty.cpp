@@ -15,7 +15,7 @@ namespace ReplayProperty {
 
 	// Create Property in memory
 	Property * create_property() {
-		Property * property_ptr = new Property;
+		Property * property_ptr = new Property; // TODO: Update Property pointer creation
 		return property_ptr;
 	}
 
