@@ -8,7 +8,7 @@
 #include <fstream>
 #include <conio.h>
 #include <iomanip>
-#include "Replay.hpp"
+#include "../include/Replay.hpp"
 
 
 int main() {
@@ -41,14 +41,29 @@ int main() {
 	binary_reader.close();
 	*/
 
+	// --------------------------------------------
 
 	Replay replay_file("Testing/0A797CAB49E97F824000D9BB757BF7F9.replay");
-	replay_file.parse();
+	//replay_file.parse();
 
-	std::cout << replay_file.to_string() << std::endl;
-	std::cout << "Replay Count: " << Replay::replay_count() << std::endl;
+	//std::cout << replay_file.to_string() << std::endl;
+	//std::cout << "Replay Count: " << Replay::replay_count() << std::endl;
+
+	std::string s;
+	std::cout << s.max_size();
+
+	test_replay_values();
 
 	_getch();
 
 	return 0;
+}
+
+
+void test_replay_values() {
+	ReplayProperty::Value replay_value;
+	replay_value.set_int(65);
+	std::cout << "replay_value: \n\t- Type: "
+		<< ReplayProperty::type_to_string(replay_value.type())
+		<< "\n\t- Value: " << replay_value.to_string();
 }

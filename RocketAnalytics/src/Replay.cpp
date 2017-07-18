@@ -5,8 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Replay.hpp"
-#include "ReplayProperty.hpp"
+#include "../include/Replay.hpp"
+#include "../include/ReplayProperty.hpp"
 
 
 // Initialize static replay count
@@ -125,9 +125,11 @@ void Replay::parse_replay_identifier(std::ifstream &br) {
 	delete raw_string; // deallocate the string buffer
 }
 
+// Parse all properties in replay file.
+// Assumeds the ifstream is pointed at the currect file position.
 void Replay::parse_replay_properties(std::ifstream &br) {
 
-	while (true) { // While 'None' was not read (Breaks internally)
+	while (true) { // While 'None' was not read (exits internally)
 
 		ReplayProperty::Property * property = read_property(br);
 
@@ -135,7 +137,7 @@ void Replay::parse_replay_properties(std::ifstream &br) {
 		// If so, exit the function.
 		// Else, read the property
 		if (property->type == ReplayProperty::None) {
-			ReplayProperty::destroy_property(property);
+			delete property;
 			return;
 		}
 		else {
@@ -149,7 +151,7 @@ ReplayProperty::Property * Replay::read_property(std::ifstream &br) {
 	std::string key_name;		// Key name
 	std::int32_t type_length;
 	std::string  type_string;
-	ReplayProperty::Property * property = ReplayProperty::create_property(); // Initialize ReplayProperty
+	ReplayProperty::Property * property = new ReplayProperty::Property(); // Initialize ReplayProperty
 
 	// Read key length
 	br.read(reinterpret_cast<char *>(&key_length), sizeof(key_length));
@@ -175,35 +177,35 @@ ReplayProperty::Property * Replay::read_property(std::ifstream &br) {
 	// Determine the type of property which must be read
 	if (type_string == type_to_string(ReplayProperty::IntProperty)) { // IntProperty
 		property->type = ReplayProperty::IntProperty;
-		property->value.i32 = read_int_property(br);
+		property->set_int(read_int_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::StrProperty)) { // StrProperty
 		property->type = ReplayProperty::StrProperty;
-		property->value.s = read_str_property(br);
+		property->set_str(read_str_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::NameProperty)) { // NameProperty
 		property->type = ReplayProperty::NameProperty;
-		property->value.s = read_name_property(br);
+		property->set_name(read_name_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::BoolProperty)) { // BoolProperty
 		property->type = ReplayProperty::BoolProperty;
-		property->value.b = read_bool_property(br);
+		property->set_bool(read_bool_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::QWordProperty)) { // QWordProperty
 		property->type = ReplayProperty::QWordProperty;
-		property->value.i64 = read_qword_property(br);
+		property->set_qword(read_qword_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::ByteProperty)) { // ByteProperty
 		property->type = ReplayProperty::ByteProperty;
-		property->value.i8 = read_byte_property(br);
+		property->set_byte(read_byte_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::FloatProperty)) { // FloatProperty
 		property->type = ReplayProperty::FloatProperty;
-		property->value.f = read_float_property(br);
+		property->set_float(read_float_property(br));
 	}
 	else if (type_string == type_to_string(ReplayProperty::ArrayProperty)) { // ArrayProperty
 		property->type = ReplayProperty::ArrayProperty;
-		property->value.v = read_array_property(br);
+		property->set_array(read_array_property(br));
 	}
 
 	return property;
@@ -273,7 +275,7 @@ std::vector< std::vector<ReplayProperty::Property *> > Replay::read_array_proper
 	// TODO: Complete read_array_property
 	std::int32_t size;													// Size buyffer
 	std::vector<std::vector<ReplayProperty::Property *>> value_array;   // Vector to hold Property vectors
-	br.seekg(8, std::ios::cur);											// Skip 8 bytes. HACK: What do these skipped 8 bytes do?
+	br.seekg(8, std::ios::cur);											// Skip 8 bytes.	HACK: What do these skipped 8 bytes do?
 	br.read(reinterpret_cast<char *>(&size), sizeof(size));				// Read array size from file
 	
 	for (int i = 0; i < size; i++) {
@@ -285,7 +287,7 @@ std::vector< std::vector<ReplayProperty::Property *> > Replay::read_array_proper
 				// If so, exit the function.
 				// Else, add property to vector
 				if (property->type == ReplayProperty::None) {
-					ReplayProperty::destroy_property(property);
+					delete property;
 					break;
 				}
 				else {

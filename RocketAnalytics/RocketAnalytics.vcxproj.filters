@@ -15,34 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RocketAnalytics.cpp">
+    <ClCompile Include="src\Replay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReplayParser.cpp">
+    <ClCompile Include="src\ReplayProperty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Replay.cpp">
+    <ClCompile Include="src\ReplayPropertyTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReplayProperty.cpp">
+    <ClCompile Include="src\RocketAnalytics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReplayParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReplayPropertyValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Replay.hpp">
+    <ClInclude Include="include\Replay.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReplayParser.hpp">
+    <ClInclude Include="include\ReplayParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReplayProperty.hpp">
+    <ClInclude Include="include\ReplayProperty.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Testing\replay_binary_data.txt" />
+    <ClInclude Include="include\ReplayPropertyTypes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReplayPropertyValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Testing\0A797CAB49E97F824000D9BB757BF7F9.replay" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="doc\replay_binary_data.txt" />
   </ItemGroup>
 </Project>
