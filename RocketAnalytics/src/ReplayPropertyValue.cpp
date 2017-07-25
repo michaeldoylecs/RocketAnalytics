@@ -3,9 +3,21 @@
 // ReplayPropertyValue.cpp
 
 
+#include "../include/ReplayPropertyTypes.hpp"
+#include "../include/ReplayProperty.hpp"
 #include "../include/ReplayPropertyValue.hpp"
 
+
 namespace ReplayProperty {
+	
+	Value::Value() {
+		set_none();
+	}
+
+
+	Value::~Value() {
+		destroy_value();
+	}
 
 
 	Type Value::type() {
@@ -76,6 +88,7 @@ namespace ReplayProperty {
 
 
 	// Read Property value (as string)
+	// TODO: FIX THIS FUNCTION
 	std::string Value::to_string() {
 		std::string value_string;
 
@@ -99,7 +112,7 @@ namespace ReplayProperty {
 
 					value_string += property->key();
 					value_string += ": ";
-					value_string += property->value();
+					value_string += property->value_to_string();
 
 					if (property_array.empty()) {
 						break;
@@ -160,17 +173,11 @@ namespace ReplayProperty {
 	}
 
 
-	Value::UValue::UValue() {}
+	Value::UValue::UValue() {
+		i64 = 0;
+	}
 
 
 	Value::UValue::~UValue() {}
-
-
-	Value::Value() {}
-
-
-	Value::~Value() {
-		destroy_value();
-	}
 
 }

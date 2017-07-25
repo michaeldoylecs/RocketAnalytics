@@ -19,13 +19,6 @@ namespace ReplayProperty {
 		FloatProperty = 7, ArrayProperty = 8,
 	};
 
-	// String representation of Type enums
-	const char * PROPERTY_TYPE_STRINGS[] = { "None",
-		"IntProperty", "StrProperty",
-		"NameProperty", "BoolProperty",
-		"QWordProperty", "ByteProperty",
-		"FloatProperty", "ArrayProperty" };
-
 	// Convert Type ENUM to String
 	std::string type_to_string(Type p_type);
 

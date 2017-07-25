@@ -9,16 +9,17 @@
 #include <string>
 #include <cstdint>
 #include <vector>
-#include "ReplayProperty.hpp"
-#include "ReplayPropertyTypes.hpp"
 
 namespace ReplayProperty {
+	
+	enum Type;
+	class Property;
 
 	class Value {
 		public:
+			// Constructors & Destructors
 			Value();
 			~Value();
-
 			// Setters
 			void			set_none();
 			void			set_int(std::int32_t i);
@@ -29,7 +30,6 @@ namespace ReplayProperty {
 			void			set_byte(std::int8_t byte);
 			void			set_float(float f);
 			void			set_array(std::vector<std::vector<Property *>> vector);
-
 			// Getters
 			Type			type();
 			std::string		to_string();

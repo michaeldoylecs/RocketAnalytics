@@ -5,8 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "../include/ReplayPropertyTypes.hpp"
 #include "../include/Replay.hpp"
-#include "../include/ReplayProperty.hpp"
 
 
 // Initialize static replay count
@@ -17,6 +17,7 @@ int Replay::replay_count_ = 0;
 Replay::Replay() {
 	replay_count_++; // Increment replay count
 }
+
 
 Replay::Replay(std::string filepath) {
 	filepath_ = filepath;
@@ -55,8 +56,9 @@ std::string Replay::to_string(void) {
 		<< "part1_crc: " << part1_crc_ << '\n'
 		<< "version_major: " << version_major_ << '\n'
 		<< "version_minor: " << version_minor_ << '\n'
-		<< "replay_identifier: " << replay_identifier_ << '\n'
-		<< "properties: \n\t" << properties_.front()->key << "\n\t" << properties_.front()->value.i32 << '\n'; //HACK: Only looking at first property in first array index
+		<< "replay_identifier: " << replay_identifier_ << '\n';
+		// << "properties: \n\t" << properties_.front()->key() << "\n\t" << properties_.front()->value_to_string() << '\n';
+		// HACK: Only looking at first property in first array index
 	std::string output = output_stream.str();
 	return output;
 }
@@ -76,6 +78,7 @@ void Replay::parse() {
 		parse_version_major(binary_reader);
 		parse_version_minor(binary_reader);
 		parse_replay_identifier(binary_reader);
+		//parse_replay_properties(binary_reader);
 		binary_reader.close();
 	}
 }
@@ -116,6 +119,16 @@ void Replay::parse_version_minor(std::ifstream &br) {
 // Assumes the ifstream is pointed at the correct file position
 void Replay::parse_replay_identifier(std::ifstream &br) {
 	std::int32_t size; // Size of the string to read
+	std::string raw_string; // string buffer
+	br.read(reinterpret_cast<char *>(&size), sizeof(size)); // Read size integer from file
+	br.read(reinterpret_cast<char *>(&raw_string), size); // Read characters from file
+	replay_identifier_ = raw_string; // Assign the read string as the replay_identifier_
+}
+
+/*
+// Assumes the ifstream is pointed at the correct file position
+void Replay::parse_replay_identifier(std::ifstream &br) {
+	std::int32_t size; // Size of the string to read
 	char * raw_string; // string buffer
 
 	br.read(reinterpret_cast<char *>(&size), sizeof(size)); // Read size integer from file
@@ -124,6 +137,7 @@ void Replay::parse_replay_identifier(std::ifstream &br) {
 	replay_identifier_ = raw_string; // Assign the read string as the replay_identifier_
 	delete raw_string; // deallocate the string buffer
 }
+*/
 
 // Parse all properties in replay file.
 // Assumeds the ifstream is pointed at the currect file position.
@@ -131,20 +145,28 @@ void Replay::parse_replay_properties(std::ifstream &br) {
 
 	while (true) { // While 'None' was not read (exits internally)
 
+		std::cout << "Attempting to read replay property\n";
+
 		ReplayProperty::Property * property = read_property(br);
 
 		// Check whether the 'None' key is read
 		// If so, exit the function.
 		// Else, read the property
-		if (property->type == ReplayProperty::None) {
+		if (property->type() == ReplayProperty::None) {
+			// String representation of Type enums
+			std::cout << "-> Replay property was 'None'\n";
 			delete property;
+			std::cout << "-> Deleted replay property\n";
 			return;
 		}
 		else {
-			properties_.push_back(property); // Read property
+			std::cout << "-> Attempting to add property to property list...\n";
+			properties_.push_back(property); // Add property to property list
+			std::cout << "-->Successfully added property to list\n";
 		}
 	}
 }
+
 
 ReplayProperty::Property * Replay::read_property(std::ifstream &br) {
 	std::int32_t key_length;	// Length of key to read
@@ -153,63 +175,93 @@ ReplayProperty::Property * Replay::read_property(std::ifstream &br) {
 	std::string  type_string;
 	ReplayProperty::Property * property = new ReplayProperty::Property(); // Initialize ReplayProperty
 
+	std::cout << "-> Created replay pointer\n";
+
 	// Read key length
 	br.read(reinterpret_cast<char *>(&key_length), sizeof(key_length));
+
+	std::cout << "-> read the key length\n";
 
 	// Read key
 	br.read(reinterpret_cast<char *>(&key_name), key_length);
 
+	std::cout << "-> Read key: " << key_name << "\n";
+
 	// Assign key to property
-	property->key = key_name;
+	property->set_key(key_name);
+
+	std::cout << "-> Assigned key\n";
 
 	// If the key_name is 'None', assign None Type and return property.
 	if (key_name == type_to_string(ReplayProperty::None)) {
-		property->type = ReplayProperty::None;
+		property->set_none();
 		return property;
 	}
+
+	std::cout << "-> Key is not 'None'\n";
 
 	// Read type length
 	br.read(reinterpret_cast<char *>(&type_length), sizeof(type_length));
 
+	std::cout << "-> Read type length\n";
+
 	// Read property type
 	br.read(reinterpret_cast<char *>(&type_string), type_length);
 
+	std::cout << "-> Read type: " << type_string << "\n";
+
 	// Determine the type of property which must be read
 	if (type_string == type_to_string(ReplayProperty::IntProperty)) { // IntProperty
-		property->type = ReplayProperty::IntProperty;
+		std::cout << "-> IntProperty\n";
 		property->set_int(read_int_property(br));
+		std::cout << "-> Read IntProeprty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::StrProperty)) { // StrProperty
-		property->type = ReplayProperty::StrProperty;
+		std::cout << "-> StrProperty\n";
 		property->set_str(read_str_property(br));
+		std::cout << "-> Read StrProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::NameProperty)) { // NameProperty
-		property->type = ReplayProperty::NameProperty;
+		std::cout << "-> NameProperty\n";
 		property->set_name(read_name_property(br));
+		std::cout << "-> Read NameProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::BoolProperty)) { // BoolProperty
-		property->type = ReplayProperty::BoolProperty;
+		std::cout << "-> BoolProperty\n";
 		property->set_bool(read_bool_property(br));
+		std::cout << "-> Read BoolProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::QWordProperty)) { // QWordProperty
-		property->type = ReplayProperty::QWordProperty;
+		std::cout << "-> QWordProperty\n";
 		property->set_qword(read_qword_property(br));
+		std::cout << "-> Read QWordProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::ByteProperty)) { // ByteProperty
-		property->type = ReplayProperty::ByteProperty;
+		std::cout << "-> ByteProperty\n";
 		property->set_byte(read_byte_property(br));
+		std::cout << "-> Read ByteProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::FloatProperty)) { // FloatProperty
-		property->type = ReplayProperty::FloatProperty;
+		std::cout << "-> FloatProperty\n";
 		property->set_float(read_float_property(br));
+		std::cout << "-> Read FloatProperty\n";
 	}
 	else if (type_string == type_to_string(ReplayProperty::ArrayProperty)) { // ArrayProperty
-		property->type = ReplayProperty::ArrayProperty;
+		std::cout << "-> ArrayProperty\n";
 		property->set_array(read_array_property(br));
+		std::cout << "-> Read ArrayProperty\n";
 	}
+	else {
+		std::cerr << "Replay property type mismatch\n";
+		delete property;
+		return new ReplayProperty::Property();
+	}
+
+
 
 	return property;
 }
+
 
 // Read Integer from replay file and return it
 std::int32_t Replay::read_int_property(std::ifstream &br) {
@@ -219,6 +271,7 @@ std::int32_t Replay::read_int_property(std::ifstream &br) {
 	return value;
 }
 
+
 // Read String from replay file and return it
 std::string Replay::read_str_property(std::ifstream &br) {
 	std::int64_t string_size;												// Buffer to read string size
@@ -227,6 +280,7 @@ std::string Replay::read_str_property(std::ifstream &br) {
 	br.read(reinterpret_cast<char *>(&value), string_size);					// Read string from file
 	return value;
 }
+
 
 // Read Name from replay file and return it
 // * Currently does the same thing as read_str_property
@@ -238,6 +292,7 @@ std::string Replay::read_name_property(std::ifstream &br) {
 	return value;
 }
 
+
 // Read Bool from replay file and return it
 bool Replay::read_bool_property(std::ifstream &br) {
 	bool value;
@@ -245,6 +300,7 @@ bool Replay::read_bool_property(std::ifstream &br) {
 	br.read(reinterpret_cast<char *>(&value), 1);	// Read bool from file
 	return value;
 }
+
 
 // Read QWord from replay file and return it
 std::int64_t Replay::read_qword_property(std::ifstream &br) {
@@ -254,6 +310,7 @@ std::int64_t Replay::read_qword_property(std::ifstream &br) {
 	return value;
 }
 
+
 // Read Byte from replay file and return it
 std::int8_t Replay::read_byte_property(std::ifstream &br) {
 	std::int8_t value;	
@@ -262,6 +319,7 @@ std::int8_t Replay::read_byte_property(std::ifstream &br) {
 	return value;
 }
 
+
 // Read Float from replay file and return it
 float Replay::read_float_property(std::ifstream &br) {
 	float value;
@@ -269,6 +327,7 @@ float Replay::read_float_property(std::ifstream &br) {
 	br.read(reinterpret_cast<char *>(&value), sizeof(value));	// Read Float from file
 	return value;
 }
+
 
 // Read Vector from replay file and return it
 std::vector< std::vector<ReplayProperty::Property *> > Replay::read_array_property(std::ifstream &br) {
@@ -286,7 +345,7 @@ std::vector< std::vector<ReplayProperty::Property *> > Replay::read_array_proper
 				// Check whether the 'None' key is read
 				// If so, exit the function.
 				// Else, add property to vector
-				if (property->type == ReplayProperty::None) {
+				if (property->type() == ReplayProperty::None) {
 					delete property;
 					break;
 				}

@@ -3,9 +3,8 @@
 // ReplayProperty.cpp
 
 
-#include "../include/ReplayProperty.hpp"
 #include "../include/ReplayPropertyTypes.hpp"
-#include "../include/ReplayPropertyValue.hpp"
+#include "../include/ReplayProperty.hpp"
 
 namespace ReplayProperty {
 
@@ -31,9 +30,11 @@ namespace ReplayProperty {
 	}
 
 
+	/* REMOVED FROM PUBLIC SCOPE
 	Value * Property::value() {
 		return &value_;
 	}
+	*/
 
 
 	// Read Property value (as string)
@@ -43,6 +44,9 @@ namespace ReplayProperty {
 		return value_string;
 	}
 
+	void Property::set_key(std::string string) {
+		key_ = string;
+	}
 
 	void Property::set_none() {
 		value_.set_none();

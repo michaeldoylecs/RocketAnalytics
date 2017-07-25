@@ -8,62 +8,27 @@
 #include <fstream>
 #include <conio.h>
 #include <iomanip>
+#include "../include/ReplayPropertyTypes.hpp"
 #include "../include/Replay.hpp"
 
 
 int main() {
-	// THIS IS ALL TESTING INFORMATION
 
-	/*
-	std::ofstream out("test.bin", std::ios_base::binary);
-	int x(13);
-	out.write(reinterpret_cast<char*>(&x), sizeof(int));
 
-	std::ifstream in("test.bin", std::ios_base::binary);
-	int x(0);
+	std::cout << "~~~ Attempting to convert all Type Enums to String ~~~\n";
+	for (int i = ReplayProperty::Type::None; i < ReplayProperty::Type::ArrayProperty; i++) {
+		std::cout << ReplayProperty::type_to_string(static_cast<ReplayProperty::Type>(i)) << '\n';
+	}
+	std::cout << "~~~ Finished converting all Type Enums to String ~~~\n" << std::endl;
 
-	in.read(reinterpret_cast<char*>(&x), sizeof(int));
-
-	std::cout << x;
-
-	std::string filepath = "Resources/0A797CAB49E97F824000D9BB757BF7F9.replay";
-	std::ifstream binary_reader(filepath, std::ios::binary);
-	binary_reader.seekg(0, std::ostream::beg);
-
-	std::int32_t raw_int;
-	//char raw_char;
-	binary_reader.read(reinterpret_cast<char *>(&raw_int), sizeof(raw_int));
-	//binary_reader.read(&raw_char, sizeof(raw_char));
-	std::cout << "output: " << std::hex << std::setw(2)
-		<< std::setfill('0') << raw_int << std::endl;
-	//std::cout << "output: " << raw_int << std::endl;
-
-	binary_reader.close();
-	*/
-
-	// --------------------------------------------
 
 	Replay replay_file("Testing/0A797CAB49E97F824000D9BB757BF7F9.replay");
-	//replay_file.parse();
+	replay_file.parse();
 
-	//std::cout << replay_file.to_string() << std::endl;
-	//std::cout << "Replay Count: " << Replay::replay_count() << std::endl;
-
-	std::string s;
-	std::cout << s.max_size();
-
-	test_replay_values();
+	std::cout << replay_file.to_string() << std::endl;
+	std::cout << "Replay Count: " << Replay::replay_count() << std::endl;
 
 	_getch();
 
 	return 0;
-}
-
-
-void test_replay_values() {
-	ReplayProperty::Value replay_value;
-	replay_value.set_int(65);
-	std::cout << "replay_value: \n\t- Type: "
-		<< ReplayProperty::type_to_string(replay_value.type())
-		<< "\n\t- Value: " << replay_value.to_string();
 }

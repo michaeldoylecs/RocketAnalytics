@@ -9,8 +9,10 @@
 #include <string>
 #include <cstdint>
 #include <vector>
-#include "ReplayProperty.hpp"
+#include "../include/ReplayProperty.hpp"
 
+
+class ReplayProperty::Property;
 
 class Replay {
 	public:
@@ -43,7 +45,7 @@ class Replay {
 		std::int32_t							version_major_;
 		std::int32_t							version_minor_;
 		std::string								replay_identifier_;
-		std::vector<ReplayProperty::Property *>	properties_;
+		std::vector<ReplayProperty::Property*>	properties_;
 		std::int32_t							part2_length_;
 		std::int32_t							part2_crc_;
 		std::int32_t							level_length_;

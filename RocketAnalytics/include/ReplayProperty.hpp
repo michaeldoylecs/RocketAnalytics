@@ -9,12 +9,14 @@
 #include <string>
 #include <cstdint>
 #include <vector>
-#include "ReplayPropertyTypes.hpp"
-#include "ReplayPropertyValue.hpp"
+#include "../include/ReplayPropertyValue.hpp"
 
 namespace ReplayProperty {
 
+	enum Type;
+
 	class Property {
+
 		public:
 			// Constructors & Destructors
 			Property(); // TODO: Make overloaded Property constructors
@@ -23,10 +25,10 @@ namespace ReplayProperty {
 			// Member Getters
 			std::string		key();
 			Type			type();
-			Value *			value();
 			std::string		value_to_string();
 
 			// Setters
+			void			set_key(std::string string);
 			void			set_none();
 			void			set_int(std::int32_t i);
 			void			set_str(std::string str);
@@ -37,12 +39,10 @@ namespace ReplayProperty {
 			void			set_float(float f);
 			void			set_array(std::vector<std::vector<Property *>> vector);
 
-
-
-	private:
-		// Members
-		std::string key_;
-		Value value_;
+		private:
+			// Fields
+			std::string key_;
+			Value value_;
 	};
 	
 
