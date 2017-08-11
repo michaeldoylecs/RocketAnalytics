@@ -1,28 +1,34 @@
 // Author: Michael Doyle
-// Date: 7/25/17
-// ReplayFileReaderTests.hpp
+// Date: 8/5/17
+// ReplayFileReaderTests.cpp
 
-#include "gtest/gtest.h"
-#include "../include/ReplayFileReader.hpp"
+#include <iostream>
+#include "ReplayFileReader.hpp"
+#include "gtest\gtest.h"
 
-struct ReplayFileReaderTest : testing::Test {
-	std::string replay_path = "D:\\Library\\Development\\Projects\\RocketAnalytics\\RocketAnalyticsTests\\Testing\\0A797CAB49E97F824000D9BB757BF7F9.replay";
-	ReplayParser::ReplayFileReader* replay_reader;
-	
-	ReplayFileReaderTest() {
-		replay_reader = new ReplayParser::ReplayFileReader(replay_path);
+struct ReplayFileReaderTestFixture: ::testing::Test {
+	std::string replay_file_name;
+	std::ofstream output_file_stream;
+	ReplayParser::ReplayFileReader replay_file_reader;
+	std::int8_t int8_array[6] = {1, 56, 74, 89, 43, 5};
+
+	ReplayFileReaderTestFixture() {
+		replay_file_name = "replay_test_file_output.replay";
+		output_file_stream.open(replay_file_name, std::ios::out | std::ios::binary);
+		for (const std::int8_t &value : int8_array) {
+			char * write_data = reinterpret_cast<char *>(value);
+			int write_data_size = sizeof(value);
+			output_file_stream.write(write_data, write_data_size);
+		}
+		
 	}
 
-	virtual void SetUp() {}
+	void SetUp() {
+	}
 
-	virtual void TearDown() {}
+	void TearDown() {
+	}
 
-	virtual ~ReplayFileReaderTest() {
-		delete replay_reader;
+	~ReplayFileReaderTestFixture() {
 	}
 };
-
-TEST_F(ReplayFileReaderTest, ReadFirst4Bytes) {
-	std::int32_t test_int = replay_reader->read_int32();
-	EXPECT_EQ(6859, test_int);
-}

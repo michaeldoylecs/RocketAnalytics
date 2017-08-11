@@ -1,0 +1,39 @@
+PATTERN:
+<HeaderSize>[4bytes]
+<CRC>[4bytes]
+<Header>[HeaderSize]
+-- <VersionMajor>[4bytes]
+-- <VersionMinor>[4bytes]
+-- <ReplayIdentifier>[String]
+---- <StringLength>[4bytes]
+---- <String>[StringLength]
+-- <Properties>[HeaderSize - VersionMajor - VersionMinor - ReplayIdentifier]
+
+NUMBER OF FRAMES
+
+None = 0;
+IntProperty = 1
+StrProperty = 2
+NameProperty = 3
+BoolProperty = 4
+QWordProperty = 5
+ByteProperty = 6
+FloatProperty = 7
+ArrayProperty = 8
+OnlinePlatform = 9
+
+
+------<Replay 1>------
+4bitInt:        6859
+PropertiesEnd@: 6867
+----------------------
+
+------<Replay 2>------
+4bitInt:        6516
+PropertiesEnd@: 6524
+----------------------
+
+------<Replay 2>------
+4bitInt:        6109
+PropertiesEnd@: 6117
+----------------------

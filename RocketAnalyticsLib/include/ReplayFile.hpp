@@ -1,0 +1,25 @@
+// Author: Michael Doyle
+// Date: 7/23/17
+// ReplayFileReader.hpp
+
+#ifndef REPLAY_FILE_H
+#define REPLAY_FILE_H
+
+#include <cstdint>
+#include <string>
+#include <fstream>
+
+namespace ReplayParser {
+
+	class ReplayFile {
+	public:
+		ReplayFile(std::string filepath);
+		~ReplayFile();
+
+	private:
+		std::string replay_file_path;
+		void read_header_values();
+	};
+
+}
+#endif
