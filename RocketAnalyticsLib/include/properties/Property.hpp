@@ -5,19 +5,19 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
-#include <cstdint>
 #include <string>
 
 namespace ReplayParser {
 
 	class Property {
 		public:
+			Property(std::string name);
+			std::string get_name();
+			//TODO: PropertyType get_type();
 
-
-		private:
+		protected:
 			std::string name;
-			// PropertyType type
-			// PropertyValue value
+			//TODO: PropertyType type;
 	};
 
 }

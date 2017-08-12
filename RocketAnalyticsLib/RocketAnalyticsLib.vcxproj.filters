@@ -33,7 +33,13 @@
     <ClInclude Include="include\Version.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Property.hpp">
+    <ClInclude Include="include\properties\Property.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\properties\IntProperty.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\properties\PropertyType.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,6 +51,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ReplayFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\properties\Property.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\properties\PropertyType.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

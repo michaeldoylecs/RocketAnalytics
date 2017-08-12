@@ -148,6 +148,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\PropertyTypeTests.cpp" />
     <ClCompile Include="src\ReplayFileReaderTests.cpp" />
     <ClCompile Include="src\RocketAnalyticsTests.cpp" />
     <ClCompile Include="src\VersionTests.cpp" />
