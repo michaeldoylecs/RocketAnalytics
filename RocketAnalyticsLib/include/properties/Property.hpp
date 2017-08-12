@@ -5,6 +5,7 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
+#include "PropertyType.hpp"
 #include <string>
 
 namespace ReplayParser {
@@ -13,11 +14,13 @@ namespace ReplayParser {
 		public:
 			Property(std::string name);
 			std::string get_name();
-			//TODO: PropertyType get_type();
+			PType get_type();
+			// TODO: Property value
 
 		protected:
 			std::string name;
-			//TODO: PropertyType type;
+			PType type = PType::NONE;
+
 	};
 
 }

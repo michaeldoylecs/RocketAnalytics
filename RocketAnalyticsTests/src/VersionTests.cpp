@@ -4,7 +4,6 @@
 
 #include "Version.hpp"
 #include "gtest/gtest.h"
-#include <cstdint>
 
 using namespace ReplayParser;
 
