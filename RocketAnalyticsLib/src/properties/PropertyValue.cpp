@@ -128,7 +128,7 @@ namespace ReplayParser {
 	void PropertyValue::set_byte(ByteValue byte) {
 		deconstruct_union_values_if_necessary();
 		property_type = PType::BYTE_PROPERTY;
-		property_value.byte = byte; //HACK: Is this proper?
+		new (&property_value.byte) ByteValue(byte); //HACK: Is this proper?
 	}
 
 

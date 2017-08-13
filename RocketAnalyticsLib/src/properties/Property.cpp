@@ -87,4 +87,11 @@ namespace ReplayParser {
 		return property_value.get_value_as_string();
 	}
 
+
+	std::string Property::to_string() {
+		std::string to_string_value = "";
+		to_string_value += get_name() + ": " + get_value_as_string();
+		return to_string_value;
+	}
+
 }
