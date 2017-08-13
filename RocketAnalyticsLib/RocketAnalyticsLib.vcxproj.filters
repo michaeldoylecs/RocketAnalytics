@@ -36,16 +36,13 @@
     <ClInclude Include="include\properties\Property.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\properties\IntProperty.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\properties\PropertyType.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\properties\StrProperty.hpp">
+    <ClInclude Include="include\properties\PropertyValue.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\properties\PropertyValue.hpp">
+    <ClInclude Include="include\properties\ByteValue.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,16 +56,16 @@
     <ClCompile Include="src\ReplayFile.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\properties\IntProperty.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\properties\Property.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\properties\PropertyType.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\properties\StrProperty.cpp">
+    <ClCompile Include="src\properties\PropertyValue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\properties\ByteValue.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

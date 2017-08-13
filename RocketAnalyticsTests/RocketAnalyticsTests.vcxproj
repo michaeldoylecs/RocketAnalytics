@@ -91,7 +91,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)RocketAnalyticsLib\include;$(SolutionDir)googletest\googletest\include;$(SolutionDir)googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)RocketAnalyticsLib\include\properties;$(SolutionDir)RocketAnalyticsLib\include;$(SolutionDir)googletest\googletest\include;$(SolutionDir)googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -148,10 +148,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\properties\IntPropertyTests.cpp" />
+    <ClCompile Include="src\properties\ByteValueTests.cpp" />
     <ClCompile Include="src\properties\PropertyTests.cpp" />
     <ClCompile Include="src\properties\PropertyTypeTests.cpp" />
-    <ClCompile Include="src\properties\StrPropertyTests.cpp" />
+    <ClCompile Include="src\properties\PropertyValueTests.cpp" />
     <ClCompile Include="src\ReplayFileReaderTests.cpp" />
     <ClCompile Include="src\RocketAnalyticsTests.cpp" />
     <ClCompile Include="src\VersionTests.cpp" />

@@ -133,21 +133,20 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\properties\ByteValue.hpp" />
     <ClInclude Include="include\properties\PropertyType.hpp" />
-    <ClInclude Include="include\properties\StrProperty.hpp" />
+    <ClInclude Include="include\properties\PropertyValue.hpp" />
     <ClInclude Include="include\ReplayFileReader.hpp" />
     <ClInclude Include="include\ReplayFile.hpp" />
     <ClInclude Include="include\ReplayHeader.hpp" />
     <ClInclude Include="include\Version.hpp" />
     <ClInclude Include="include\properties\Property.hpp" />
-    <ClInclude Include="include\properties\IntProperty.hpp" />
-    <ClInclude Include="src\properties\PropertyValue.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\properties\IntProperty.cpp" />
+    <ClCompile Include="src\properties\ByteValue.cpp" />
     <ClCompile Include="src\properties\Property.cpp" />
     <ClCompile Include="src\properties\PropertyType.cpp" />
-    <ClCompile Include="src\properties\StrProperty.cpp" />
+    <ClCompile Include="src\properties\PropertyValue.cpp" />
     <ClCompile Include="src\ReplayFile.cpp" />
     <ClCompile Include="src\ReplayFileReader.cpp" />
     <ClCompile Include="src\Version.cpp">

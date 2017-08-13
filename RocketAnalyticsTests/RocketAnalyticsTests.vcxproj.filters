@@ -30,13 +30,13 @@
     <ClCompile Include="src\properties\PropertyTypeTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\properties\IntPropertyTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\properties\PropertyTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\properties\StrPropertyTests.cpp">
+    <ClCompile Include="src\properties\ByteValueTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\properties\PropertyValueTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
