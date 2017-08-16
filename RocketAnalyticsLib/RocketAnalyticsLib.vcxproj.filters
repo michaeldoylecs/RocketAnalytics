@@ -45,6 +45,12 @@
     <ClInclude Include="include\properties\ByteValue.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Byte.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinaryReader.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ReplayFileReader.cpp">
@@ -66,6 +72,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\properties\ByteValue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Byte.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryReader.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

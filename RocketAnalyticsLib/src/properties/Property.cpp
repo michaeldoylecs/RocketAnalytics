@@ -42,7 +42,7 @@ namespace ReplayParser {
 	}
 
 
-	void Property::set_bool(std::string name, bool value) {
+	void Property::set_bool(std::string name, std::uint8_t value) {
 		property_name = name;
 		property_value.set_bool(value);
 	}

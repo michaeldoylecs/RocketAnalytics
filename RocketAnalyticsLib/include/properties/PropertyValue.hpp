@@ -28,7 +28,7 @@ namespace ReplayParser {
 			void set_int(std::uint32_t int32);
 			void set_string(std::string string);
 			void set_name(std::string name);
-			void set_bool(bool b);
+			void set_bool(std::uint8_t int8);
 			void set_qword(std::uint64_t qword);
 			void set_byte(ByteValue byte);
 			void set_byte(std::string identifier, std::string value);
@@ -43,8 +43,8 @@ namespace ReplayParser {
 			union UValue {
 				std::uint64_t int64;
 				std::uint32_t int32;
+				std::uint8_t int8;
 				float f;
-				bool b;
 				std::string string;
 				ByteValue byte;
 				std::vector<Property> list;

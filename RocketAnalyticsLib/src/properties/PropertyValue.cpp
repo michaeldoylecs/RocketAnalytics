@@ -26,7 +26,7 @@ namespace ReplayParser {
 			set_name(propertyValue.property_value.string);
 		}
 		else if (type == PType::BOOL_PROPERTY) {
-			set_bool(propertyValue.property_value.b);
+			set_bool(propertyValue.property_value.int8);
 		}
 		else if (type == PType::QWORD_PROPERTY) {
 			set_qword(propertyValue.property_value.int64);
@@ -58,7 +58,7 @@ namespace ReplayParser {
 			set_name(propertyValue.property_value.string);
 		}
 		else if (type == PType::BOOL_PROPERTY) {
-			set_bool(propertyValue.property_value.b);
+			set_bool(propertyValue.property_value.int8);
 		}
 		else if (type == PType::QWORD_PROPERTY) {
 			set_qword(propertyValue.property_value.int64);
@@ -111,10 +111,10 @@ namespace ReplayParser {
 	}
 
 
-	void PropertyValue::set_bool(bool b) {
+	void PropertyValue::set_bool(std::uint8_t int8) {
 		deconstruct_union_values_if_necessary();
 		property_type = PType::BOOL_PROPERTY;
-		property_value.b = b;
+		property_value.int8 = int8;
 	}
 
 
@@ -189,7 +189,7 @@ namespace ReplayParser {
 			return stored_value;
 		}
 		else if (property_type == PType::BOOL_PROPERTY) {
-			bool stored_value = property_value.b;
+			bool stored_value = property_value.int8;
 			std::string converted_value = std::to_string(stored_value);
 			return converted_value;
 		}
@@ -222,11 +222,11 @@ namespace ReplayParser {
 
 	std::string PropertyValue::array_properties_to_string() {
 		std::string converted_value = "";
-		int property_array_size = property_value.list.size();
+		size_t property_array_size = property_value.list.size();
 		for (int i = 0; i < property_array_size; i++) {
 			Property *property = &property_value.list[i];
 			converted_value += property->get_value_as_string();
-			int one_less_than_array_size = property_array_size - 1;
+			size_t one_less_than_array_size = property_array_size - 1;
 			if (i != one_less_than_array_size) {
 				converted_value += ", ";
 			}

@@ -23,7 +23,7 @@ namespace ReplayParser {
 			void set_int(std::string name, std::uint32_t value);
 			void set_string(std::string name, std::string value);
 			void set_name(std::string name, std::string value);
-			void set_bool(std::string name, bool value);
+			void set_bool(std::string name, std::uint8_t value);
 			void set_qword(std::string name, std::uint64_t value);
 			void set_byte(std::string name, std::string identifier, std::string value);
 			void set_float(std::string name, float value);

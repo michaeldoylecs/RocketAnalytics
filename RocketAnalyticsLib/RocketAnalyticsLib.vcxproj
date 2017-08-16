@@ -105,9 +105,11 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)RocketAnalyticsLib\include;$(SolutionDir)RocketAnalyticsLib\include\properties;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,6 +135,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Byte.hpp" />
+    <ClInclude Include="include\BinaryReader.hpp" />
     <ClInclude Include="include\properties\ByteValue.hpp" />
     <ClInclude Include="include\properties\PropertyType.hpp" />
     <ClInclude Include="include\properties\PropertyValue.hpp" />
@@ -143,6 +147,8 @@
     <ClInclude Include="include\properties\Property.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BinaryReader.cpp" />
+    <ClCompile Include="src\Byte.cpp" />
     <ClCompile Include="src\properties\ByteValue.cpp" />
     <ClCompile Include="src\properties\Property.cpp" />
     <ClCompile Include="src\properties\PropertyType.cpp" />
