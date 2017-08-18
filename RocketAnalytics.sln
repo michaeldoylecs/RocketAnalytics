@@ -15,6 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GTest", "GTest\GTest.vcxpro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0ED532C-655F-4E9A-A6F5-EECE05F84F86}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
 EndProject
