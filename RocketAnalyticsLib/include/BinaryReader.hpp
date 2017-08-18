@@ -15,12 +15,12 @@ namespace ReplayParser {
 	class BinaryReader {
 		public:
 			BinaryReader(std::string file_path);
-			std::size_t size();
 			float read_padded_float();
 			std::uint8_t read_padded_uint8();
 			std::uint32_t read_padded_uint32();
 			std::uint64_t read_padded_uint64();
 			std::string read_padded_string();
+			std::size_t size();
 
 		private:
 			std::vector<Byte> byte_list;
@@ -28,15 +28,15 @@ namespace ReplayParser {
 			int bit_position;
 
 			void read_binary_file_into_memory(std::string filepath);
-			std::size_t get_file_size(std::ifstream &file_stream);
-			void set_byte_list_size(std::size_t size);
+			void set_byte_list_size(std::size_t size);\
 			Byte read_next_padded_byte();
-			void increment_byte_position();
-			void increment_bit_position();
+			float combine_bytes_into_float(std::array<Byte, 4> bytes);
 			std::uint32_t combine_bytes_into_uint32(std::array<Byte, 4> bytes);
 			std::uint64_t combine_bytes_into_uint64(std::array<Byte, 8> bytes);
-			float combine_bytes_into_float(std::array<Byte, 4> bytes);
 			std::string read_string_of_n_length(std::uint32_t length);
+			std::size_t get_file_size(std::ifstream &file_stream);
+			void increment_byte_position();
+			void increment_bit_position();
 	};
 
 }
