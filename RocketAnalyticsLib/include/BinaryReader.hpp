@@ -34,6 +34,7 @@ namespace ReplayParser {
 			void increment_byte_position();
 			void increment_bit_position();
 			std::uint32_t combine_bytes_into_uint32(std::array<Byte, 4> bytes);
+			std::uint64_t combine_bytes_into_uint64(std::array<Byte, 8> bytes);
 			float combine_bytes_into_float(std::array<Byte, 4> bytes);
 			std::string read_string_of_n_length(std::uint32_t length);
 	};

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cstring>
 #include <array>
+#include <assert.h>
 
 namespace ReplayParser {
 
@@ -70,6 +71,23 @@ namespace ReplayParser {
 	}
 
 
+	std::uint64_t BinaryReader::read_padded_uint64() {
+		try {
+			const int AMOUNT_OF_BYTES_TO_READ = 8;
+			std::array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
+			for (int index = 0; index < AMOUNT_OF_BYTES_TO_READ; index++) {
+				list_of_bytes[index] = read_next_padded_byte();
+			}
+			std::uint64_t read_value = combine_bytes_into_uint64(list_of_bytes);
+			return read_value;
+		}
+		catch (std::runtime_error e) {
+			std::cout << "Exception caught: " << e.what() << std::endl;
+			return 0;
+		}
+	}
+
+
 	std::string BinaryReader::read_padded_string() {
 		std::cout << "Attempting to read string in BinaryReader";
 		std::string string_value;
@@ -123,13 +141,15 @@ namespace ReplayParser {
 
 
 	std::uint32_t BinaryReader::combine_bytes_into_uint32(std::array<Byte, 4> bytes) {
-		const int BYTES_TO_COMBINE = 4;
-		const int BITS_IN_A_BYTE = 8;
 		std::uint32_t combined_value = 0;
-		for (int index = BYTES_TO_COMBINE - 1; index >= 0; index--) {
-			combined_value = combined_value << BITS_IN_A_BYTE; // Shift 8 bits left
-			combined_value = combined_value | bytes[index].get_value(); // OR on next 8 bits
-		}
+		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
+		return combined_value;
+	}
+
+
+	std::uint64_t BinaryReader::combine_bytes_into_uint64(std::array<Byte, 8> bytes) {
+		std::uint64_t combined_value = 0;
+		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
 
@@ -153,15 +173,19 @@ namespace ReplayParser {
 	}
 
 
+	//TODO: Cleanup code
 	std::string BinaryReader::read_string_of_n_length(std::uint32_t length) {
 		try {
-			std::string string_value = "";
+			char *string_array = new char[length];
 			for (std::uint32_t index = 0; index < length; index++) {
 				Byte next_byte = read_next_padded_byte();
 				std::uint8_t byte_value = next_byte.get_value();
-				std::string next_char = (char *) byte_value; //TODO: Better way than C-style casting?
-				string_value += next_char;
+				char next_char;
+				std::memcpy(&next_char, &byte_value, sizeof(next_char));
+				string_array[index] = next_char;
 			}
+			std::string string_value(string_array);
+			delete string_array;
 			return string_value;
 		}
 		catch (std::runtime_error e) {
