@@ -114,6 +114,14 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>D:\Library\Development\Projects\RocketAnalytics\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -156,7 +164,7 @@
     <ClCompile Include="src\properties\PropertyTests.cpp" />
     <ClCompile Include="src\properties\PropertyTypeTests.cpp" />
     <ClCompile Include="src\properties\PropertyValueTests.cpp" />
-    <ClCompile Include="src\ReplayFileReaderTests.cpp" />
+    <ClCompile Include="src\ReplayHeaderTests.cpp" />
     <ClCompile Include="src\RocketAnalyticsTests.cpp" />
     <ClCompile Include="src\BinaryReaderTests.cpp" />
     <ClCompile Include="src\VersionTests.cpp" />

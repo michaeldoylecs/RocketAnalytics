@@ -47,7 +47,7 @@ namespace ReplayParser {
 				float f;
 				std::string string;
 				ByteValue byte;
-				std::vector<Property> list;
+				std::vector<Property> list; //TODO: Rewrite as custom class
 				UValue(); // HACK: Is this necessary for PropertyValue constructor?
 				~UValue();
 			} property_value;

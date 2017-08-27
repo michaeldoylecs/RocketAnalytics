@@ -12,12 +12,17 @@ namespace ReplayParser {
 
 	class Version {
 		public:
-			std::uint32_t major;
-			std::uint32_t minor;
-
+			Version();
 			Version(std::uint32_t major, std::uint32_t minor);
 			~Version();
-			std::string version();
+			std::uint32_t get_major_value();
+			std::uint32_t get_minor_value();
+			void set_version(std::uint32_t major, std::uint32_t minor);
+			std::string to_string();
+
+		private:
+			std::uint32_t version_major;
+			std::uint32_t version_minor;
 	};
 
 }

@@ -7,31 +7,48 @@
 
 using namespace ReplayParser;
 
-TEST (VersionTests, VersionSetAndGet) {
-	Version *version;
-	int amount_of_tests = 3;
-	std::uint32_t major_value[3] = { 0, 45, 867 };
-	std::uint32_t minor_value[3] = { 0, 4, 13 };
+struct VersionTestParam {
+	std::uint32_t version_major;
+	std::uint32_t version_minor;
 
-	for (int index = 0; index < amount_of_tests; index++) {
-		version = new Version(major_value[index], minor_value[index]);
-		EXPECT_EQ(version->major, major_value[index]);
-		EXPECT_EQ(version->minor, minor_value[index]);
+	VersionTestParam(std::uint32_t major, std::uint32_t minor) {
+		version_major = major;
+		version_minor = minor;
+	}
+};
+
+
+struct VersionTests :testing::TestWithParam<VersionTestParam> {
+	Version* version;
+
+	VersionTests() {
+		version = new Version(GetParam().version_major, GetParam().version_minor);
+	}
+
+	~VersionTests() {
 		delete version;
 	}
+};
+
+
+TEST_P(VersionTests, GetMajorValue) {
+	EXPECT_EQ(version->get_major_value(), GetParam().version_major);
 }
 
 
-TEST(VersionTests, VersionToString) {
-	Version *version;
-	int amount_of_tests = 3;
-	std::uint32_t major_value[3] = { 0, 45, 867 };
-	std::uint32_t minor_value[3] = { 0, 4, 13 };
-
-	for (int index = 0; index < amount_of_tests; index++) {
-		version = new Version(major_value[index], minor_value[index]);
-		std::string correct_version_string = major_value[index] + "." + minor_value[index];
-		EXPECT_EQ(version->version(), correct_version_string);
-		delete version;
-	}
+TEST_P(VersionTests, GetMinorValue) {
+	EXPECT_EQ(version->get_minor_value(), GetParam().version_minor);
 }
+
+
+TEST_P(VersionTests, ToString) {
+	std::string correct_version_string = GetParam().version_major + "." + GetParam().version_minor;
+	EXPECT_EQ(version->to_string(), correct_version_string);
+}
+
+
+INSTANTIATE_TEST_CASE_P(VersionTests, VersionTests, ::testing::Values(
+	VersionTestParam(0, 0),
+	VersionTestParam(45, 4),
+	VersionTestParam(867, 13)
+));

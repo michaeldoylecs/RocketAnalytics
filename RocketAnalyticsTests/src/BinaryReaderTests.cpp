@@ -1,6 +1,6 @@
 // Author: Michael Doyle
 // Date: 8/13/17
-// TestsMain.cpp
+// BinaryReaderTests.cpp
 
 #include "BinaryReader.hpp"
 #include "gtest/gtest.h"
@@ -10,21 +10,6 @@
 using namespace ReplayParser;
 
 //TODO: Write better tests for BinaryReader
-/*
-struct BinaryReaderTests: testing::Test {
-	BinaryReader *binary_reader;
-	std::string filepath = "../../Testing/TestReplay.replay";
-
-	BinaryReaderTests() {
-		binary_reader = new BinaryReader(filepath);
-	}
-
-	~BinaryReaderTests() {
-		delete binary_reader;
-	}
-};
-*/
-
 
 TEST(BinaryReaderTests, ReadValueTypes) {
 	BinaryReader binary_reader("../../Testing/TestReplay.replay");

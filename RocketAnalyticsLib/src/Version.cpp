@@ -6,9 +6,14 @@
 
 namespace ReplayParser {
 
+	Version::Version() {
+		version_major = 0;
+		version_minor = 0;
+	}
+
+
 	Version::Version(std::uint32_t major, std::uint32_t minor) {
-		this->major = major;
-		this->minor = minor;
+		set_version(major, minor);
 	}
 
 
@@ -16,9 +21,25 @@ namespace ReplayParser {
 	}
 
 
-	std::string Version::version() {
+	void Version::set_version(std::uint32_t major, std::uint32_t minor) {
+		version_major = major;
+		version_minor = minor;
+	}
+
+
+	std::uint32_t Version::get_major_value() {
+		return version_major;
+	}
+
+
+	std::uint32_t Version::get_minor_value() {
+		return version_minor;
+	}
+
+
+	std::string Version::to_string() {
 		std::string return_string;
-		return_string = major + "." + minor;
+		return_string = version_major + "." + version_minor;
 		return return_string;
 	}
 }

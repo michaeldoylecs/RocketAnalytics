@@ -33,7 +33,7 @@ namespace ReplayParser {
 					std::uint8_t bit8 : 1; // Most Significant
 				}bits;
 			}byte_value;
-		};
+	};
 
 }
 

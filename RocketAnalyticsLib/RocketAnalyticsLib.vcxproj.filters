@@ -80,5 +80,8 @@
     <ClCompile Include="src\BinaryReader.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ReplayHeader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
