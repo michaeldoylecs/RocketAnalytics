@@ -27,7 +27,7 @@ namespace ReplayParser {
 			void set_qword(std::string name, std::uint64_t value);
 			void set_byte(std::string name, std::string identifier, std::string value);
 			void set_float(std::string name, float value);
-			void set_array(std::string name, std::vector<Property> value);
+			void set_array(std::string name, std::vector< std::vector<Property> > value);
 
 			std::string get_name();
 			PType get_type();

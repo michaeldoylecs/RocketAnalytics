@@ -271,14 +271,19 @@ TEST_F(PropertyTests, FloatPropertyToStringTest) {
 
 //TODO: Array Unit tests only test 'None' properties
 TEST_F(PropertyTests, ArrayPropertyNameReadTest) {
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property->set_array(property_name, property_list);
 	EXPECT_EQ(property->get_name(), property_name);
@@ -286,14 +291,19 @@ TEST_F(PropertyTests, ArrayPropertyNameReadTest) {
 
 
 TEST_F(PropertyTests, ArrayPropertyTypeReadTest) {
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property->set_array(property_name, property_list);
 	EXPECT_EQ(property->get_type(), PType::ARRAY_PROPERTY);
@@ -301,15 +311,23 @@ TEST_F(PropertyTests, ArrayPropertyTypeReadTest) {
 
 
 TEST_F(PropertyTests, ArrayPropertyValueReadTest) {
-	std::string expected_value = "None, None, None";
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	std::string expected_value =
+		"0: \n"
+		"1: \n"
+		"2: \n";
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property->set_array(property_name, property_list);
 	EXPECT_EQ(property->get_value_as_string(), expected_value);
@@ -317,15 +335,24 @@ TEST_F(PropertyTests, ArrayPropertyValueReadTest) {
 
 
 TEST_F(PropertyTests, ArrayPropertyToStringReadTest) {
-	std::string expected_to_string_value = property_name + ": " + "None, None, None";
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	std::string expected_to_string_value = property_name +
+		": \n" 
+		"0: \n" 
+		"1: \n" 
+		"2: \n";
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property->set_array(property_name, property_list);
 	EXPECT_EQ(property->to_string(), expected_to_string_value);
