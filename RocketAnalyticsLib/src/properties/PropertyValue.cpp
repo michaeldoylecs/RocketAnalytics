@@ -146,10 +146,10 @@ namespace ReplayParser {
 	}
 
 
-	void PropertyValue::set_array(std::vector<Property> property_list) {
+	void PropertyValue::set_array(std::vector< std::vector<Property> > property_list) {
 		deconstruct_union_values_if_necessary();
 		property_type = PType::ARRAY_PROPERTY;
-		new (&property_value.list) std::vector<Property>(property_list); // HACK: Is this proper?
+		new (&property_value.list) std::vector< std::vector<Property> >(property_list); // HACK: Is this proper?
 	}
 
 
@@ -220,16 +220,31 @@ namespace ReplayParser {
 	}
 
 
+	//IMPROVE: Function is a bit long and low level
 	std::string PropertyValue::array_properties_to_string() {
 		std::string converted_value = "";
 		size_t property_array_size = property_value.list.size();
+		std::vector<Property> property_array;
 		for (int i = 0; i < property_array_size; i++) {
-			Property *property = &property_value.list[i];
-			converted_value += property->get_value_as_string();
-			size_t one_less_than_array_size = property_array_size - 1;
-			if (i != one_less_than_array_size) {
-				converted_value += ", ";
+			property_array = property_value.list[i];
+			Property property;
+			int property_index = 0;
+			converted_value += std::to_string(i) + ": ";
+			while (true) {
+				property = property_array[property_index];
+				if (property.get_type() == PType::NONE) {
+					converted_value += "\n";
+					break;
+				}
+				else {
+					if (property_index > 0) {
+						converted_value += ", ";
+					}
+					converted_value += property.get_value_as_string();
+					property_index++;
+				}
 			}
+
 		}
 		return converted_value;
 	}

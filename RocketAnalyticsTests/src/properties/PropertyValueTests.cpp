@@ -155,14 +155,19 @@ TEST_F(PropertyValueTests, FloatPropertyReadStringValue) {
 
 TEST_F(PropertyValueTests, ArrayPropertyReadType) {
 	PType expected_type = PType::ARRAY_PROPERTY;
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property_value->set_array(property_list);
 	EXPECT_EQ(property_value->get_type(), expected_type);
@@ -170,15 +175,23 @@ TEST_F(PropertyValueTests, ArrayPropertyReadType) {
 
 // TOOD: Need more indepth Array unit tests
 TEST_F(PropertyValueTests, ArrayPropertyReadStringValue) {
-	std::string expected_string_value = "None, None, None";
-	Property properties[3] = {
-		Property(),
-		Property(),
-		Property(),
+	std::string expected_string_value =
+		"0: \n"
+		"1: \n"
+		"2: \n";
+	Property properties[3][3] = {
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() },
+		{ Property(), Property(), Property() }
 	};
-	std::vector<Property> property_list;
+	std::vector< std::vector<Property> > property_list;
+	std::vector<Property> property_array;
 	for (int i = 0; i < 3; i++) {
-		property_list.push_back(properties[i]);
+		for (int k = 0; k < 3; k++) {
+			property_array.push_back(properties[i][k]);
+		}
+		property_list.push_back(property_array);
+		property_array.clear();
 	}
 	property_value->set_array(property_list);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);

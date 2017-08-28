@@ -33,7 +33,7 @@ namespace ReplayParser {
 			void set_byte(ByteValue byte);
 			void set_byte(std::string identifier, std::string value);
 			void set_float(float f);
-			void set_array(std::vector<Property> property_list);
+			void set_array(std::vector< std::vector<Property> > property_list);
 
 			PType get_type();
 			std::string get_value_as_string();
@@ -47,7 +47,7 @@ namespace ReplayParser {
 				float f;
 				std::string string;
 				ByteValue byte;
-				std::vector<Property> list; //TODO: Rewrite as custom class
+				std::vector< std::vector<Property> > list; //TODO: Rewrite as custom class (maybe?)
 				UValue(); // HACK: Is this necessary for PropertyValue constructor?
 				~UValue();
 			} property_value;
