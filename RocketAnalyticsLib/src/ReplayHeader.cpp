@@ -73,6 +73,7 @@ namespace ReplayParser {
 		std::string property_name;
 		std::string property_type_string;
 		PType property_type;
+
 		std::uint8_t int8_value;
 		std::uint32_t int32_value;
 		std::uint64_t int64_value;
@@ -81,14 +82,17 @@ namespace ReplayParser {
 		std::vector<Property> array_value;
 		float float_value;
 
+		// Read property name
 		property_name = binary_reader.read_padded_string();
 		if (property_name == "None") {
 			property.set_none();
 			return property;
 		}
+		// Read property type
 		property_type_string = binary_reader.read_padded_string();
 		property_type = PropertyType::string_to_property_type(property_type_string);
 
+		// Read property value based on type
 		switch (property_type) {
 		case PType::INT_PROPERTY:
 			int32_value = binary_reader.read_padded_uint32();
