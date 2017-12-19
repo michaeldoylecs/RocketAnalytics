@@ -23,11 +23,10 @@ namespace ReplayParser {
 		}
 	}
 
-
 	void BinaryReader::read_binary_file_into_memory(std::string filepath) {
 		std::ifstream binary_file_stream(filepath, std::ios::binary | std::ios::in);
 		if (!binary_file_stream.is_open()) {
-			throw std::runtime_error("Failed to open file exception");
+			throw std::runtime_error("BinaryReader: Failed to open file exception");
 		}
 		std::size_t binary_file_size = get_file_size(binary_file_stream);
 		set_byte_list_size(binary_file_size);
@@ -35,7 +34,6 @@ namespace ReplayParser {
 		binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
 		binary_file_stream.close();
 	}
-
 
 	std::size_t BinaryReader::get_file_size(std::ifstream &file_stream) {
 		std::size_t initial_file_position = file_stream.tellg();
@@ -45,11 +43,9 @@ namespace ReplayParser {
 		return binary_file_size;
 	}
 
-
 	void BinaryReader::set_byte_list_size(std::size_t size) {
 		byte_list.resize(size);
 	}
-
 
 	float BinaryReader::read_padded_float() {
 		try {
@@ -67,13 +63,11 @@ namespace ReplayParser {
 		}
 	}
 
-
 	float BinaryReader::combine_bytes_into_float(std::array<Byte, 4> bytes) {
 		float combined_value = 0.0f;
 		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
-
 
 	std::uint8_t BinaryReader::read_padded_uint8() {
 		try {
@@ -86,7 +80,6 @@ namespace ReplayParser {
 			return 0;
 		}
 	}
-
 
 	std::uint32_t BinaryReader::read_padded_uint32() {
 		try {
@@ -104,13 +97,11 @@ namespace ReplayParser {
 		}
 	}
 
-
 	std::uint32_t BinaryReader::combine_bytes_into_uint32(std::array<Byte, 4> bytes) {
 		std::uint32_t combined_value = 0;
 		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
-
 
 	std::uint64_t BinaryReader::read_padded_uint64() {
 		try {
@@ -128,13 +119,11 @@ namespace ReplayParser {
 		}
 	}
 
-
 	std::uint64_t BinaryReader::combine_bytes_into_uint64(std::array<Byte, 8> bytes) {
 		std::uint64_t combined_value = 0;
 		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
-
 
 	std::string BinaryReader::read_padded_string() {
 		std::cout << "Attempting to read string in BinaryReader";
@@ -144,8 +133,7 @@ namespace ReplayParser {
 		return string_value;
 	}
 
-
-	//TODO: Cleanup code
+	//TODO: Cleanup method
 	std::string BinaryReader::read_string_of_n_length(std::uint32_t length) {
 		try {
 			char *string_array = new char[length];
@@ -166,7 +154,6 @@ namespace ReplayParser {
 		}
 	}
 
-
 	Byte BinaryReader::read_next_padded_byte() {
 		if (bit_position != 0) {
 			throw std::runtime_error("Attempted to read byte with bit pointer misaligned");
@@ -176,11 +163,9 @@ namespace ReplayParser {
 		return next_byte;
 	}
 
-
 	void BinaryReader::increment_byte_position() {
 		byte_position++;
 	}
-
 
 	void BinaryReader::increment_bit_position() {
 		bit_position++;
@@ -189,7 +174,6 @@ namespace ReplayParser {
 			increment_byte_position();
 		}
 	}
-
 
 	std::size_t BinaryReader::size() {
 		return byte_list.size();
