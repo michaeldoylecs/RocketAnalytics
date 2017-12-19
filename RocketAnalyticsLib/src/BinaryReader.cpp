@@ -18,7 +18,7 @@ namespace ReplayParser {
 			read_binary_file_into_memory(filepath);
 		}
 		catch(const std::runtime_error &e) {
-			std::cout << "Exception caught: " << e.what() << std::endl;
+			std::cerr << "Exception caught: " << e.what() << std::endl;
 			set_byte_list_size(0);
 		}
 	}
