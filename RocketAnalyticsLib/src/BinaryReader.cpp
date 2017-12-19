@@ -26,7 +26,7 @@ namespace ReplayParser {
 	void BinaryReader::read_binary_file_into_memory(std::string filepath) {
 		std::ifstream binary_file_stream(filepath, std::ios::binary | std::ios::in);
 		if (!binary_file_stream.is_open()) {
-			throw std::runtime_error("BinaryReader: Failed to open file exception");
+			throw std::runtime_error("Failed to open file exception");
 		}
 		std::size_t binary_file_size = get_file_size(binary_file_stream);
 		set_byte_list_size(binary_file_size);
@@ -126,7 +126,6 @@ namespace ReplayParser {
 	}
 
 	std::string BinaryReader::read_padded_string() {
-		std::cout << "Attempting to read string in BinaryReader";
 		std::string string_value;
 		std::uint32_t string_length = read_padded_uint32();
 		string_value = read_string_of_n_length(string_length);
