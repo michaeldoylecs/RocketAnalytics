@@ -9,7 +9,6 @@ namespace ReplayParser {
 	ReplayHeader::ReplayHeader() {
 	}
 
-
 	ReplayHeader* ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
 		ReplayHeader* replay_header = new ReplayHeader();
 		replay_header->parse_header_size(binary_reader);
@@ -28,12 +27,10 @@ namespace ReplayParser {
 		header_size = parsed_header_size;
 	}
 
-
 	void ReplayHeader::parse_crc1(BinaryReader& binary_reader) {
 		std::uint32_t parsed_crc1 = binary_reader.read_padded_uint32();
 		crc1 = parsed_crc1;
 	}
-
 
 	void ReplayHeader::parse_version(BinaryReader& binary_reader) {
 		std::uint32_t version_major = binary_reader.read_padded_uint32();
@@ -41,12 +38,10 @@ namespace ReplayParser {
 		version.set_version(version_major, version_minor);
 	}
 
-
 	void ReplayHeader::parse_replay_identifier(BinaryReader& binary_reader) {
 		std::string parsed_replay_identifier = binary_reader.read_padded_string();
 		replay_identifier = parsed_replay_identifier;
 	}
-
 
 	//IMPROVE: There must be a better way to handle discrepancies between replay versions
 	void ReplayHeader::check_for_empty_bits(BinaryReader& binary_reader) {
@@ -54,7 +49,6 @@ namespace ReplayParser {
 			binary_reader.read_padded_uint32();
 		}
 	}
-
 
 	void ReplayHeader::parse_properties(BinaryReader& binary_reader) {
 		while (true) {
@@ -65,7 +59,6 @@ namespace ReplayParser {
 			}
 		}
 	}
-
 
 	//IMPROVE: Reduce function size and maintain levels of abstraction
 	Property ReplayHeader::parse_property(BinaryReader& binary_reader) {
@@ -134,58 +127,47 @@ namespace ReplayParser {
 		return property;
 	}
 
-
 	void ReplayHeader::parse_body_size(BinaryReader& binary_reader) {
 		std::uint32_t parsed_body_size = binary_reader.read_padded_uint32();
 		body_size = parsed_body_size;
 	}
-
 
 	void ReplayHeader::parse_crc2(BinaryReader& binary_reader) {
 		std::uint32_t parsed_crc2 = binary_reader.read_padded_uint32();
 		crc2 = parsed_crc2;
 	}
 
-
 	std::uint32_t ReplayHeader::get_header_size() {
 		return header_size;
 	}
-
 
 	std::uint32_t ReplayHeader::get_crc1() {
 		return crc1;
 	}
 
-
 	std::string ReplayHeader::get_version_string() {
 		return version.to_string();
 	}
-
 
 	std::uint32_t ReplayHeader::get_version_major() {
 		return version.get_major_value();
 	}
 
-
 	std::uint32_t ReplayHeader::get_version_minor() {
 		return version.get_minor_value();
 	}
-
 
 	std::string ReplayHeader::get_replay_identifier() {
 		return replay_identifier;
 	}
 
-
 	std::vector<Property> ReplayHeader::get_properties() {
 		return replay_properties;
 	}
 
-
 	std::uint32_t ReplayHeader::get_body_size() {
 		return body_size;
 	}
-
 
 	std::uint32_t ReplayHeader::get_crc2() {
 		return crc2;

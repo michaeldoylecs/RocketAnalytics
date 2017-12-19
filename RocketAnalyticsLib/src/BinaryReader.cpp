@@ -31,7 +31,8 @@ namespace ReplayParser {
 		}
 		std::size_t binary_file_size = get_file_size(binary_file_stream);
 		set_byte_list_size(binary_file_size);
-		binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size); // HACK: Kind of a hack to directly assign data to Byte object memory space
+		// HACK: Kind of a hack to directly assign data to Byte object memory space
+		binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
 		binary_file_stream.close();
 	}
 
