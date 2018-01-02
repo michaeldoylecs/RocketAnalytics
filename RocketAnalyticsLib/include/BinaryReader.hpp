@@ -2,8 +2,8 @@
 // Date: 8/13/17
 // BinaryReader.hpp
 
-#ifndef BIT_READER_H
-#define BIT_READER_H
+#ifndef BINARY_READER_H
+#define BINARY_READER_H
 
 #include "Byte.hpp"
 #include <vector>
