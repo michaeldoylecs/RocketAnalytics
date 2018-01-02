@@ -28,7 +28,6 @@ namespace ReplayParser {
 			int bit_position;
 
 			void read_binary_file_into_memory(std::string filepath);
-			void set_byte_list_size(std::size_t size);
 			Byte read_next_padded_byte();
 			float combine_bytes_into_float(std::array<Byte, 4> bytes);
 			std::uint32_t combine_bytes_into_uint32(std::array<Byte, 4> bytes);

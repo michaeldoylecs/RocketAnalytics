@@ -27,7 +27,7 @@ namespace ReplayParser {
 		std::ifstream binary_file_stream(filepath, std::ios::binary | std::ios::in);
 		if (binary_file_stream.is_open()) {
 			std::size_t binary_file_size = get_file_size(binary_file_stream);
-			set_byte_list_size(binary_file_size);
+			byte_list.resize(binary_file_size);
 
 			// HACK: Kind of a hack to directly assign data to Byte object memory space
 			binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
@@ -44,10 +44,6 @@ namespace ReplayParser {
 		std::size_t binary_file_size = file_stream.tellg();
 		file_stream.seekg(initial_file_position, std::ios::beg);
 		return binary_file_size;
-	}
-
-	void BinaryReader::set_byte_list_size(std::size_t size) {
-		byte_list.resize(size);
 	}
 
 	float BinaryReader::read_padded_float() {
