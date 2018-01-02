@@ -14,7 +14,7 @@ namespace ReplayParser {
 
 	class BinaryReader {
 		public:
-			BinaryReader(std::string file_path);
+			BinaryReader(const std::string file_path);
 			float read_padded_float();
 			std::uint8_t read_padded_uint8();
 			std::uint32_t read_padded_uint32();

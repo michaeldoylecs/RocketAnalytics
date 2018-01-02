@@ -11,15 +11,15 @@
 
 namespace ReplayParser {
 
-	BinaryReader::BinaryReader(std::string filepath) {
+	BinaryReader::BinaryReader(const std::string filepath) {
 		try {
 			byte_position = 0;
 			bit_position = 0;
 			read_binary_file_into_memory(filepath);
 		}
 		catch(const std::runtime_error &e) {
-			std::cerr << e.what() << std::endl;
 			byte_list.resize(0);
+			throw e;
 		}
 	}
 
@@ -48,13 +48,12 @@ namespace ReplayParser {
 
 	float BinaryReader::read_padded_float() {
 		try {
-			const int AMOUNT_OF_BYTES_TO_READ = 4;
-			std::array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
-			for (int index = 0; index < AMOUNT_OF_BYTES_TO_READ; index++) {
+			const int FLOAT_SIZE = 4;
+			std::array<Byte, FLOAT_SIZE> list_of_bytes;
+			for (int index = 0; index < FLOAT_SIZE; index++) {
 				list_of_bytes[index] = read_next_padded_byte();
 			}
-			float read_value = combine_bytes_into_float(list_of_bytes);
-			return read_value;
+			return combine_bytes_into_float(list_of_bytes);
 		}
 		catch (std::runtime_error e) {
 			std::cout << "Exception caught: " << e.what() << std::endl;
