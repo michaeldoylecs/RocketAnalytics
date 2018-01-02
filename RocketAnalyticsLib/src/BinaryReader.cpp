@@ -18,21 +18,24 @@ namespace ReplayParser {
 			read_binary_file_into_memory(filepath);
 		}
 		catch(const std::runtime_error &e) {
-			std::cerr << "Exception caught: " << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 			set_byte_list_size(0);
 		}
 	}
 
 	void BinaryReader::read_binary_file_into_memory(std::string filepath) {
 		std::ifstream binary_file_stream(filepath, std::ios::binary | std::ios::in);
-		if (!binary_file_stream.is_open()) {
+		if (binary_file_stream.is_open()) {
+			std::size_t binary_file_size = get_file_size(binary_file_stream);
+			set_byte_list_size(binary_file_size);
+
+			// HACK: Kind of a hack to directly assign data to Byte object memory space
+			binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
+			binary_file_stream.close();
+		}
+		else {
 			throw std::runtime_error("Failed to open file exception");
 		}
-		std::size_t binary_file_size = get_file_size(binary_file_stream);
-		set_byte_list_size(binary_file_size);
-		// HACK: Kind of a hack to directly assign data to Byte object memory space
-		binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
-		binary_file_stream.close();
 	}
 
 	std::size_t BinaryReader::get_file_size(std::ifstream &file_stream) {
