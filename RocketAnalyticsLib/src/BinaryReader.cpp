@@ -19,7 +19,7 @@ namespace ReplayParser {
 		}
 		catch(const std::runtime_error &e) {
 			std::cerr << e.what() << std::endl;
-			set_byte_list_size(0);
+			byte_list.resize(0);
 		}
 	}
 
