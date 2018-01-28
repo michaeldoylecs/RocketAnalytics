@@ -8,7 +8,7 @@
 using namespace ReplayParser;
 
 struct ReplayHeaderTest :testing::Test {
-	ReplayHeader* replay_header;
+	ReplayHeader replay_header;
 	const std::string FILE_PATH = "../../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
 	const std::uint32_t EXPECTED_HEADER_SIZE = 6859;
 	const std::uint32_t EXPECTED_CRC1 = 1488016315;
@@ -25,19 +25,18 @@ struct ReplayHeaderTest :testing::Test {
 	}
 
 	~ReplayHeaderTest() {
-		delete replay_header;
 	}
 };
 
 
 TEST_F(ReplayHeaderTest, DeserializeHeader) {
-	EXPECT_EQ(replay_header->get_header_size(), EXPECTED_HEADER_SIZE);
-	EXPECT_EQ(replay_header->get_crc1(), EXPECTED_CRC1);
-	EXPECT_EQ(replay_header->get_version_major(), EXPECTED_VERSION_MAJOR);
-	EXPECT_EQ(replay_header->get_version_minor(), EXPECTED_VERSION_MINOR);
-	EXPECT_EQ(replay_header->get_replay_identifier(), EXPECTED_REPLAY_IDENTIFIER);
+	EXPECT_EQ(replay_header.get_header_size(), EXPECTED_HEADER_SIZE);
+	EXPECT_EQ(replay_header.get_crc1(), EXPECTED_CRC1);
+	EXPECT_EQ(replay_header.get_version_major(), EXPECTED_VERSION_MAJOR);
+	EXPECT_EQ(replay_header.get_version_minor(), EXPECTED_VERSION_MINOR);
+	EXPECT_EQ(replay_header.get_replay_identifier(), EXPECTED_REPLAY_IDENTIFIER);
 	// TODO: Replay Properties Tests
-	EXPECT_EQ(replay_header->get_body_size(), EXPECTED_BODY_SIZE);
-	EXPECT_EQ(replay_header->get_crc2(), EXPECTED_CRC2);
+	EXPECT_EQ(replay_header.get_body_size(), EXPECTED_BODY_SIZE);
+	EXPECT_EQ(replay_header.get_crc2(), EXPECTED_CRC2);
 }
 

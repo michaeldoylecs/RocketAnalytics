@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -143,6 +144,7 @@
     <ClInclude Include="include\ReplayFileReader.hpp" />
     <ClInclude Include="include\ReplayFile.hpp" />
     <ClInclude Include="include\ReplayHeader.hpp" />
+    <ClInclude Include="include\ReplayLevels.hpp" />
     <ClInclude Include="include\Version.hpp" />
     <ClInclude Include="include\properties\Property.hpp" />
   </ItemGroup>
@@ -156,6 +158,7 @@
     <ClCompile Include="src\ReplayFile.cpp" />
     <ClCompile Include="src\ReplayFileReader.cpp" />
     <ClCompile Include="src\ReplayHeader.cpp" />
+    <ClCompile Include="src\ReplayLevels.cpp" />
     <ClCompile Include="src\Version.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp14</LanguageStandard>
     </ClCompile>

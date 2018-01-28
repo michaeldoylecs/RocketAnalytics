@@ -4,6 +4,7 @@
 #include <string>
 #include "BinaryReader.hpp"
 #include "ReplayHeader.hpp"
+#include "ReplayFile.hpp"
 
 using std::cout;
 using std::endl;
@@ -27,27 +28,32 @@ void test_binary_reader(const string file_path) {
 	}
 }
 
-void test_replay_header(const string file_path) {
+void test_replay(const string file_path) {
 	try {
-		cout << "---BEGIN TESTING ReplayHeader---" << endl;
+		cout << "---BEGIN TESTING ReplayFile---" << endl;
 		cout << "Filepath: " << file_path << endl;
-		BinaryReader b_reader(file_path);
-		ReplayHeader* replay_header = ReplayHeader::deserialize_header(b_reader);
+		ReplayFile replay = ReplayFile(file_path);
 
-		cout << "Header size: " << replay_header->get_header_size() << endl;
-		cout << "CRC1: " << replay_header->get_crc1() << endl;
-		cout << "Version: " << replay_header->get_version_string() << endl;
-		cout << "Version major: " << replay_header->get_version_major() << endl;
-		cout << "Version minor: " << replay_header->get_version_minor() << endl;
-		cout << "Replay Identifier: " << replay_header->get_replay_identifier() << endl;
+		cout << "Header size: " << replay.get_header().get_header_size() << endl;
+		cout << "CRC1: " << replay.get_header().get_crc1() << endl;
+		cout << "Version: " << replay.get_header().get_version_string() << endl;
+		cout << "Version major: " << replay.get_header().get_version_major() << endl;
+		cout << "Version minor: " << replay.get_header().get_version_minor() << endl;
+		cout << "Replay Identifier: " << replay.get_header().get_replay_identifier() << endl;
 
 		cout << "Properties:" << endl;
-		for (int i = 0; i < replay_header->get_properties().size(); i++) {
-			cout << " > " << replay_header->get_properties().at(i).to_string() << endl;
+		for (int i = 0; i < replay.get_header().get_properties().size(); i++) {
+			cout << " > " << replay.get_header().get_properties().at(i).to_string() << endl;
 		}
 
-		cout << "Body Size: " << replay_header->get_body_size() << endl;
-		cout << "CRC2: " << replay_header->get_crc2() << endl;
+		cout << "Body Size: " << replay.get_header().get_body_size() << endl;
+		cout << "CRC2: " << replay.get_header().get_crc2() << endl;
+
+		cout << "Replay Levels:" << endl;
+		for (int i = 0; i < replay.get_levels().get_level_count(); i++) {
+			cout << "> " << replay.get_levels().get_levels().at(i) << endl;
+		}
+
 		cout << "---END TESTING ReplayHeader---" << "\n" << endl;
 	}
 	catch (const std::runtime_error &e) {
@@ -59,7 +65,7 @@ int main() {
 	try {
 		const string file_path = "../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
 		test_binary_reader(file_path);
-		test_replay_header(file_path);
+		test_replay(file_path);
 	}
 	catch (const std::runtime_error &e) {
 		e.what();
