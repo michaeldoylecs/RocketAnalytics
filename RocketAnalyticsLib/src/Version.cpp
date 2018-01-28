@@ -38,6 +38,7 @@ namespace ReplayParser {
 
 
 	std::string Version::to_string() {
-		return std::to_string(version_major) + "." + std::to_string(version_minor);
+		return std::to_string(version_major) +
+				"." + std::to_string(version_minor);
 	}
 }

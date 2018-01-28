@@ -9,153 +9,163 @@
 #include <array>
 #include <assert.h>
 
+using std::runtime_error;
+using std::ios;
+using std::string;
+using std::size_t;
+using std::array;
+using std::cout;
+using std::endl;
+
 namespace ReplayParser {
 
-	BinaryReader::BinaryReader(const std::string filepath) {
+	BinaryReader::BinaryReader(const string filepath) {
 		try {
 			byte_position = 0;
 			bit_position = 0;
-			read_binary_file_into_memory(filepath);
+			read_file(filepath);
 		}
-		catch(const std::runtime_error &e) {
-			byte_list.resize(0);
+		catch(const runtime_error &e) {
+			file_bytes.resize(0);
 			throw e;
 		}
 	}
 
-	void BinaryReader::read_binary_file_into_memory(std::string filepath) {
-		std::ifstream binary_file_stream(filepath, std::ios::binary | std::ios::in);
-		if (binary_file_stream.is_open()) {
-			std::size_t binary_file_size = get_file_size(binary_file_stream);
-			byte_list.resize(binary_file_size);
+	void BinaryReader::read_file(string filepath) {
+		std::ifstream file_stream(filepath, ios::binary | ios::in);
+		if (file_stream.is_open()) {
+			size_t file_size = get_file_size(file_stream);
+			file_bytes.resize(file_size);
 
-			// HACK: Kind of a hack to directly assign data to Byte object memory space
-			binary_file_stream.read(reinterpret_cast<char*>(byte_list.data()), binary_file_size);
-			binary_file_stream.close();
+			// HACK: Kinda hack to directly assign to Byte object memory space
+			file_stream.read(reinterpret_cast<char*>(file_bytes.data()), file_size);
+			file_stream.close();
 		}
 		else {
-			throw std::runtime_error("Failed to open file exception");
+			throw runtime_error("Failed to open file exception");
 		}
 	}
 
-	std::size_t BinaryReader::get_file_size(std::ifstream &file_stream) {
-		std::size_t initial_file_position = file_stream.tellg();
-		file_stream.seekg(0, std::ios::end);
-		std::size_t binary_file_size = file_stream.tellg();
-		file_stream.seekg(initial_file_position, std::ios::beg);
-		return binary_file_size;
+	size_t BinaryReader::get_file_size(std::ifstream &file_stream) {
+		size_t file_start = file_stream.tellg();
+		file_stream.seekg(0, ios::end);
+		size_t file_size = file_stream.tellg();
+		file_stream.seekg(file_start, ios::beg);
+		return file_size;
 	}
 
-	float BinaryReader::read_padded_float() {
+	float BinaryReader::read_aligned_float() {
 		try {
 			const int FLOAT_SIZE = 4;
-			std::array<Byte, FLOAT_SIZE> list_of_bytes;
+			array<Byte, FLOAT_SIZE> list_of_bytes;
 			for (int index = 0; index < FLOAT_SIZE; index++) {
-				list_of_bytes[index] = read_next_padded_byte();
+				list_of_bytes[index] = read_aligned_byte();
 			}
-			return combine_bytes_into_float(list_of_bytes);
+			return bytes_to_float(list_of_bytes);
 		}
-		catch (std::runtime_error e) {
-			std::cout << "Exception caught: " << e.what() << std::endl;
+		catch (runtime_error e) {
+			cout << "Exception caught: " << e.what() << endl;
 			return 0;
 		}
 	}
 
-	float BinaryReader::combine_bytes_into_float(std::array<Byte, 4> bytes) {
+	float BinaryReader::bytes_to_float(array<Byte, 4> bytes) {
 		float combined_value = 0.0f;
-		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
+		memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
 
-	std::uint8_t BinaryReader::read_padded_uint8() {
+	uint8_t BinaryReader::read_aligned_uint8() {
 		try {
-			Byte next_byte = read_next_padded_byte();
-			std::uint8_t read_value = next_byte.get_value();
+			Byte next_byte = read_aligned_byte();
+			uint8_t read_value = next_byte.get_value();
 			return read_value;
 		}
-		catch (std::runtime_error e) {
-			std::cout << "Exception caught: " << e.what() << std::endl;
+		catch (runtime_error e) {
+			cout << "Exception caught: " << e.what() << endl;
 			return 0;
 		}
 	}
 
-	std::uint32_t BinaryReader::read_padded_uint32() {
+	uint32_t BinaryReader::read_aligned_uint32() {
 		try {
 			const int AMOUNT_OF_BYTES_TO_READ = 4;
-			std::array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
+			array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
 			for (int index = 0; index < AMOUNT_OF_BYTES_TO_READ; index++) {
-				list_of_bytes[index] = read_next_padded_byte();
+				list_of_bytes[index] = read_aligned_byte();
 			}
-			std::uint32_t read_value = combine_bytes_into_uint32(list_of_bytes);
+			uint32_t read_value = bytes_to_uint32(list_of_bytes);
 			return read_value;
 		}
-		catch(std::runtime_error e){
-			std::cout << "Exception caught: " << e.what() << std::endl;
+		catch(runtime_error e){
+			cout << "Exception caught: " << e.what() << endl;
 			return 0;
 		}
 	}
 
-	std::uint32_t BinaryReader::combine_bytes_into_uint32(std::array<Byte, 4> bytes) {
-		std::uint32_t combined_value = 0;
-		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
+	uint32_t BinaryReader::bytes_to_uint32(array<Byte, 4> bytes) {
+		uint32_t combined_value = 0;
+		memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
 
-	std::uint64_t BinaryReader::read_padded_uint64() {
+	uint64_t BinaryReader::read_aligned_uint64() {
 		try {
 			const int AMOUNT_OF_BYTES_TO_READ = 8;
-			std::array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
+			array<Byte, AMOUNT_OF_BYTES_TO_READ> list_of_bytes;
 			for (int index = 0; index < AMOUNT_OF_BYTES_TO_READ; index++) {
-				list_of_bytes[index] = read_next_padded_byte();
+				list_of_bytes[index] = read_aligned_byte();
 			}
-			std::uint64_t read_value = combine_bytes_into_uint64(list_of_bytes);
+			uint64_t read_value = bytes_to_uint64(list_of_bytes);
 			return read_value;
 		}
-		catch (std::runtime_error e) {
-			std::cout << "Exception caught: " << e.what() << std::endl;
+		catch (runtime_error e) {
+			cout << "Exception caught: " << e.what() << endl;
 			return 0;
 		}
 	}
 
-	std::uint64_t BinaryReader::combine_bytes_into_uint64(std::array<Byte, 8> bytes) {
-		std::uint64_t combined_value = 0;
-		std::memcpy(&combined_value, &bytes, sizeof(combined_value));
+	uint64_t BinaryReader::bytes_to_uint64(array<Byte, 8> bytes) {
+		uint64_t combined_value = 0;
+		memcpy(&combined_value, &bytes, sizeof(combined_value));
 		return combined_value;
 	}
 
-	std::string BinaryReader::read_padded_string() {
-		std::string string_value;
-		std::uint32_t string_length = read_padded_uint32();
+	string BinaryReader::read_length_prefixed_string() {
+		string string_value;
+		uint32_t string_length = read_aligned_uint32();
 		string_value = read_string_of_n_length(string_length);
 		return string_value;
 	}
 
 	//TODO: Cleanup method
-	std::string BinaryReader::read_string_of_n_length(std::uint32_t length) {
+	string BinaryReader::read_string_of_n_length(uint32_t length) {
 		try {
 			char *string_array = new char[length];
-			for (std::uint32_t index = 0; index < length; index++) {
-				Byte next_byte = read_next_padded_byte();
-				std::uint8_t byte_value = next_byte.get_value();
+			for (uint32_t index = 0; index < length; index++) {
+				Byte next_byte = read_aligned_byte();
+				uint8_t byte_value = next_byte.get_value();
 				char next_char;
-				std::memcpy(&next_char, &byte_value, sizeof(next_char));
+				memcpy(&next_char, &byte_value, sizeof(next_char));
 				string_array[index] = next_char;
 			}
-			std::string string_value(string_array);
+			string string_value(string_array);
 			delete string_array;
 			return string_value;
 		}
-		catch (std::runtime_error e) {
-			std::cout << "Exception caught: " << e.what() << std::endl;
-			return std::string("READ_FAIL");
+		catch (runtime_error e) {
+			cout << "Exception caught: " << e.what() << endl;
+			return string("READ_FAIL");
 		}
 	}
 
-	Byte BinaryReader::read_next_padded_byte() {
+	Byte BinaryReader::read_aligned_byte() {
 		if (bit_position != 0) {
-			throw std::runtime_error("Attempted to read byte with bit pointer misaligned");
+			throw runtime_error(
+				"Attempted to read byte with bit pointer misaligned"
+			);
 		}
-		Byte next_byte = byte_list.at(byte_position);
+		Byte next_byte = file_bytes.at(byte_position);
 		increment_byte_position();
 		return next_byte;
 	}
@@ -172,8 +182,8 @@ namespace ReplayParser {
 		}
 	}
 
-	std::size_t BinaryReader::size() {
-		return byte_list.size();
+	size_t BinaryReader::size() {
+		return file_bytes.size();
 	}
 
 
