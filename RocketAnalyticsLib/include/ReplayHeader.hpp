@@ -5,7 +5,7 @@
 #ifndef REPLAY_HEADER_H
 #define REPLAY_HEADER_H
 
-#include "Property.hpp"
+#include "properties\Property.hpp"
 #include "Version.hpp"
 #include "BinaryReader.hpp"
 #include <cstdint>
@@ -43,7 +43,7 @@ namespace ReplayParser {
 			void parse_version(BinaryReader& binary_reader);
 			void check_for_empty_bits(BinaryReader& binary_reader);
 			void parse_replay_identifier(BinaryReader& binary_reader);
-			void parse_properties(BinaryReader& binary_reader);
+			void parse_properties(BinaryReader& binary_reader, std::vector<Property>& properties);
 			Property parse_property(BinaryReader& binary_reader);
 			void parse_body_size(BinaryReader& binary_reader);
 			void parse_crc2(BinaryReader& binary_reader);
