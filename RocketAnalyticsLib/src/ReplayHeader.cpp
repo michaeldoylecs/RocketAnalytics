@@ -14,16 +14,16 @@ namespace ReplayParser {
 	ReplayHeader::ReplayHeader() {
 	}
 
-	ReplayHeader* ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
-		ReplayHeader* replay_header = new ReplayHeader();
-		replay_header->parse_header_size(binary_reader);
-		replay_header->parse_crc1(binary_reader);
-		replay_header->parse_version(binary_reader);
-		replay_header->check_for_empty_bits(binary_reader);
-		replay_header->parse_replay_identifier(binary_reader);
-		replay_header->parse_properties(binary_reader, replay_header->replay_properties);
-		replay_header->parse_body_size(binary_reader);
-		replay_header->parse_crc2(binary_reader);
+	ReplayHeader ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
+		ReplayHeader replay_header;
+		replay_header.parse_header_size(binary_reader);
+		replay_header.parse_crc1(binary_reader);
+		replay_header.parse_version(binary_reader);
+		replay_header.check_for_empty_bits(binary_reader);
+		replay_header.parse_replay_identifier(binary_reader);
+		replay_header.parse_properties(binary_reader, replay_header.replay_properties);
+		replay_header.parse_body_size(binary_reader);
+		replay_header.parse_crc2(binary_reader);
 		return replay_header;
 	}
 
