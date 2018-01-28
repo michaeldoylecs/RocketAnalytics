@@ -36,6 +36,7 @@ namespace ReplayParser {
 			std::size_t get_file_size(std::ifstream &file_stream);
 			void increment_byte_position();
 			void increment_bit_position();
+			void close();
 	};
 
 }

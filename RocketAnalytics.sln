@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RocketAnalytics", "RocketAnalytics\RocketAnalytics.vcxproj", "{EBA778DB-6DC2-4999-8175-18724438DBC3}"
 EndProject
@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RocketAnalyticsPlayerStatParser", "RocketAnalyticsPlayerStatParser\RocketAnalyticsPlayerStatParser.vcxproj", "{18B495D7-0E0C-403A-85F3-DAD875322C47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,18 @@ Global
 		{79E03DBE-1638-49C0-A908-70E3B95B0DC0}.Release|x64.Build.0 = Release|x64
 		{79E03DBE-1638-49C0-A908-70E3B95B0DC0}.Release|x86.ActiveCfg = Release|Win32
 		{79E03DBE-1638-49C0-A908-70E3B95B0DC0}.Release|x86.Build.0 = Release|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Debug|x64.ActiveCfg = Debug|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Debug|x64.Build.0 = Debug|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Debug|x86.ActiveCfg = Debug|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Debug|x86.Build.0 = Debug|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Lib|x64.ActiveCfg = Release|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Lib|x64.Build.0 = Release|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Lib|x86.ActiveCfg = Release|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Lib|x86.Build.0 = Release|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Release|x64.ActiveCfg = Release|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Release|x64.Build.0 = Release|x64
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Release|x86.ActiveCfg = Release|Win32
+		{18B495D7-0E0C-403A-85F3-DAD875322C47}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
