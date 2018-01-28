@@ -88,7 +88,7 @@ namespace ReplayParser {
 	}
 
 
-	//IMPROVE: Maintain level fo abstraction
+	//IMPROVE: Maintain level of abstraction
 	std::string Property::to_string() {
 		std::string to_string_value = "";
 		to_string_value += get_name() + ": ";
