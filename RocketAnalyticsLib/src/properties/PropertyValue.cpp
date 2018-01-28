@@ -222,31 +222,32 @@ namespace ReplayParser {
 
 	//IMPROVE: Function is a bit long and low level
 	std::string PropertyValue::array_properties_to_string() {
-		std::string converted_value = "";
-		size_t property_array_size = property_value.list.size();
+		std::string string_value = "";
+		size_t property_count = property_value.list.size();
 		std::vector<Property> property_array;
-		for (int i = 0; i < property_array_size; i++) {
+		for (int i = 0; i < property_count; i++) {
 			property_array = property_value.list[i];
 			Property property;
-			int property_index = 0;
-			converted_value += std::to_string(i) + ": ";
+			int index = 0;
+			string_value += std::to_string(i) + ":\n\t";
 			while (true) {
-				property = property_array[property_index];
+				property = property_array[index];
 				if (property.get_type() == PType::NONE) {
-					converted_value += "\n";
+					string_value += "\n";
 					break;
 				}
 				else {
-					if (property_index > 0) {
-						converted_value += ", ";
+					if (index > 0) {
+						string_value += ",\n\t";
 					}
-					converted_value += property.get_value_as_string();
-					property_index++;
+					string_value += property.get_name() + ": ";
+					string_value += property.get_value_as_string();
+					index++;
 				}
 			}
 
 		}
-		return converted_value;
+		return string_value;
 	}
 
 
