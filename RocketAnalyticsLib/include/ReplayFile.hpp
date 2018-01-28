@@ -5,23 +5,26 @@
 #ifndef REPLAY_FILE_H
 #define REPLAY_FILE_H
 
-#include <ReplayHeader.hpp>
 #include <cstdint>
 #include <string>
 #include <fstream>
+#include "ReplayHeader.hpp"
+#include "ReplayLevels.hpp"
 
 namespace ReplayParser {
 
 	class ReplayFile {
 		public:
 			ReplayFile(std::string filepath);
-			~ReplayFile();
+
+			ReplayHeader get_header();
+			ReplayLevels get_levels();
 
 		private:
 			std::string replay_file_path;
 
 			ReplayHeader replay_header;
-			void read_header_values();
+			ReplayLevels replay_levels;
 	};
 
 }
