@@ -17,8 +17,6 @@ namespace ReplayParser {
 	class Property;
 
 	class PropertyValue {
-		union UValue;
-
 		public:
 			union UValue {
 				std::uint64_t int64;

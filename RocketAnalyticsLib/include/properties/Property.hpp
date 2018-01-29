@@ -31,6 +31,7 @@ namespace ReplayParser {
 
 			std::string get_name();
 			PType get_type();
+			PropertyValue get_value();
 			std::string get_value_as_string();
 			std::string to_string();
 
