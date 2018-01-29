@@ -18,6 +18,18 @@ namespace ReplayParser {
 
 	class PropertyValue {
 		public:
+			union UValue {
+				std::uint64_t int64;
+				std::uint32_t int32;
+				std::uint8_t int8;
+				float f;
+				std::string string;
+				ByteValue byte;
+				std::vector< std::vector<Property> > list; //TODO: Rewrite as custom class (maybe?)
+				UValue(); // HACK: Is this necessary for PropertyValue constructor?
+				~UValue();
+			} property_value;
+
 			PropertyValue();
 			~PropertyValue();
 
@@ -40,17 +52,6 @@ namespace ReplayParser {
 
 		private:
 			PType property_type;
-			union UValue {
-				std::uint64_t int64;
-				std::uint32_t int32;
-				std::uint8_t int8;
-				float f;
-				std::string string;
-				ByteValue byte;
-				std::vector< std::vector<Property> > list; //TODO: Rewrite as custom class (maybe?)
-				UValue(); // HACK: Is this necessary for PropertyValue constructor?
-				~UValue();
-			} property_value;
 
 			void deconstruct_union_values_if_necessary();
 			std::string array_properties_to_string();

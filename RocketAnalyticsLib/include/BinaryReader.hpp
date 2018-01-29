@@ -21,6 +21,7 @@ namespace ReplayParser {
 			std::uint64_t read_aligned_uint64();
 			std::string read_length_prefixed_string();
 			std::size_t size();
+			void close();
 
 		private:                                                               
 			std::vector<Byte> file_bytes;

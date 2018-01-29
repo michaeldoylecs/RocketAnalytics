@@ -12,6 +12,7 @@ namespace ReplayParser {
 		BinaryReader file_reader = BinaryReader(filepath);
 		replay_header = ReplayHeader::deserialize_header(file_reader);
 		replay_levels = ReplayLevels::deserialize_levels(file_reader);
+		file_reader.close();
 	}
 
 	ReplayHeader ReplayFile::get_header() {

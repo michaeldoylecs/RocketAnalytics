@@ -17,6 +17,8 @@ using std::array;
 using std::cout;
 using std::endl;
 
+//TODO: Add flag to see if file_bytes exist. Throw exception on bad read.
+
 namespace ReplayParser {
 
 	BinaryReader::BinaryReader(const string filepath) {
@@ -186,5 +188,10 @@ namespace ReplayParser {
 		return file_bytes.size();
 	}
 
+	void BinaryReader::close() {
+		file_bytes.clear();
+		byte_position = 0;
+		bit_position = 0;
+	}
 
 }
