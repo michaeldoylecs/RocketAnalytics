@@ -1,5 +1,8 @@
-# RocketAnalytics
+# RocketAnalytics Player Stat Parser
 
-RocketAnalytics is a Rocket League replay parser and analytical software.
-At the moment, it is in very early development and is not in a state to be shared in any form.
-Pleased come back at a later time if you are interested in the project.
+![Program Usage](https://thumbs.gfycat.com/NimbleDarkHypsilophodon-size_restricted.gif)
+
+This is a dirty script using RocketAnalyticsLib to pull player stats from
+Rocket League replay files and accumulate all of the stats together.
+
+## Usage
