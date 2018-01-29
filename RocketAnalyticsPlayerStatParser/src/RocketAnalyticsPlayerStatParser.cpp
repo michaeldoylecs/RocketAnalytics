@@ -76,8 +76,9 @@ int main() {
 				vector<vector<Property>> player_stats =
 					prop.get_value().property_value.list;
 				for (vector<vector<Property>>::iterator player =
-					player_stats.begin();
-					player != player_stats.end(); player++) {
+						player_stats.begin();
+						player != player_stats.end();
+						player++) {
 					Player temp_player;
 					temp_player.name = player->at(0).get_value_as_string();
 					temp_player.platform = player->at(1).get_value_as_string();
@@ -108,14 +109,10 @@ int main() {
 	cout << endl;
 
 	string output_file_name;
-	cout << "Please enter the output filename:" << endl;
+	cout << "Please enter the output filename (no spaces):" << endl;
 	cin >> output_file_name;
 
-	string output_filepath = dest_dir + "\\" + output_file_name;
-
-	if (!filesystem::is_directory(output_filepath)) {
-		output_filepath = dest_dir + "\\" + DEFAULT_FILE_NAME;
-	}
+	string output_filepath = dest_dir + "\\" + output_file_name + FILE_EXTENSION;
 
 	ofstream output_file;
 	output_file.open(output_filepath);
