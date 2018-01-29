@@ -156,9 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\ByteTests.cpp" />
     <ClCompile Include="src\properties\ByteValueTests.cpp" />
     <ClCompile Include="src\properties\PropertyTests.cpp" />
