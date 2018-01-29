@@ -1,8 +1,3 @@
-# RocketAnalytics Player Stat Parser
-
-![Program Usage](https://thumbs.gfycat.com/NimbleDarkHypsilophodon-size_restricted.gif)
-
-This is a dirty script using RocketAnalyticsLib to pull player stats from
-Rocket League replay files and accumulate all of the stats together.
-
-## Usage
+# RocketAnalytics
+This Rocket League Replay Parser is in very early development. If you are
+interested in the project, please come back at another time.
