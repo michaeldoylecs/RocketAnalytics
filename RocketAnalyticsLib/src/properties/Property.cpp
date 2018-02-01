@@ -5,78 +5,71 @@
 #include "PropertyValue.hpp"
 #include "Property.hpp"
 
+using std::string;
+using std::vector;
+using std::uint8_t;
+using std::uint64_t;
+
 namespace ReplayParser {
 
 	Property::Property() {
 		set_none();
 	}
 
-
 	Property::Property(const Property &property) {
 		property_name = property.property_name;
 		property_value = property.property_value;
 	}
-
 
 	void Property::set_none() {
 		property_name = "None";
 		property_value.set_none();
 	}
 
-
-	void Property::set_int(std::string name, std::uint32_t value) {
+	void Property::set_int(string name, std::uint32_t value) {
 		property_name = name;
 		property_value.set_int(value);
 	}
 
-
-	void Property::set_string(std::string name, std::string value) {
+	void Property::set_string(string name, string value) {
 		property_name = name;
 		property_value.set_string(value);
 	}
 
-
-	void Property::set_name(std::string name, std::string value) {
+	void Property::set_name(string name, string value) {
 		property_name = name;
 		property_value.set_name(value);
 	}
 
-
-	void Property::set_bool(std::string name, std::uint8_t value) {
+	void Property::set_bool(string name, uint8_t value) {
 		property_name = name;
 		property_value.set_bool(value);
 	}
 
-
-	void Property::set_qword(std::string name, std::uint64_t value) {
+	void Property::set_qword(string name, uint64_t value) {
 		property_name = name;
 		property_value.set_qword(value);
 	}
 
-	
-	void Property::set_byte(std::string name, std::string identifier, std::string value) {
+	void Property::set_byte(string name, string identifier, string value) {
 		property_name = name;
 		ByteValue byte(identifier, value);
 		property_value.set_byte(byte);
 	}
 
-
-	void Property::set_float(std::string name, float value) {
+	void Property::set_float(string name, float value) {
 		property_name = name;
 		property_value.set_float(value);
 	}
 
-
-	void Property::set_array(std::string name, std::vector< std::vector<Property> > value) {
+	void Property::set_array(string name, vector< vector<Property> > value) {
 		property_name = name;
 		property_value.set_array(value);
 	}
 
-
-	std::string Property::get_name() {
+	string Property::get_name() {
 		return property_name;
 	}
-
 
 	PType Property::get_type() {
 		return property_value.get_type();
@@ -86,15 +79,13 @@ namespace ReplayParser {
 		return property_value;
 	}
 
-
-	std::string Property::get_value_as_string() {
+	string Property::get_value_as_string() {
 		return property_value.get_value_as_string();
 	}
 
-
 	//IMPROVE: Maintain level of abstraction
-	std::string Property::to_string() {
-		std::string to_string_value = "";
+	string Property::to_string() {
+		string to_string_value = "";
 		to_string_value += get_name() + ": ";
 		if (get_type() == PType::ARRAY_PROPERTY) {
 			to_string_value += "\n";
