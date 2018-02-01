@@ -22,16 +22,13 @@ struct PropertyValueTests : ::testing::Test {
 
 };
 
-
 TEST_F(PropertyValueTests, NonePropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), PType::NONE);
 }
 
-
 TEST_F(PropertyValueTests, NonePropertyReadStringValue) {
 	EXPECT_EQ(property_value->get_value_as_string(), "None");
 }
-
 
 TEST_F(PropertyValueTests, IntPropertyReadType) {
 	uint32_t expected_value = 578;
@@ -40,14 +37,12 @@ TEST_F(PropertyValueTests, IntPropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, IntPropertyReadStringValue) {
 	uint32_t expected_value = 578;
 	std::string expected_string_value = std::to_string(expected_value);
 	property_value->set_int(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);
 }
-
 
 TEST_F(PropertyValueTests, StrPropertyReadType) {
 	std::string expected_value = "This is a string value!";
@@ -56,13 +51,11 @@ TEST_F(PropertyValueTests, StrPropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, StrPropertyReadStringValue) {
 	std::string expected_value = "This is a string value!";
 	property_value->set_string(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_value);
 }
-
 
 TEST_F(PropertyValueTests, NamePropertyReadType) {
 	std::string expected_value = "This is a name value!";
@@ -71,13 +64,11 @@ TEST_F(PropertyValueTests, NamePropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, NamePropertyReadStringValue) {
 	std::string expected_value = "This is a name value!";
 	property_value->set_name(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_value);
 }
-
 
 TEST_F(PropertyValueTests, BoolPropertyReadType) {
 	bool expected_value = true;
@@ -86,14 +77,12 @@ TEST_F(PropertyValueTests, BoolPropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, BoolPropertyReadStringValueTrue) {
 	bool expected_value = true;
 	std::string expected_string_value = std::to_string(expected_value);
 	property_value->set_bool(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);
 }
-
 
 TEST_F(PropertyValueTests, BoolPropertyReadStringValueFalse) {
 	bool expected_value = false;
@@ -102,7 +91,6 @@ TEST_F(PropertyValueTests, BoolPropertyReadStringValueFalse) {
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);
 }
 
-
 TEST_F(PropertyValueTests, QWordPropertyReadType) {
 	std::uint64_t expected_value = 43759465593;
 	PType expected_type = PType::QWORD_PROPERTY;
@@ -110,14 +98,12 @@ TEST_F(PropertyValueTests, QWordPropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, QWordPropertyReadStringValue) {
 	std::uint64_t expected_value = 43759465593;
 	std::string expected_string_value = std::to_string(expected_value);
 	property_value->set_qword(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);
 }
-
 
 TEST_F(PropertyValueTests, BytePropertyReadType) {
 	std::string byte_identifier = "Byte identifier!";
@@ -127,7 +113,6 @@ TEST_F(PropertyValueTests, BytePropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, BytePropertyReadStringValue) {
 	std::string byte_identifier = "Byte identifier!";
 	std::string byte_value = "Byte value!";
@@ -136,7 +121,6 @@ TEST_F(PropertyValueTests, BytePropertyReadStringValue) {
 	EXPECT_EQ(property_value->get_value_as_string(), expected_output);
 }
 
-
 TEST_F(PropertyValueTests, FloatPropertyReadType) {
 	float expected_value = 123.6857f;
 	PType expected_type = PType::FLOAT_PROPERTY;
@@ -144,14 +128,12 @@ TEST_F(PropertyValueTests, FloatPropertyReadType) {
 	EXPECT_EQ(property_value->get_type(), expected_type);
 }
 
-
 TEST_F(PropertyValueTests, FloatPropertyReadStringValue) {
 	float expected_value = 123.6857f;
 	std::string expected_string_value = std::to_string(expected_value);
 	property_value->set_float(expected_value);
 	EXPECT_EQ(property_value->get_value_as_string(), expected_string_value);
 }
-
 
 TEST_F(PropertyValueTests, ArrayPropertyReadType) {
 	PType expected_type = PType::ARRAY_PROPERTY;
@@ -176,9 +158,9 @@ TEST_F(PropertyValueTests, ArrayPropertyReadType) {
 // TOOD: Need more indepth Array unit tests
 TEST_F(PropertyValueTests, ArrayPropertyReadStringValue) {
 	std::string expected_string_value =
-		"0: \n"
-		"1: \n"
-		"2: \n";
+		"0:\n\t\n"
+		"1:\n\t\n"
+		"2:\n\t\n";
 	Property properties[3][3] = {
 		{ Property(), Property(), Property() },
 		{ Property(), Property(), Property() },
