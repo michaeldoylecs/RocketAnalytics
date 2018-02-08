@@ -1,11 +1,11 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	8/12/17
-*	File:	PropertyValue.hpp
-*	Description:
-*		PropertyValue represents the value of a property that is found in
-*	Rocket League replay files.
-******************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	8/12/17
+ *	File:	PropertyValue.hpp
+ *	Description:
+ *		PropertyValue represents the value of a property that is found in
+ *	Rocket League replay files.
+ *****************************************************************************/
 
 #ifndef PROPERTY_VALUE_H
 #define PROPERTY_VALUE_H

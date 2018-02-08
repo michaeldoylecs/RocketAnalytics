@@ -1,10 +1,10 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	8/10/17
-*	File:	Property.hpp
-*	Description:
-*		Property represents a piece of data from a Rocket League replay file.
-******************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	8/10/17
+ *	File:	Property.hpp
+ *	Description:
+ *		Property represents a piece of data from a Rocket League replay file.
+ *****************************************************************************/
 
 #ifndef PROPERTY_H
 #define PROPERTY_H

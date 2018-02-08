@@ -1,12 +1,12 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	8/12/17
-*	File:	ByteValue.hpp
-*	Description:
-*		ByteValue represents the 'ByteValue' property type found in Rocket
-*	League replay files. The name does not have any connection to it's size or
-*	inner workings.
-******************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	8/12/17
+ *	File:	ByteValue.hpp
+ *	Description:
+ *		ByteValue represents the 'ByteValue' property type found in Rocket
+ *	League replay files. The name does not have any connection to it's size or
+ *	inner workings.
+ *****************************************************************************/
 
 #ifndef BYTE_VALUE_H
 #define BYTE_VALUE_H
