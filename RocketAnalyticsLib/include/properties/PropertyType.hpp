@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 8/11/17
-// PropertyType.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	8/11/17
+*	File:	PropertyType.hpp
+*	Description:
+*		PropertyType represents the type of property that can be found in
+*	a Rocket League replay file.
+******************************************************************************/
 
 #ifndef PROPERTY_TYPE_H
 #define PROPERTY_TYPE_H

@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 8/12/17
-// PropertyValue.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	8/12/17
+*	File:	PropertyValue.hpp
+*	Description:
+*		PropertyValue represents the value of a property that is found in
+*	Rocket League replay files.
+******************************************************************************/
 
 #ifndef PROPERTY_VALUE_H
 #define PROPERTY_VALUE_H
@@ -25,9 +30,10 @@ namespace ReplayParser {
 				float f;
 				std::string string;
 				ByteValue byte;
-				std::vector< std::vector<Property> > list; //TODO: Rewrite as custom class (maybe?)
-				UValue(); // HACK: Is this necessary for PropertyValue constructor?
-				~UValue();
+				//TODO: Rewrite as custom class (maybe?)
+				std::vector< std::vector<Property> > list;
+				UValue();	// HACK: Is this necessary for
+				~UValue();	// PropertyValue constructor?
 			} property_value;
 
 			PropertyValue();
