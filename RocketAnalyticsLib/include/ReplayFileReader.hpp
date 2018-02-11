@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 7/23/17
-// ReplayFileReader.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	7/23/17
+*	File:	ReplayFileReader.hpp
+*	Description:
+*		ReplayFileReader handles the logic in reading Rocket League replay
+*	files.
+*****************************************************************************/
 
 #ifndef REPLAY_FILE_READER_H
 #define REPLAY_FILE_READER_H
@@ -18,13 +23,12 @@ namespace ReplayParser {
 			ReplayFileReader();
 			ReplayFileReader(std::string filepath);
 			~ReplayFileReader();
-			std::int8_t	read_int8_from_file();  // Return 1 byte from file stream
-			std::int32_t read_int32_from_file();  // Return 4 bytes from file stream
-			std::int64_t read_int64_from_file();  // Return 8 bytes from file stream
-			float read_float_from_file();  // Return float from file stream
-			bool read_bool_from_file();  // Return bool from file stream
-			std::string	read_string_from_file(int length);  // Return string from file stream
-
+			std::int8_t	read_int8();
+			std::int32_t read_int32();
+			std::int64_t read_int64();
+			float read_float();
+			bool read_bool();
+			std::string	read_string(int length);
 
 		private:
 			std::ifstream replay_file_stream;
