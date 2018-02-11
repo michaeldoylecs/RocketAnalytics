@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 8/13/17
-// BinaryReader.hpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ * 	Date:	8/13/17
+ *	File:	BinaryReader.hpp
+ *	Description:
+ *		BinaryReader reads entire binary files into memory and allows for the
+ *	reading of standard data types, compressed integers, and individual bits.
+ *****************************************************************************/
 
 #ifndef BINARY_READER_H
 #define BINARY_READER_H

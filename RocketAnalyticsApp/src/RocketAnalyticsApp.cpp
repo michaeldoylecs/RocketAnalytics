@@ -36,7 +36,7 @@ void test_replay(const string file_path) {
 
 		cout << "Header size: " << replay.get_header().get_header_size() << endl;
 		cout << "CRC1: " << replay.get_header().get_crc1() << endl;
-		cout << "Version: " << replay.get_header().get_version_string() << endl;
+		cout << "Version: " << replay.get_header().get_version() << endl;
 		cout << "Version major: " << replay.get_header().get_version_major() << endl;
 		cout << "Version minor: " << replay.get_header().get_version_minor() << endl;
 		cout << "Replay Identifier: " << replay.get_header().get_replay_identifier() << endl;

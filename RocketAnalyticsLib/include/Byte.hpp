@@ -1,6 +1,12 @@
-// Author: Michael Doyle
-// Date: 8/13/17
-// Byte.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	8/13/17
+*	File:	Byte.hpp
+*	Description:
+*		Byte is a representation of a byte of data that allows for accessing
+*	individual bits in O(1) time. bit1 is the highest left most bit in a
+*	binary number representation of the given value.
+*****************************************************************************/
 
 #ifndef BYTE_H
 #define BYTE_H
@@ -26,8 +32,8 @@ namespace ReplayParser {
 					std::uint8_t bit1 : 1; // Least Significant
 					std::uint8_t bit2 : 1; // 
 					std::uint8_t bit3 : 1; // 
-					std::uint8_t bit4 : 1; // System dependant, but how my system
-					std::uint8_t bit5 : 1; // currently reads replays.
+					std::uint8_t bit4 : 1; // System dependant, but how my
+					std::uint8_t bit5 : 1; // system currently reads replays.
 					std::uint8_t bit6 : 1; // 
 					std::uint8_t bit7 : 1; // 
 					std::uint8_t bit8 : 1; // Most Significant

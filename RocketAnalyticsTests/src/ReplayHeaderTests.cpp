@@ -21,7 +21,7 @@ struct ReplayHeaderTest :testing::Test {
 
 	ReplayHeaderTest() {
 		BinaryReader binary_reader(FILE_PATH);
-		replay_header = ReplayHeader::deserialize_header(binary_reader);
+		replay_header = ReplayHeader::deserialize(binary_reader);
 	}
 
 	~ReplayHeaderTest() {

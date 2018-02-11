@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 8/10/17
-// Version.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	8/10/17
+*	File:	Version.hpp
+*	Description:
+*		Versions contains the versioning information found the the Rocket
+*	League replay file.
+*****************************************************************************/
 
 #ifndef VERSION_H
 #define VERSION_H
