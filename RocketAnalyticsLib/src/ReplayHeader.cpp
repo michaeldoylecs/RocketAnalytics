@@ -14,7 +14,7 @@ namespace ReplayParser {
 	ReplayHeader::ReplayHeader() {
 	}
 
-	ReplayHeader ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
+	ReplayHeader ReplayHeader::deserialize(BinaryReader& binary_reader) {
 		ReplayHeader replay_header;
 		replay_header.parse_header_size(binary_reader);
 		replay_header.parse_crc1(binary_reader);
@@ -169,7 +169,7 @@ namespace ReplayParser {
 		return crc1;
 	}
 
-	string ReplayHeader::get_version_string() {
+	string ReplayHeader::get_version() {
 		return version.to_string();
 	}
 

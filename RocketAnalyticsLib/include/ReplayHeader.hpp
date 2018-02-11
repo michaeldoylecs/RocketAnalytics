@@ -1,6 +1,11 @@
-// Author: Michael Doyle
-// Date: 8/10/17
-// ReplayHeader.hpp
+/******************************************************************************
+*	Author:	Michael Doyle
+*	Date:	8/10/17
+*	File:	ReplayHeader.hpp
+*	Description:
+*		ReplayHeader contains the basic information of a Rocket League
+*	replay file. 
+*****************************************************************************/
 
 #ifndef REPLAY_HEADER_H
 #define REPLAY_HEADER_H
@@ -18,11 +23,11 @@ namespace ReplayParser {
 	public:
 		ReplayHeader();
 		// Deserializing in each header is an issue. shouldn't be public.
-		static ReplayHeader deserialize_header(BinaryReader& binary_reader);
+		static ReplayHeader deserialize(BinaryReader& binary_reader);
 
 		std::uint32_t get_header_size();
 		std::uint32_t get_crc1();
-		std::string get_version_string();
+		std::string get_version();
 		std::uint32_t get_version_major();
 		std::uint32_t get_version_minor();
 		std::string get_replay_identifier();
@@ -44,7 +49,8 @@ namespace ReplayParser {
 		void parse_version(BinaryReader& binary_reader);
 		void check_for_empty_bits(BinaryReader& binary_reader);
 		void parse_replay_identifier(BinaryReader& binary_reader);
-		void parse_properties(BinaryReader& binary_reader, std::vector<Property>& properties);
+		void parse_properties(BinaryReader& binary_reader,
+			std::vector<Property>& properties);
 		Property parse_property(BinaryReader& binary_reader);
 		void parse_body_size(BinaryReader& binary_reader);
 		void parse_crc2(BinaryReader& binary_reader);
