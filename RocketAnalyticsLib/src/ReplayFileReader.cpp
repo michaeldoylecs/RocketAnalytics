@@ -25,7 +25,7 @@ namespace ReplayParser {
 		}
 	}
 
-	std::int8_t ReplayFileReader::read_int8_from_file() {
+	std::int8_t ReplayFileReader::read_int8() {
 		std::int8_t raw_int = 0;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -35,7 +35,7 @@ namespace ReplayParser {
 		return raw_int;
 	}
 
-	std::int32_t ReplayFileReader::read_int32_from_file() {
+	std::int32_t ReplayFileReader::read_int32() {
 		std::int32_t raw_int = 0;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -45,7 +45,7 @@ namespace ReplayParser {
 		return raw_int;
 	}
 
-	std::int64_t ReplayFileReader::read_int64_from_file() {
+	std::int64_t ReplayFileReader::read_int64() {
 		std::int64_t raw_int = 0;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -55,7 +55,7 @@ namespace ReplayParser {
 		return raw_int;
 	}
 
-	float ReplayFileReader::read_float_from_file() {
+	float ReplayFileReader::read_float() {
 		float raw_float = 0.0;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -65,7 +65,7 @@ namespace ReplayParser {
 		return raw_float;
 	}
 
-	bool ReplayFileReader::read_bool_from_file() {
+	bool ReplayFileReader::read_bool() {
 		bool raw_bool = false;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -75,7 +75,7 @@ namespace ReplayParser {
 		return raw_bool;
 	}
 
-	std::string ReplayFileReader::read_string_from_file(int length) {
+	std::string ReplayFileReader::read_string(int length) {
 		std::string raw_string;
 		if (!replay_file_stream) {
 			std::cout << "File stream not open for '" << replay_file_path << "'";
