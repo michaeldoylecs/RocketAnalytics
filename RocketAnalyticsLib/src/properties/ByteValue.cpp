@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/12/17
-// ByteValue.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	8/12/17
+ *	File:	ByteValue.cpp
+ *****************************************************************************/
 
 #include "ByteValue.hpp"
 

@@ -1,11 +1,11 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	7/23/17
-*	File:	ReplayFile.hpp
-*	Description:
-*		ReplayFile contains all of the information stored in a Rocket League
-*	replay file. 
-*****************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	7/23/17
+ *	File:	ReplayFile.hpp
+ *	Description:
+ *		ReplayFile contains all of the information stored in a Rocket League
+ *	replay file. 
+ *****************************************************************************/
 
 #ifndef REPLAY_FILE_H
 #define REPLAY_FILE_H

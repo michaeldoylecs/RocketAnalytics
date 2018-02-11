@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 7/23/17
-// ReplayFileReader.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	7/23/17
+ *	File:	ReplayFileReader.cpp
+ *****************************************************************************/
 
 #include "../include/ReplayFileReader.hpp"
 #include <iostream>

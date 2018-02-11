@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/10/17
-// ReplayFile.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	8/10/17
+ *	File:	ReplayFile.cpp
+ *****************************************************************************/
 
 #include "ReplayFile.hpp"
 #include "BinaryReader.hpp"

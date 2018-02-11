@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/12/17
-// PropertyValue.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	8/12/17
+ *	File:	PropertyValue.cpp
+ *****************************************************************************/
 
 #include "ByteValue.hpp"
 #include "PropertyType.hpp"

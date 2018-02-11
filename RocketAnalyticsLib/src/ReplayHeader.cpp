@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/24/17
-// ReplayHeader.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	8/24/17
+ *	File:	ReplayHeader.cpp
+ *****************************************************************************/
 
 #include "ReplayHeader.hpp"
 #include <iostream>

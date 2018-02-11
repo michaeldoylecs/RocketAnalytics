@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/24/17
-// ReplayHeader.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	1/28/17
+ *	File:	ReplayLevels.cpp
+ *****************************************************************************/
 
 #include <iostream>
 #include "ReplayLevels.hpp"

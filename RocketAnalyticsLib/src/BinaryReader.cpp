@@ -1,6 +1,8 @@
-// Author: Michael Doyle
-// Date: 8/13/17
-// BinaryReader.cpp
+/******************************************************************************
+ *	Author:	Michael Doyle
+ *	Date:	8/13/17
+ *	File:	BinaryReader.cpp
+ *****************************************************************************/
 
 #include "BinaryReader.hpp"
 #include <fstream>

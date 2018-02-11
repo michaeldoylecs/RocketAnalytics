@@ -1,11 +1,11 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	8/10/17
-*	File:	ReplayHeader.hpp
-*	Description:
-*		ReplayHeader contains the basic information of a Rocket League
-*	replay file. 
-*****************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	8/10/17
+ *	File:	ReplayHeader.hpp
+ *	Description:
+ *		ReplayHeader contains the basic information of a Rocket League
+ *	replay file. 
+ *****************************************************************************/
 
 #ifndef REPLAY_HEADER_H
 #define REPLAY_HEADER_H

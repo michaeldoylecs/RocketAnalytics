@@ -1,11 +1,11 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	7/23/17
-*	File:	ReplayFileReader.hpp
-*	Description:
-*		ReplayFileReader handles the logic in reading Rocket League replay
-*	files.
-*****************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	7/23/17
+ *	File:	ReplayFileReader.hpp
+ *	Description:
+ *		ReplayFileReader handles the logic in reading Rocket League replay
+ *	files.
+ *****************************************************************************/
 
 #ifndef REPLAY_FILE_READER_H
 #define REPLAY_FILE_READER_H

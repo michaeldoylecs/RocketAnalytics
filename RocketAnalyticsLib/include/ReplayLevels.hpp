@@ -1,11 +1,11 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	1/28/18
-*	File:	ReplayLevels.hpp
-*	Description:
-*		ReplayLevels contains all of the maps included in the Rocket League
-*	replay file.
-*****************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	1/28/18
+ *	File:	ReplayLevels.hpp
+ *	Description:
+ *		ReplayLevels contains all of the maps included in the Rocket League
+ *	replay file.
+ *****************************************************************************/
 
 #ifndef REPLAY_LEVELS_H
 #define REPLAY_LEVELS_H
