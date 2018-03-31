@@ -13,9 +13,6 @@ using std::vector;
 
 namespace ReplayParser {
 
-	ReplayLevels::ReplayLevels() {
-	}
-
 	ReplayLevels ReplayLevels::deserialize_levels(BinaryReader& binary_reader) {
 		ReplayLevels replay_levels;
 		uint32_t level_count = binary_reader.read_aligned_uint32();
