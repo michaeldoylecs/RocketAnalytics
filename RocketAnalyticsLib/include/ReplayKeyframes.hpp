@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <vector>
+#include "BinaryReader.hpp"
 
 using std::uint32_t;
 using std::vector;
@@ -21,10 +22,12 @@ namespace ReplayParser {
 
 	class ReplayKeyframes {
 	public:
+		ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
+
 		void add(Keyframe);
 		bool remove(Keyframe);
 		Keyframe get(int index);
-		uint32_t count();
+		int count();
 
 	private:
 		vector<Keyframe> keyframes;
