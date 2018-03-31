@@ -137,7 +137,7 @@
     <ClInclude Include="include\Byte.hpp" />
     <ClInclude Include="include\BinaryReader.hpp" />
     <ClInclude Include="include\Keyframe.hpp" />
-    <ClInclude Include="include\Keyframes.hpp" />
+    <ClInclude Include="include\ReplayKeyframes.hpp" />
     <ClInclude Include="include\properties\ByteValue.hpp" />
     <ClInclude Include="include\properties\PropertyType.hpp" />
     <ClInclude Include="include\properties\PropertyValue.hpp" />
@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="src\BinaryReader.cpp" />
     <ClCompile Include="src\Byte.cpp" />
+    <ClCompile Include="src\Keyframe.cpp" />
     <ClCompile Include="src\properties\ByteValue.cpp" />
     <ClCompile Include="src\properties\Property.cpp" />
     <ClCompile Include="src\properties\PropertyType.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="src\ReplayFile.cpp" />
     <ClCompile Include="src\ReplayFileReader.cpp" />
     <ClCompile Include="src\ReplayHeader.cpp" />
+    <ClCompile Include="src\ReplayKeyframes.cpp" />
     <ClCompile Include="src\ReplayLevels.cpp" />
     <ClCompile Include="src\Version.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp14</LanguageStandard>

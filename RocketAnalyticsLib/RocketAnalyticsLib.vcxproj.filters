@@ -54,7 +54,7 @@
     <ClInclude Include="include\Keyframe.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Keyframes.hpp">
+    <ClInclude Include="include\ReplayKeyframes.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,6 +90,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ReplayLevels.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Keyframe.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReplayKeyframes.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
