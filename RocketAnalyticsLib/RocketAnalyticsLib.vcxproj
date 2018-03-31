@@ -136,6 +136,8 @@
   <ItemGroup>
     <ClInclude Include="include\Byte.hpp" />
     <ClInclude Include="include\BinaryReader.hpp" />
+    <ClInclude Include="include\Keyframe.hpp" />
+    <ClInclude Include="include\Keyframes.hpp" />
     <ClInclude Include="include\properties\ByteValue.hpp" />
     <ClInclude Include="include\properties\PropertyType.hpp" />
     <ClInclude Include="include\properties\PropertyValue.hpp" />

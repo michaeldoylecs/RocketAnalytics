@@ -51,6 +51,12 @@
     <ClInclude Include="include\ReplayLevels.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Keyframe.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Keyframes.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ReplayFileReader.cpp">
