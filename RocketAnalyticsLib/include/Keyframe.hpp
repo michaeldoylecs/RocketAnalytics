@@ -17,9 +17,18 @@ namespace ReplayParser {
 
 	class Keyframe {
 	public:
-		float time;
-		uint32_t frame;
-		uint32_t filePosition;
+		Keyframe(float time, uint32_t frame, uint32_t filePosition);
+
+		float time();
+		uint32_t frame();
+		uint32_t filePosition();
+
+		bool operator==(const Keyframe& keyframe);
+
+	private:
+		float timeStamp;
+		uint32_t frameNum;
+		uint32_t filePos;
 	};
 
 }
