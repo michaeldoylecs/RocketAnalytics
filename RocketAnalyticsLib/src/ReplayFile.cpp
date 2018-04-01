@@ -6,14 +6,15 @@
 
 #include "ReplayFile.hpp"
 #include "BinaryReader.hpp"
-#include "ReplayHeader.hpp"
 
 namespace ReplayParser {
 
 	ReplayFile::ReplayFile(std::string filepath) {
-		BinaryReader file_reader = BinaryReader(filepath);
+		replay_file_path = filepath;
+		BinaryReader file_reader = BinaryReader(replay_file_path);
 		replay_header = ReplayHeader::deserialize(file_reader);
 		replay_levels = ReplayLevels::deserialize_levels(file_reader);
+		replay_keyframes = ReplayKeyframes::deserialize_keyframes(file_reader);
 		file_reader.close();
 	}
 
@@ -23,6 +24,10 @@ namespace ReplayParser {
 
 	ReplayLevels ReplayFile::get_levels() {
 		return replay_levels;
+	}
+
+	ReplayKeyframes ReplayFile::get_keyframes() {
+		return replay_keyframes;
 	}
 
 }

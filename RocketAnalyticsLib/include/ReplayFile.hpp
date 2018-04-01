@@ -15,6 +15,7 @@
 #include <fstream>
 #include "ReplayHeader.hpp"
 #include "ReplayLevels.hpp"
+#include "ReplayKeyframes.hpp"
 
 namespace ReplayParser {
 
@@ -24,12 +25,14 @@ namespace ReplayParser {
 
 			ReplayHeader get_header();
 			ReplayLevels get_levels();
+			ReplayKeyframes get_keyframes();
 
 		private:
 			std::string replay_file_path;
 
 			ReplayHeader replay_header;
 			ReplayLevels replay_levels;
+			ReplayKeyframes replay_keyframes;
 	};
 
 }

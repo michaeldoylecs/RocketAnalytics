@@ -92,10 +92,10 @@
     <ClCompile Include="src\ReplayLevels.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Keyframe.cpp">
+    <ClCompile Include="src\ReplayKeyframes.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ReplayKeyframes.cpp">
+    <ClCompile Include="src\Keyframe.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,10 +1,10 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	2/19/18
-*	File:	ReplayKeyframes.hpp
-*	Description:
-*		Represents a a Replay's Keyframes.
-******************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	2/19/18
+ *	File:	ReplayKeyframes.hpp
+ *	Description:
+ *		Represents a a Replay's Keyframes.
+ *****************************************************************************/
 
 #ifndef REPLAY_KEYFRAMES_H
 #define REPLAY_KEYFRAMES_H
@@ -12,9 +12,7 @@
 #include <cstdint>
 #include <vector>
 #include "BinaryReader.hpp"
-
-using std::uint32_t;
-using std::vector;
+#include "keyframe.hpp"
 
 namespace ReplayParser {
 
@@ -22,15 +20,15 @@ namespace ReplayParser {
 
 	class ReplayKeyframes {
 	public:
-		ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
+		static ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
 
 		void add(Keyframe);
 		bool remove(Keyframe);
 		Keyframe get(int index);
-		int count();
+		size_t count();
 
 	private:
-		vector<Keyframe> keyframes;
+		std::vector<Keyframe> keyframes;
 	};
 
 }

@@ -1,10 +1,9 @@
 /******************************************************************************
-*	Author:	Michael Doyle
-*	Date:	3/31/18
-*	File:	ReplayKeyframes.cpp
-******************************************************************************/
+ *	Author:	Michael Doyle
+ *	Date:	3/31/18
+ *	File:	ReplayKeyframes.cpp
+ *****************************************************************************/
 
-#include "Keyframe.hpp"
 #include "ReplayKeyframes.hpp"
 
 namespace ReplayParser {
@@ -15,7 +14,7 @@ namespace ReplayParser {
 		uint32_t frame;
 		uint32_t filePos;
 		uint32_t keyframe_count = binary_reader.read_aligned_uint32();
-		for (int i = 0; i < keyframe_count; i++) {
+		for (uint32_t i = 0; i < keyframe_count; ++i) {
 			time = binary_reader.read_aligned_float();
 			frame = binary_reader.read_aligned_uint32();
 			filePos = binary_reader.read_aligned_uint32();
@@ -29,7 +28,7 @@ namespace ReplayParser {
 	}
 
 	bool ReplayKeyframes::remove(Keyframe keyframe) {
-		int size = this->keyframes.size();
+		size_t size = this->count();
 		int indexToRemove = NULL;
 
 		// Check if the keyframe is in the list of keyframes
@@ -53,7 +52,7 @@ namespace ReplayParser {
 		return keyframes[index];
 	}
 
-	int ReplayKeyframes::count() {
+	size_t ReplayKeyframes::count() {
 		return keyframes.size();
 	}
 }
