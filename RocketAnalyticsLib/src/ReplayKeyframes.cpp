@@ -29,7 +29,7 @@ namespace ReplayParser {
 
 	bool ReplayKeyframes::remove(Keyframe keyframe) {
 		size_t size = this->count();
-		int indexToRemove = NULL;
+		int indexToRemove = -1;
 
 		// Check if the keyframe is in the list of keyframes
 		for (int i = 0; i < size; ++i) {
@@ -40,7 +40,7 @@ namespace ReplayParser {
 		}
 
 		// If the keyframe was found, remove it.
-		if (indexToRemove != NULL) {
+		if (indexToRemove != -1) {
 			this->keyframes.erase(keyframes.begin() + indexToRemove);
 			return true;
 		}
