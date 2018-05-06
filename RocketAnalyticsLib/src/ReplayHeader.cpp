@@ -4,7 +4,7 @@
  *	File:	ReplayHeader.cpp
  *****************************************************************************/
 
-#include "ReplayHeader.hpp"
+#include "../include/ReplayHeader.hpp"
 #include <iostream>
 
 using std::uint32_t;

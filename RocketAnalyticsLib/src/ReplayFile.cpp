@@ -4,8 +4,8 @@
  *	File:	ReplayFile.cpp
  *****************************************************************************/
 
-#include "ReplayFile.hpp"
-#include "BinaryReader.hpp"
+#include "../include/ReplayFile.hpp"
+#include "../include/BinaryReader.hpp"
 
 namespace ReplayParser {
 

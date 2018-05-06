@@ -4,7 +4,7 @@
  *	File:	ReplayLevels.cpp
  *****************************************************************************/
 
-#include "ReplayLevels.hpp"
+#include "../include/ReplayLevels.hpp"
 
 using std::uint32_t;
 using std::string;

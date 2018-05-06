@@ -4,7 +4,7 @@
  *	File:	BinaryReader.cpp
  *****************************************************************************/
 
-#include "BinaryReader.hpp"
+#include "../include/BinaryReader.hpp"
 #include <fstream>
 #include <iostream>
 #include <cstring>

@@ -4,7 +4,7 @@
  *	File:	Byte.cpp
  *****************************************************************************/
 
-#include "Byte.hpp"
+#include "../include/Byte.hpp"
 
 namespace ReplayParser {
 
