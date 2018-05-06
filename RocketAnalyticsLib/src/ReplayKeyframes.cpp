@@ -4,7 +4,7 @@
  *	File:	ReplayKeyframes.cpp
  *****************************************************************************/
 
-#include "ReplayKeyframes.hpp"
+#include "../include/ReplayKeyframes.hpp"
 
 namespace ReplayParser {
 

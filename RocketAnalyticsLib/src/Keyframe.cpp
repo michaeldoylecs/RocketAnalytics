@@ -4,7 +4,7 @@
  *	File:	Keyframe.cpp
  *****************************************************************************/
 
-#include "Keyframe.hpp"
+#include "../include/Keyframe.hpp"
 
 using std::uint32_t;
 
