@@ -145,20 +145,18 @@ namespace ReplayParser {
 	//TODO: Cleanup method
 	string BinaryReader::read_string_of_n_length(uint32_t length) {
 		try {
-			char *string_array = new char[length];
-			for (uint32_t index = 0; index < length; index++) {
+			string read_string;
+			for (uint32_t i = 0; i < length; i++) {
 				Byte next_byte = read_aligned_byte();
 				uint8_t byte_value = next_byte.get_value();
 				char next_char;
 				memcpy(&next_char, &byte_value, sizeof(next_char));
-				string_array[index] = next_char;
+				read_string += next_char;
 			}
-			string string_value(string_array);
-			delete string_array;
-			return string_value;
+			return read_string;
 		}
-		catch (runtime_error e) {
-			cout << "Exception caught: " << e.what() << endl;
+		catch (runtime_error *e) {
+			cout << "Exception caught: " << e->what() << endl;
 			return string("READ_FAIL");
 		}
 	}
