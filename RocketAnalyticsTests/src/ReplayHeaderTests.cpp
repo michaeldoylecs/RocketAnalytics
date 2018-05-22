@@ -3,7 +3,7 @@
 // ReplayHeaderTests.cpp
 
 #include "ReplayHeader.hpp"
-#include "gtest\gtest.h"
+#include "gtest.h"
 
 using namespace ReplayParser;
 
