@@ -157,7 +157,7 @@ namespace ReplayParser {
     }
     catch (runtime_error &e) {
       std::cerr << "Exception caught: " << e.what() << std::endl;
-      return string("READ_FAIL");
+      return {};
     }
   }
 
