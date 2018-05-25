@@ -4,7 +4,7 @@
  *	File:	ByteValue.cpp
  *****************************************************************************/
 
-#include "ByteValue.hpp"
+#include "../../include/properties/ByteValue.hpp"
 
 namespace ReplayParser {
 	

@@ -10,7 +10,7 @@
 #ifndef REPLAY_HEADER_H
 #define REPLAY_HEADER_H
 
-#include "properties\Property.hpp"
+#include "properties/Property.hpp"
 #include "Version.hpp"
 #include "BinaryReader.hpp"
 #include <cstdint>

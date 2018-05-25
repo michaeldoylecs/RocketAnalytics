@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <vector>
 #include "BinaryReader.hpp"
-#include "keyframe.hpp"
+#include "Keyframe.hpp"
 
 namespace ReplayParser {
 

@@ -4,7 +4,7 @@
  *	File:	PropertyType.cpp
  *****************************************************************************/
 
-#include "properties\PropertyType.hpp"
+#include "../../include/properties/PropertyType.hpp"
 
 namespace ReplayParser {
 

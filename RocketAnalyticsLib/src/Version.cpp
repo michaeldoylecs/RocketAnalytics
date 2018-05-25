@@ -4,7 +4,7 @@
  *	File:	Version.cpp
  *****************************************************************************/
 
-#include "Version.hpp"
+#include "../include/Version.hpp"
 
 namespace ReplayParser {
 

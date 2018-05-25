@@ -4,10 +4,10 @@
  *	File:	PropertyValue.cpp
  *****************************************************************************/
 
-#include "ByteValue.hpp"
-#include "PropertyType.hpp"
-#include "PropertyValue.hpp"
-#include "Property.hpp"
+#include "../../include/properties/ByteValue.hpp"
+#include "../../include/properties/PropertyType.hpp"
+#include "../../include/properties/PropertyValue.hpp"
+#include "../../include/properties/Property.hpp"
 
 namespace ReplayParser {
 
@@ -227,7 +227,7 @@ namespace ReplayParser {
 		std::string string_value = "";
 		size_t property_count = property_value.list.size();
 		std::vector<Property> property_array;
-		for (int i = 0; i < property_count; i++) {
+		for (size_t i = 0; i < property_count; i++) {
 			property_array = property_value.list[i];
 			Property property;
 			int index = 0;
