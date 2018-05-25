@@ -6,6 +6,8 @@ project (
   DESCRIPTION "Rocket League replay parsing library"
 )
 
+set (CMAKE_CXX_STANDARD 17)
+
 # Google Testing Framework
 # Download and unpack googletest at configure time
 configure_file (CMakeLists.txt.in googletest-download/CMakeLists.txt)

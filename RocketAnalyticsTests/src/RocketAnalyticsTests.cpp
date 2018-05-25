@@ -2,7 +2,7 @@
 // Date: 7/25/17
 // TestsMain.cpp
 
-#include "../../googletest/googletest/include/gtest/gtest.h"
+#include "../../build/googletest-src/googletest/include/gtest/gtest.h"
 
 int main(int argc, char **argv)
 {
