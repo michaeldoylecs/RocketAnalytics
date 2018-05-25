@@ -80,7 +80,7 @@ namespace ReplayParser {
   uint8_t BinaryReader::read_aligned_uint8() {
     try {
       Byte next_byte = read_aligned_byte();
-      uint8_t read_value = next_byte.get_value();
+      uint8_t read_value = std::to_integer<uint32_t>(next_byte.get_value());
       return read_value;
     }
     catch (runtime_error &e) {
@@ -148,7 +148,7 @@ namespace ReplayParser {
       string read_string;
       for (uint32_t i = 0; i < length; i++) {
         Byte next_byte = read_aligned_byte();
-        uint8_t byte_value = next_byte.get_value();
+        uint8_t byte_value = std::to_integer<uint8_t>(next_byte.get_value());
         char next_char;
         memcpy(&next_char, &byte_value, sizeof(next_char));
         read_string += next_char;
