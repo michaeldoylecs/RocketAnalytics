@@ -20,7 +20,7 @@ namespace ReplayParser {
 
 	class BinaryReader {
 		public:
-			explicit BinaryReader(const std::string *file_path);
+			explicit BinaryReader(const std::string &file_path);
 			float read_aligned_float();
 			std::uint8_t read_aligned_uint8();
 			std::uint32_t read_aligned_uint32();
@@ -34,7 +34,7 @@ namespace ReplayParser {
 			int byte_position;
 			int bit_position;
 
-			void read_file(const std::string *filepath);
+			void read_file(const std::string &filepath);
 			Byte read_aligned_byte();
 			float bytes_to_float(std::array<Byte, 4> bytes);
 			std::uint32_t bytes_to_uint32(std::array<Byte, 4> bytes);

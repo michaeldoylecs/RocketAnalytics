@@ -21,7 +21,7 @@ using std::array;
 
 namespace ReplayParser {
 
-  BinaryReader::BinaryReader(const string *filepath) {
+  BinaryReader::BinaryReader(const string &filepath) {
     try {
       byte_position = 0;
       bit_position = 0;
@@ -32,8 +32,8 @@ namespace ReplayParser {
     }
   }
 
-  void BinaryReader::read_file(const string *filepath) {
-    std::ifstream file_stream(*filepath, ios::binary | ios::in);
+  void BinaryReader::read_file(const string &filepath) {
+    std::ifstream file_stream(filepath, ios::binary | ios::in);
     if (file_stream.is_open()) {
       size_t file_size = get_file_size(file_stream);
       file_bytes.resize(file_size);
@@ -148,7 +148,7 @@ namespace ReplayParser {
       string read_string;
       for (uint32_t i = 0; i < length; i++) {
         Byte next_byte = read_aligned_byte();
-        uint8_t byte_value = std::to_integer<uint8_t>(next_byte.get_value());
+        auto byte_value = std::to_integer<uint8_t>(next_byte.get_value());
         char next_char;
         memcpy(&next_char, &byte_value, sizeof(next_char));
         read_string += next_char;
