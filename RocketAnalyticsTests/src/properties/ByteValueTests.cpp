@@ -2,8 +2,8 @@
 // Date: 8/12/17
 // ByteValueTests.cpp
 
-#include "ByteValue.hpp"
-#include "gtest\gtest.h"
+#include "../../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../../RocketAnalyticsLib/include/properties/ByteValue.hpp"
 
 using namespace ReplayParser;
 

@@ -2,8 +2,8 @@
 // Date: 8/10/17
 // VersionTests.cpp
 
-#include "properties\PropertyType.hpp"
-#include "gtest\gtest.h"
+#include "../../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../../RocketAnalyticsLib/include/properties/PropertyType.hpp"
 #include <cstdint>
 
 using namespace ReplayParser;

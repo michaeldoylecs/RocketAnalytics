@@ -1,3 +1,8 @@
+# Initial CMake configurations
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
 # CMakeLists for RocketAnalytics
 cmake_minimum_required (VERSION 3.9)
 project (
@@ -7,6 +12,7 @@ project (
 )
 
 set (CMAKE_CXX_STANDARD 17)
+add_compile_options(-std=c++17)
 
 # Google Testing Framework
 # Download and unpack googletest at configure time
@@ -79,7 +85,7 @@ set_target_properties (RocketAnalyticsLib PROPERTIES
 )
 
 # Configure Tests Build
-add_executable (library_tests
+add_executable (unitTests
   "RocketAnalyticsTests/src/BinaryReaderTests.cpp"
   "RocketAnalyticsTests/src/ByteTests.cpp"
   "RocketAnalyticsTests/src/ReplayHeaderTests.cpp"
@@ -91,24 +97,24 @@ add_executable (library_tests
   "RocketAnalyticsTests/src/properties/PropertyValueTests.cpp"
 )
 
-target_link_libraries (library_tests gtest gmock_main RocketAnalyticsLib)
+target_link_libraries (unitTests gtest gmock_main RocketAnalyticsLib)
 
 # Tests header files
-target_include_directories (library_tests
+target_include_directories (unitTests
   PRIVATE
     ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include
     ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include/properties
 )
 
 # Tests properties
-set_target_properties (library_tests PROPERTIES
+set_target_properties (unitTests PROPERTIES
   VERSION 0.1
   CXX_STANDARD_REQUIRED 17
   CXX_STANDARD_REQUIRED ON
 )
 
 enable_testing()
-add_test (NAME unit_tests COMMAND library_tests)
+add_test (NAME unit_tests1 COMMAND unitTests)
 
 # Look for clang-tidy
 unset (CLANG_TIDY_EXECUTABLE)
@@ -142,6 +148,9 @@ endif()
 
 # Output location
 set (LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
+
+# Export compile_commands.json
+set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Compiling messages
 message ("Compiling for: " ${CMAKE_BUILD_TYPE})
