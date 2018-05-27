@@ -5,6 +5,7 @@
  *****************************************************************************/
 
 #include "../include/Byte.hpp"
+#include <bitset>
 #include <sstream>
 
 namespace ReplayParser {
@@ -59,12 +60,7 @@ namespace ReplayParser {
 		return std::to_integer<int8_t>(bit_value);
 	}
 
-
 	std::string Byte::to_string() {
-    std::stringstream output;
-		output << get_bit(0) << get_bit(1) << get_bit (2) << get_bit(3) \
-            << get_bit(4) << get_bit(5) << get_bit(6) << get_bit(7);
-		return output.str();
+    return std::bitset<8>(std::to_integer<uint8_t>(value)).to_string();
 	}
-
 }
