@@ -28,12 +28,9 @@ namespace ReplayParser {
 		return this->filePos;
 	}
 
-	bool Keyframe::operator==(const Keyframe &k2) const {
-		if (this->timeStamp == k2.timeStamp &&
-			this->frameNum == k2.frameNum &&
-			this->filePos == k2.filePos) {
-			return true;
-		}
-		return false;
+	bool Keyframe::operator==(const Keyframe &k1) const {
+    return (this->timeStamp == k1.timeStamp &&
+      this->frameNum == k1.frameNum &&
+      this->filePos == k1.filePos);
 	}
-}
+} // namespace ReplayParser

@@ -1,1 +1,1 @@
-Checks: '*,-fuchsia-default-arguments'
+Checks: '*,-fuchsia-default-arguments,-fuchsia-overloaded-operator'

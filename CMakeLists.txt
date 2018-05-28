@@ -58,10 +58,12 @@ endif ()
 add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/BinaryReader.cpp"
   "RocketAnalyticsLib/src/Byte.cpp"
+  "RocketAnalyticsLib/src/Keyframe.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"
   "RocketAnalyticsLib/src/ReplayFileReader.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
-  "RocketAnalyticsLib/src/ReplayLevels.cpp"
+  "RocketAnalyticsLib/src/ReplayHeader.cpp"
+  "RocketAnalyticsLib/src/ReplayKeyframes.cpp"
   "RocketAnalyticsLib/src/Version.cpp"
   "RocketAnalyticsLib/src/properties/ByteValue.cpp"
   "RocketAnalyticsLib/src/properties/Property.cpp"
@@ -82,6 +84,24 @@ set_target_properties (RocketAnalyticsLib PROPERTIES
   VERSION ${PROJECT_VERSION}
   CXX_STANDARD_REQUIRED 17
   CXX_STANDARD_REQUIRED ON
+)
+
+add_executable (testApp
+  "RocketAnalyticsApp/src/RocketAnalyticsApp.cpp"
+)
+
+set_target_properties (testApp PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  CXX_STANDARD_REQUIRED 17
+  CXX_STANDARD_REQUIRED ON
+)
+
+target_link_libraries (testApp RocketAnalyticsLib)
+
+target_include_directories (testApp
+  PRIVATE
+  ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include
+  ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include/properties
 )
 
 # Configure Tests Build
