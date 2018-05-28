@@ -2,14 +2,14 @@
 // Date: 8/13/17
 // BinaryReaderTests.cpp
 
-#include "BinaryReader.hpp"
-#include "gtest/gtest.h"
-#include <iostream>
+#include "../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../RocketAnalyticsLib/include/BinaryReader.hpp"
 #include <fstream>
+#include <iostream>
 
-using namespace ReplayParser;
+using ReplayParser::BinaryReader;
 
-//TODO: Write better tests for BinaryReader
+// TODO(michaeldoylecs): Write better tests for BinaryReader
 
 TEST(BinaryReaderTests, ReadTestReplay) {
 	BinaryReader binary_reader("../../Testing/BinaryReaderTests/TestReplay.replay");

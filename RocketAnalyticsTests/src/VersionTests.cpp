@@ -2,10 +2,10 @@
 // Date: 8/10/17
 // VersionTests.cpp
 
-#include "Version.hpp"
-#include "gtest/gtest.h"
+#include "../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../RocketAnalyticsLib/include/Version.hpp"
 
-using namespace ReplayParser;
+using ReplayParser::Version;
 using std::string;
 using std::to_string;
 using std::uint32_t;
@@ -27,7 +27,7 @@ struct VersionTests :testing::TestWithParam<VersionTestParam> {
 		version = new Version(GetParam().version_major, GetParam().version_minor);
 	}
 
-	~VersionTests() {
+	~VersionTests() override {
 		delete version;
 	}
 };

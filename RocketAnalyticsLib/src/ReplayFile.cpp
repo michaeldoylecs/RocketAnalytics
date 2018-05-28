@@ -4,16 +4,17 @@
  *	File:	ReplayFile.cpp
  *****************************************************************************/
 
-#include "ReplayFile.hpp"
-#include "BinaryReader.hpp"
-#include "ReplayHeader.hpp"
+#include "../include/ReplayFile.hpp"
+#include "../include/BinaryReader.hpp"
 
 namespace ReplayParser {
 
-	ReplayFile::ReplayFile(std::string filepath) {
-		BinaryReader file_reader = BinaryReader(filepath);
+	ReplayFile::ReplayFile(const std::string &filepath) {
+		replay_file_path = filepath;
+		BinaryReader file_reader = BinaryReader(replay_file_path);
 		replay_header = ReplayHeader::deserialize(file_reader);
 		replay_levels = ReplayLevels::deserialize_levels(file_reader);
+		replay_keyframes = ReplayKeyframes::deserialize_keyframes(file_reader);
 		file_reader.close();
 	}
 
@@ -25,4 +26,8 @@ namespace ReplayParser {
 		return replay_levels;
 	}
 
-}
+	ReplayKeyframes ReplayFile::get_keyframes() {
+		return replay_keyframes;
+	}
+
+} // namespace ReplayParser

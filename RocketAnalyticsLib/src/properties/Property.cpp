@@ -4,8 +4,8 @@
  *	File:	Property.cpp
  *****************************************************************************/
 
-#include "PropertyValue.hpp"
-#include "Property.hpp"
+#include "../../include/properties/PropertyValue.hpp"
+#include "../../include/properties/Property.hpp"
 
 using std::string;
 using std::vector;

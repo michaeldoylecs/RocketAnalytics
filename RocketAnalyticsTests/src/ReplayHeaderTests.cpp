@@ -2,10 +2,11 @@
 // Date: 8/24/17
 // ReplayHeaderTests.cpp
 
-#include "ReplayHeader.hpp"
-#include "gtest\gtest.h"
+#include "../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../RocketAnalyticsLib/include/ReplayHeader.hpp"
 
-using namespace ReplayParser;
+using ReplayParser::ReplayHeader;
+using ReplayParser::BinaryReader;
 
 struct ReplayHeaderTest :testing::Test {
 	ReplayHeader replay_header;
@@ -24,10 +25,8 @@ struct ReplayHeaderTest :testing::Test {
 		replay_header = ReplayHeader::deserialize(binary_reader);
 	}
 
-	~ReplayHeaderTest() {
-	}
+	~ReplayHeaderTest() = default;
 };
-
 
 TEST_F(ReplayHeaderTest, DeserializeHeader) {
 	EXPECT_EQ(replay_header.get_header_size(), EXPECTED_HEADER_SIZE);

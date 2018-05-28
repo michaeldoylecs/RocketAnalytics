@@ -2,9 +2,9 @@
 // Date: 8/11/17
 // PropertyTests.cpp
 
-#include "PropertyType.hpp"
-#include "Property.hpp"
-#include "gtest\gtest.h"
+#include "../../../build/googletest-src/googletest/include/gtest/gtest.h"
+#include "../../../RocketAnalyticsLib/include/properties/Property.hpp"
+#include "../../../RocketAnalyticsLib/include/properties/PropertyType.hpp"
 
 using namespace ReplayParser;
 

@@ -4,17 +4,13 @@
  *	File:	ReplayLevels.cpp
  *****************************************************************************/
 
-#include <iostream>
-#include "ReplayLevels.hpp"
+#include "../include/ReplayLevels.hpp"
 
 using std::uint32_t;
 using std::string;
 using std::vector;
 
 namespace ReplayParser {
-
-	ReplayLevels::ReplayLevels() {
-	}
 
 	ReplayLevels ReplayLevels::deserialize_levels(BinaryReader& binary_reader) {
 		ReplayLevels replay_levels;

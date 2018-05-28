@@ -7,30 +7,34 @@
  *	replay file. 
  *****************************************************************************/
 
-#ifndef REPLAY_FILE_H
-#define REPLAY_FILE_H
+#ifndef REPLAYFILE_HPP
+#define REPLAYFILE_HPP
 
-#include <cstdint>
-#include <string>
-#include <fstream>
 #include "ReplayHeader.hpp"
+#include "ReplayKeyframes.hpp"
 #include "ReplayLevels.hpp"
+#include <cstdint>
+#include <fstream>
+#include <string>
 
 namespace ReplayParser {
 
 	class ReplayFile {
 		public:
-			ReplayFile(std::string filepath);
+			explicit ReplayFile(const std::string &filepath);
 
 			ReplayHeader get_header();
 			ReplayLevels get_levels();
+			ReplayKeyframes get_keyframes();
 
 		private:
 			std::string replay_file_path;
 
 			ReplayHeader replay_header;
 			ReplayLevels replay_levels;
+			ReplayKeyframes replay_keyframes;
 	};
 
-}
+} // namespace ReplayParser
+
 #endif

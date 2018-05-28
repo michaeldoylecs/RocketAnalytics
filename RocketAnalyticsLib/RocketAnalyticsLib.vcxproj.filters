@@ -51,6 +51,12 @@
     <ClInclude Include="include\ReplayLevels.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Keyframe.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReplayKeyframes.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ReplayFileReader.cpp">
@@ -84,6 +90,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ReplayLevels.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReplayKeyframes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Keyframe.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

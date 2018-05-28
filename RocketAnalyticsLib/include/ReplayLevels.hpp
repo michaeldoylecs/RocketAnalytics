@@ -19,7 +19,6 @@ namespace ReplayParser {
 
 	class ReplayLevels {
 	public:
-		ReplayLevels();
 		static ReplayLevels deserialize_levels(BinaryReader& binary_reader);
 
 		vector<string> get_levels();
