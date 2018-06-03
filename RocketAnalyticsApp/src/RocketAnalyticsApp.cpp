@@ -1,11 +1,11 @@
 // RocketAnalyticsApp.cpp : Defines the entry point for the console application.
 
-#include <iostream>
+#include "../../RocketAnalyticsLib/include/BinaryReader.hpp"
+#include "../../RocketAnalyticsLib/include/ReplayFile.hpp"
+#include "../../RocketAnalyticsLib/include/ReplayHeader.hpp"
 #include <iomanip>
+#include <iostream>
 #include <string>
-#include "BinaryReader.hpp"
-#include "ReplayHeader.hpp"
-#include "ReplayFile.hpp"
 
 using std::cout;
 using std::endl;
@@ -47,7 +47,7 @@ void test_replay(const string file_path) {
 			replay.get_header().get_replay_identifier() << endl;
 
 		cout << "Properties:" << endl;
-		for (int i = 0; i < replay.get_header().get_properties().size(); i++) {
+		for (size_t i = 0; i < replay.get_header().get_properties().size(); i++) {
 			cout << " > " <<
 				replay.get_header().get_properties().at(i).to_string() << endl;
 		}
@@ -56,12 +56,12 @@ void test_replay(const string file_path) {
 		cout << "CRC2: " << replay.get_header().get_crc2() << endl;
 
 		cout << "Replay Levels:" << endl;
-		for (int i = 0; i < replay.get_levels().get_level_count(); i++) {
+		for (size_t i = 0; i < replay.get_levels().get_level_count(); i++) {
 			cout << "> " << replay.get_levels().get_levels().at(i) << endl;
 		}
 
 		cout << "Replay Keyframes:" << endl;
-		for (int i = 0; i < replay.get_keyframes().count(); i++) {
+		for (size_t i = 0; i < replay.get_keyframes().count(); i++) {
 			cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
 				"> " << replay.get_keyframes().get(i).time() << "\n\t" <<
 				"> " << replay.get_keyframes().get(i).frame() << "\n\t" <<
