@@ -11,6 +11,7 @@ project (
   DESCRIPTION "Rocket League replay parsing library"
 )
 
+# TODO: Figure out how to properly handle compiler flags
 set (CMAKE_CXX_STANDARD 17)
 add_compile_options(-std=c++17)
 
@@ -49,18 +50,15 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories ("${gtest_SOURCE_DIR}/include")
 endif ()
 
-# Compiler flags
-# set (CMAKE_CXX_FLAGS
-# "-std=c++14 -Wall -Wextra -Wpedantic -Wzero-as-null-pointer-constant"
-# )
-
 # Configure RocketAnalyticsLib Build
 add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/BinaryReader.cpp"
   "RocketAnalyticsLib/src/Byte.cpp"
+  "RocketAnalyticsLib/src/Keyframe.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"
   "RocketAnalyticsLib/src/ReplayFileReader.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
+  "RocketAnalyticsLib/src/ReplayKeyframes.cpp"
   "RocketAnalyticsLib/src/ReplayLevels.cpp"
   "RocketAnalyticsLib/src/Version.cpp"
   "RocketAnalyticsLib/src/properties/ByteValue.cpp"
@@ -83,6 +81,19 @@ set_target_properties (RocketAnalyticsLib PROPERTIES
   CXX_STANDARD_REQUIRED 17
   CXX_STANDARD_REQUIRED ON
 )
+
+# Configure RocketAnalytics Test Application
+add_executable (RocketAnalyticsApp
+  "RocketAnalyticsApp/src/RocketAnalyticsApp.cpp"
+)
+
+set_target_properties (RocketAnalyticsApp PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  CXX_STANDARD_REQUIRED 17
+  CXX_STANDARD_REQUIRED ON
+)
+
+target_link_libraries (RocketAnalyticsApp RocketAnalyticsLib)
 
 # Configure Tests Build
 add_executable (unitTests
