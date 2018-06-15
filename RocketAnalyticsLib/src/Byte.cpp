@@ -61,6 +61,16 @@ namespace ReplayParser {
 	}
 
 	std::string Byte::to_string() {
-    return std::bitset<8>(std::to_integer<uint8_t>(value)).to_string();
+    std::string bit_string;
+	  bit_string += std::to_string(get_bit(0));
+	  bit_string += std::to_string(get_bit(1));
+	  bit_string += std::to_string(get_bit(2));
+	  bit_string += std::to_string(get_bit(3));
+	  bit_string += std::to_string(get_bit(4));
+	  bit_string += std::to_string(get_bit(5));
+	  bit_string += std::to_string(get_bit(6));
+	  bit_string += std::to_string(get_bit(7));
+	  return bit_string;
 	}
-}
+
+} // namespace ReplayParser

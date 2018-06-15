@@ -47,7 +47,7 @@ void test_replay(const string file_path) {
 			replay.get_header().get_replay_identifier() << endl;
 
 		cout << "Properties:" << endl;
-		for (uint32_t i = 0; i < replay.get_header().get_properties().size(); i++) {
+		for (size_t i = 0; i < replay.get_header().get_properties().size(); i++) {
 			cout << " > " <<
 				replay.get_header().get_properties().at(i).to_string() << endl;
 		}
@@ -56,12 +56,12 @@ void test_replay(const string file_path) {
 		cout << "CRC2: " << replay.get_header().get_crc2() << endl;
 
 		cout << "Replay Levels:" << endl;
-		for (uint32_t i = 0; i < replay.get_levels().get_level_count(); i++) {
+		for (size_t i = 0; i < replay.get_levels().get_level_count(); i++) {
 			cout << "> " << replay.get_levels().get_levels().at(i) << endl;
 		}
 
 		cout << "Replay Keyframes:" << endl;
-		for (uint32_t i = 0; i < replay.get_keyframes().count(); i++) {
+		for (size_t i = 0; i < replay.get_keyframes().count(); i++) {
 			cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
 				"> " << replay.get_keyframes().get(i).time() << "\n\t" <<
 				"> " << replay.get_keyframes().get(i).frame() << "\n\t" <<
@@ -78,7 +78,7 @@ int main() {
 	try {
 		const string file_path =
 			"../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
-		test_binary_reader(file_path);
+		//test_binary_reader(file_path);
 		test_replay(file_path);
 	}
 	catch (const std::runtime_error &e) {

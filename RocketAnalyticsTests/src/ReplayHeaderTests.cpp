@@ -10,7 +10,7 @@ using ReplayParser::BinaryReader;
 
 struct ReplayHeaderTest :testing::Test {
 	ReplayHeader replay_header;
-	const std::string FILE_PATH = "../../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
+	const std::string FILE_PATH = "../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
 	const std::uint32_t EXPECTED_HEADER_SIZE = 6859;
 	const std::uint32_t EXPECTED_CRC1 = 1488016315;
 	const std::uint32_t EXPECTED_VERSION_MAJOR = 868;
@@ -22,7 +22,7 @@ struct ReplayHeaderTest :testing::Test {
 
 	ReplayHeaderTest() {
 		BinaryReader binary_reader(FILE_PATH);
-		replay_header = ReplayHeader::deserialize(binary_reader);
+		replay_header = ReplayHeader::deserialize_header(binary_reader);
 	}
 
 	~ReplayHeaderTest() override = default;

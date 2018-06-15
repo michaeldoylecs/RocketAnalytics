@@ -23,7 +23,7 @@ namespace ReplayParser {
 	public:
 		ReplayHeader();
 		// Deserializing in each header is an issue. shouldn't be public.
-		static ReplayHeader deserialize(BinaryReader& binary_reader);
+		static ReplayHeader deserialize_header(BinaryReader& binary_reader);
 
 		std::uint32_t get_header_size();
 		std::uint32_t get_crc1();

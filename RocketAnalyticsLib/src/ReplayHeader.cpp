@@ -16,7 +16,7 @@ namespace ReplayParser {
 	ReplayHeader::ReplayHeader() {
 	}
 
-	ReplayHeader ReplayHeader::deserialize(BinaryReader& binary_reader) {
+  ReplayHeader ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
 		ReplayHeader replay_header;
 		replay_header.parse_header_size(binary_reader);
 		replay_header.parse_crc1(binary_reader);
@@ -50,7 +50,8 @@ namespace ReplayParser {
 		replay_identifier = parsed_replay_identifier;
 	}
 
-	//IMPROVE: There must be a better way to handle discrepancies between replay versions
+	// TODO(michaeldoylecs): There must be a better way to handle discrepancies
+  // between replay versions
 	void ReplayHeader::check_for_empty_bits(BinaryReader& binary_reader) {
 		if (version.get_major_value() >= 868 && version.get_minor_value() >= 18) {
 			binary_reader.read_aligned_uint32();
