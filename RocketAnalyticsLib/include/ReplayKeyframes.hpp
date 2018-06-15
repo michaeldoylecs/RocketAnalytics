@@ -20,15 +20,15 @@ namespace ReplayParser {
 
 	class ReplayKeyframes {
 	public:
-		static ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
+    static ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
 
-		void add(Keyframe);
-		bool remove(Keyframe);
-		Keyframe get(int index);
-		size_t count();
+    void add(Keyframe);
+    bool remove(Keyframe);
+    Keyframe get(int index);
+    uint32_t count();
 
 	private:
-		std::vector<Keyframe> keyframes;
+    std::vector<Keyframe> keyframes;
 	};
 
 }

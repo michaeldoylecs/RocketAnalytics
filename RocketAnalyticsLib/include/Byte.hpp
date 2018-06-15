@@ -18,15 +18,15 @@
 namespace ReplayParser {
 
 	class Byte {
-		public:
-			Byte();
-			explicit Byte(std::uint8_t value);
-			Byte(const Byte &byte);
-			std::byte get_value();
+    public:
+      Byte();
+      explicit Byte(std::uint8_t value);
+      Byte(const Byte &byte);
+      std::byte get_value();
       std::int8_t get_bit(int index);
-			std::string to_string();
+      std::string to_string();
 
-		private:
+    private:
       std::byte value;
   };
 
