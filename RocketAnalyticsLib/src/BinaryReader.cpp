@@ -137,9 +137,9 @@ namespace ReplayParser {
 
   string BinaryReader::read_length_prefixed_string() {
     string string_value;
-    uint32_t string_length = read_aligned_uint32();
-    string_value = read_string_of_n_length(string_length);
-    return string_value;
+    uint32_t str_length = read_aligned_uint32();
+    string_value = read_string_of_n_length(str_length);
+    return string_value.substr(0, str_length - 1);
   }
 
   // TODO(michaeldoylecs): Cleanup method

@@ -78,7 +78,7 @@ int main() {
 	try {
 		const string file_path =
 			"../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
-		test_binary_reader(file_path);
+		//test_binary_reader(file_path);
 		test_replay(file_path);
 	}
 	catch (const std::runtime_error &e) {

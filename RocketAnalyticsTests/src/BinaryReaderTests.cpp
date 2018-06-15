@@ -12,7 +12,7 @@ using ReplayParser::BinaryReader;
 // TODO(michaeldoylecs): Write better tests for BinaryReader
 
 TEST(BinaryReaderTests, ReadTestReplay) {
-	BinaryReader binary_reader("../../Testing/BinaryReaderTests/TestReplay.replay");
+	BinaryReader binary_reader("../Testing/BinaryReaderTests/TestReplay.replay");
 	EXPECT_EQ(binary_reader.read_aligned_uint8(), 1);
 	EXPECT_EQ(binary_reader.read_aligned_uint8(), 2);
 	EXPECT_EQ(binary_reader.read_aligned_uint8(), 3);
