@@ -41,12 +41,12 @@ TEST_F(ByteTests, ByteToString) {
 
 TEST_F(ByteTests, CheckBits) {
 	EXPECT_EQ(byte.get_bit(0), 0);
-	EXPECT_EQ(byte.get_bit(1), 1);
+	EXPECT_EQ(byte.get_bit(1), 0);
 	EXPECT_EQ(byte.get_bit(2), 1);
-	EXPECT_EQ(byte.get_bit(3), 0);
-	EXPECT_EQ(byte.get_bit(4), 1);
+	EXPECT_EQ(byte.get_bit(3), 1);
+	EXPECT_EQ(byte.get_bit(4), 0);
 	EXPECT_EQ(byte.get_bit(5), 1);
-	EXPECT_EQ(byte.get_bit(6), 0);
+	EXPECT_EQ(byte.get_bit(6), 1);
 	EXPECT_EQ(byte.get_bit(7), 0);
 }
 

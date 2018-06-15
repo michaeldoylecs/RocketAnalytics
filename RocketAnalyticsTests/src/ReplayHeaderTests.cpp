@@ -25,7 +25,7 @@ struct ReplayHeaderTest :testing::Test {
 		replay_header = ReplayHeader::deserialize(binary_reader);
 	}
 
-	~ReplayHeaderTest() = default;
+	~ReplayHeaderTest() override = default;
 };
 
 TEST_F(ReplayHeaderTest, DeserializeHeader) {
