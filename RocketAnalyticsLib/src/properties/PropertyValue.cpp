@@ -222,16 +222,16 @@ namespace ReplayParser {
 	}
 
 
-	//IMPROVE: Function is a bit long and low level
+	// TODO(michaeldoylecs): IMPROVE: Function is a bit long and low level
 	std::string PropertyValue::array_properties_to_string() {
-		std::string string_value = "";
+		std::string string_value;
 		size_t property_count = property_value.list.size();
 		std::vector<Property> property_array;
 		for (size_t i = 0; i < property_count; i++) {
 			property_array = property_value.list[i];
 			Property property;
 			int index = 0;
-			string_value += std::to_string(i) + ":\n\t";
+			string_value += std::to_string(i) + ":\n  ";
 			while (true) {
 				property = property_array[index];
 				if (property.get_type() == PType::NONE) {
@@ -240,7 +240,7 @@ namespace ReplayParser {
 				}
 				else {
 					if (index > 0) {
-						string_value += ",\n\t";
+						string_value += ",\n  ";
 					}
 					string_value += property.get_name() + ": ";
 					string_value += property.get_value_as_string();

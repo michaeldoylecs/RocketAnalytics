@@ -276,9 +276,9 @@ TEST_F(PropertyTests, ArrayPropertyTypeReadTest) {
 
 TEST_F(PropertyTests, ArrayPropertyValueReadTest) {
 	std::string expected_value =
-		"0:\n\t\n"
-		"1:\n\t\n"
-		"2:\n\t\n";
+		"0:\n  \n"
+		"1:\n  \n"
+		"2:\n  \n";
 	Property properties[3][3] = {
 		{ Property(), Property(), Property() },
 		{ Property(), Property(), Property() },
@@ -300,9 +300,9 @@ TEST_F(PropertyTests, ArrayPropertyValueReadTest) {
 TEST_F(PropertyTests, ArrayPropertyToStringReadTest) {
 	std::string expected_to_string_value = property_name +
 		": \n" 
-		"0:\n\t\n" 
-		"1:\n\t\n" 
-		"2:\n\t\n";
+		"0:\n  \n" 
+		"1:\n  \n" 
+		"2:\n  \n";
 	Property properties[3][3] = {
 		{ Property(), Property(), Property() },
 		{ Property(), Property(), Property() },

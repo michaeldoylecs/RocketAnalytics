@@ -158,9 +158,9 @@ TEST_F(PropertyValueTests, ArrayPropertyReadType) {
 // TOOD: Need more indepth Array unit tests
 TEST_F(PropertyValueTests, ArrayPropertyReadStringValue) {
 	std::string expected_string_value =
-		"0:\n\t\n"
-		"1:\n\t\n"
-		"2:\n\t\n";
+		"0:\n  \n"
+		"1:\n  \n"
+		"2:\n  \n";
 	Property properties[3][3] = {
 		{ Property(), Property(), Property() },
 		{ Property(), Property(), Property() },

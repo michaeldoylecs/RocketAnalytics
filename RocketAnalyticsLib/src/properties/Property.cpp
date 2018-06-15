@@ -85,9 +85,9 @@ namespace ReplayParser {
 		return property_value.get_value_as_string();
 	}
 
-	//IMPROVE: Maintain level of abstraction
+	// TODO(michaeldoylecs): IMPROVE: Maintain level of abstraction
 	string Property::to_string() {
-		string to_string_value = "";
+		string to_string_value;
 		to_string_value += get_name() + ": ";
 		if (get_type() == PType::ARRAY_PROPERTY) {
 			to_string_value += "\n";
@@ -96,4 +96,4 @@ namespace ReplayParser {
 		return to_string_value;
 	}
 
-}
+} // namespace ReplayParser
