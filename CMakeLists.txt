@@ -93,7 +93,7 @@ set_target_properties (RocketAnalyticsApp PROPERTIES
   CXX_STANDARD_REQUIRED ON
 )
 
-target_link_libraries (testApp RocketAnalyticsLib)
+target_link_libraries (RocketAnalyticsApp RocketAnalyticsLib)
 
 # Configure Tests Build
 add_executable (unitTests
