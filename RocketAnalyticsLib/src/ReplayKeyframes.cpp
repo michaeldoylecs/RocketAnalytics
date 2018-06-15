@@ -10,14 +10,11 @@ namespace ReplayParser {
 
 	ReplayKeyframes ReplayKeyframes::deserialize_keyframes(BinaryReader& binary_reader) {
 		ReplayKeyframes keyframes;
-		float time;
-		uint32_t frame;
-		uint32_t filePos;
 		uint32_t keyframe_count = binary_reader.read_aligned_uint32();
 		for (uint32_t i = 0; i < keyframe_count; ++i) {
-			time = binary_reader.read_aligned_float();
-			frame = binary_reader.read_aligned_uint32();
-			filePos = binary_reader.read_aligned_uint32();
+			float time = binary_reader.read_aligned_float();
+			uint32_t frame = binary_reader.read_aligned_uint32();
+			uint32_t filePos = binary_reader.read_aligned_uint32();
 			keyframes.add(Keyframe(time, frame, filePos));
 		}
 		return keyframes;
@@ -32,7 +29,7 @@ namespace ReplayParser {
 		int indexToRemove = -1;
 
 		// Check if the keyframe is in the list of keyframes
-		for (int i = 0; i < size; ++i) {
+		for (uint32_t i = 0; i < size; ++i) {
 			if (this->keyframes[i] == keyframe) {
 				indexToRemove = i;
 				break;
@@ -52,7 +49,7 @@ namespace ReplayParser {
 		return keyframes[index];
 	}
 
-	size_t ReplayKeyframes::count() {
+	uint32_t ReplayKeyframes::count() {
 		return keyframes.size();
 	}
 }

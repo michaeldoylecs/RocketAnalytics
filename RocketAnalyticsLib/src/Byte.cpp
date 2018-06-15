@@ -5,6 +5,7 @@
  *****************************************************************************/
 
 #include "../include/Byte.hpp"
+#include <bitset>
 #include <sstream>
 
 namespace ReplayParser {
