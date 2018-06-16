@@ -32,19 +32,19 @@ namespace ReplayParser {
 			void set_byte(std::string name, std::string identifier, std::string value);
 			void set_float(std::string name, float value);
 			void set_array(std::string name, std::vector< std::vector<Property> > value);
-
 			std::string get_name();
 			PType get_type();
 			PropertyValue get_value();
 			std::string get_value_as_string();
 			std::string to_string();
 
+      bool operator== (const Property& rhs) const;
+
 		private:
 			std::string property_name;
 			PropertyValue property_value;
-
 	};
 
-}
+} // namespace ReplayParser
 
 #endif

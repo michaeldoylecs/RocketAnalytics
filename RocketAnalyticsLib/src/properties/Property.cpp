@@ -96,4 +96,12 @@ namespace ReplayParser {
 		return to_string_value;
 	}
 
+  bool Property::operator== (const Property& rhs) const {
+    return (
+      (this->property_name != rhs.property_name)
+      || (this->property_value.get_value_as_string()
+        != rhs.property_value.get_value_as_string())
+    );
+  }
+
 } // namespace ReplayParser

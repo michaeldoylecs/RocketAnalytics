@@ -54,13 +54,13 @@ namespace ReplayParser {
 			void set_array(std::vector< std::vector<Property> > property_list);
 
 			PType get_type();
-			std::string get_value_as_string();
+			std::string get_value_as_string() const;
 
 		private:
 			PType property_type;
 
 			void deconstruct_union_values_if_necessary();
-			std::string array_properties_to_string();
+			std::string array_properties_to_string() const;
 	};
 
 }
