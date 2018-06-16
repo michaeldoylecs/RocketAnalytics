@@ -176,7 +176,7 @@ namespace ReplayParser {
 	}
 
 
-	std::string PropertyValue::get_value_as_string() {
+	std::string PropertyValue::get_value_as_string() const{
 		if (property_type == PType::INT_PROPERTY) {
 			std::uint32_t stored_value = property_value.int32;
 			std::string converted_value = std::to_string(stored_value);
@@ -223,7 +223,7 @@ namespace ReplayParser {
 
 
 	//IMPROVE: Function is a bit long and low level
-	std::string PropertyValue::array_properties_to_string() {
+	std::string PropertyValue::array_properties_to_string() const {
 		std::string string_value = "";
 		size_t property_count = property_value.list.size();
 		std::vector<Property> property_array;
