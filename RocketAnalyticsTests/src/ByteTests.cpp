@@ -15,7 +15,7 @@ struct ByteTests: testing::Test{
 		byte = Byte(value);
 	}
 
-	~ByteTests() = default;
+	~ByteTests() override = default;
 
 };
 

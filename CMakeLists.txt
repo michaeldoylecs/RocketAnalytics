@@ -99,7 +99,9 @@ target_link_libraries (RocketAnalyticsApp RocketAnalyticsLib)
 add_executable (unitTests
   "RocketAnalyticsTests/src/BinaryReaderTests.cpp"
   "RocketAnalyticsTests/src/ByteTests.cpp"
+  "RocketAnalyticsTests/src/KeyframeTests.cpp"
   "RocketAnalyticsTests/src/ReplayHeaderTests.cpp"
+  "RocketAnalyticsTests/src/ReplayKeyframesTests.cpp"
   "RocketAnalyticsTests/src/RocketAnalyticsTests.cpp"
   "RocketAnalyticsTests/src/VersionTests.cpp"
   "RocketAnalyticsTests/src/properties/ByteValueTests.cpp"

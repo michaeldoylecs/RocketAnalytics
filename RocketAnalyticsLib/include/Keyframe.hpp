@@ -22,6 +22,7 @@ namespace ReplayParser {
 		std::uint32_t filePosition();
 
 		bool operator==(const Keyframe &k1) const;
+		bool operator!=(const Keyframe &k1) const;
 
 	private:
 		float timeStamp;

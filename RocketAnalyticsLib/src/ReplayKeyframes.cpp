@@ -46,10 +46,10 @@ namespace ReplayParser {
 	}
 
 	Keyframe ReplayKeyframes::get(int index) {
-		return keyframes[index];
+		return keyframes.at(index);
 	}
 
 	uint32_t ReplayKeyframes::count() {
 		return keyframes.size();
 	}
-}
+} // namespace ReplayParser

@@ -33,4 +33,10 @@ namespace ReplayParser {
       this->frameNum == k1.frameNum &&
       this->filePos == k1.filePos);
 	}
+  
+	bool Keyframe::operator!=(const Keyframe &k1) const {
+    return (this->timeStamp != k1.timeStamp ||
+      this->frameNum != k1.frameNum ||
+      this->filePos != k1.filePos);
+	}
 } // namespace ReplayParser
