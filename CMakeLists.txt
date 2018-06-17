@@ -55,6 +55,7 @@ add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/BinaryReader.cpp"
   "RocketAnalyticsLib/src/Byte.cpp"
   "RocketAnalyticsLib/src/Keyframe.cpp"
+  "RocketAnalyticsLib/src/Netstream.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"
   "RocketAnalyticsLib/src/ReplayFileReader.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
