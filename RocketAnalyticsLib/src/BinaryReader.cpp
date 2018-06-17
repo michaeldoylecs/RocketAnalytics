@@ -55,6 +55,21 @@ namespace ReplayParser {
     return file_size;
   }
 
+  std::vector<Byte> BinaryReader::read_bytes(int length) { 
+    try {
+      std::vector<Byte> list_of_bytes;
+      list_of_bytes.resize(length);
+      for (int i = 0; i < length; ++i) {
+        list_of_bytes.at(i) = read_aligned_byte();
+      }
+      return list_of_bytes;
+    }
+    catch(runtime_error &e){
+      std::cerr << "Exception caught: " << e.what() << std::endl;
+      return std::vector<Byte>();
+    }
+  }
+
   float BinaryReader::read_aligned_float() {
     try {
       const int FLOAT_SIZE = 4;
