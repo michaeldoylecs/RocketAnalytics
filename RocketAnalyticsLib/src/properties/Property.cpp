@@ -98,9 +98,9 @@ namespace ReplayParser {
 
   bool Property::operator== (const Property& rhs) const {
     return (
-      (this->property_name != rhs.property_name)
-      || (this->property_value.get_value_as_string()
-        != rhs.property_value.get_value_as_string())
+      (this->property_name == rhs.property_name)
+      && (this->property_value.get_value_as_string()
+        == rhs.property_value.get_value_as_string())
     );
   }
 
