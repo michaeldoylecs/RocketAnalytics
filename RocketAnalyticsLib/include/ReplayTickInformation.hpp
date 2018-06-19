@@ -16,11 +16,13 @@
 namespace ReplayParser {
 
   class ReplayTick;
+  class BinaryReader;
 
   class ReplayTickInformation {
     public:
       ReplayTickInformation();
       ~ReplayTickInformation();
+      static ReplayTickInformation deserialize_tick_information(BinaryReader& br);
 
       void add(ReplayTick tick);
       void add(std::string type, std::uint32_t frame);

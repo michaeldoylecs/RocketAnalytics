@@ -14,11 +14,14 @@
 
 namespace ReplayParser {
 
+  class BinaryReader;
+
   class ReplayReplicatedPackages {
     public:
       ReplayReplicatedPackages();
       ~ReplayReplicatedPackages();
-
+      static ReplayReplicatedPackages deserialize_replicated_packages(BinaryReader& br);
+      
       void add(std::string package);
       std::string get(int index);
       int count();

@@ -10,9 +10,12 @@
 #ifndef REPLAYFILE_HPP
 #define REPLAYFILE_HPP
 
+#include "Netstream.hpp"
 #include "ReplayHeader.hpp"
 #include "ReplayKeyframes.hpp"
 #include "ReplayLevels.hpp"
+#include "ReplayReplicatedPackages.hpp"
+#include "ReplayTickInformation.hpp"
 #include <cstdint>
 #include <fstream>
 #include <string>
@@ -20,19 +23,25 @@
 namespace ReplayParser {
 
 	class ReplayFile {
-		public:
-			explicit ReplayFile(const std::string &filepath);
+	  public:
+	    explicit ReplayFile(std::string& file);
 
-			ReplayHeader get_header();
-			ReplayLevels get_levels();
-			ReplayKeyframes get_keyframes();
+	    ReplayHeader header();
+	    ReplayLevels levels();
+	    ReplayKeyframes keyframes();
+      Netstream netstream();
+      ReplayTickInformation tick_information();
+      ReplayReplicatedPackages replicated_packages();
 
-		private:
-			std::string replay_file_path;
+	  private:
+	    std::string r_file_path;
 
-			ReplayHeader replay_header;
-			ReplayLevels replay_levels;
-			ReplayKeyframes replay_keyframes;
+	    ReplayHeader r_header;
+	    ReplayLevels r_levels;
+	    ReplayKeyframes r_keyframes;
+      Netstream r_netstream;
+      ReplayTickInformation r_tick_information;
+      ReplayReplicatedPackages r_replicated_packages;
 	};
 
 } // namespace ReplayParser
