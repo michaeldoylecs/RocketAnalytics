@@ -18,8 +18,18 @@ namespace ReplayParser {
     br.read_aligned_uint32(); // Read empty int for debug_log
     r_tick_information = ReplayTickInformation::deserialize_tick_information(br);
     r_replicated_packages = ReplayReplicatedPackages::deserialize_replicated_packages(br);
+    r_object_table = deserialize_object_table(br);
     br.close();
 	}
+
+  std::vector<std::string> ReplayFile::deserialize_object_table(BinaryReader& br) {
+    std::vector<std::string> object_table;
+    uint32_t count = br.read_aligned_uint32();
+    for (uint32_t i = 0; i < count; ++i) {
+      object_table.push_back(std::string(br.read_length_prefixed_string()));
+    }
+    return object_table;
+  }
 
 	ReplayHeader ReplayFile::header() {
 	  return r_header;
@@ -43,6 +53,10 @@ namespace ReplayParser {
 
   ReplayReplicatedPackages ReplayFile::replicated_packages() {
     return r_replicated_packages;
+  }
+
+  std::vector<std::string> ReplayFile::object_table() {
+    return r_object_table;
   }
 
 } // namespace ReplayParser

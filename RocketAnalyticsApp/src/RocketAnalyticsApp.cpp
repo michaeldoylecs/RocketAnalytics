@@ -78,8 +78,14 @@ void test_replay(string& file_path) {
 
     cout << "Replicated Packages" << endl;
     for (int i = 0; i < replay.replicated_packages().count(); ++i) {
-      cout << i << ")\n\t"
-        << "> " << replay.replicated_packages().get(i) << endl;
+      cout << i << ")\t"
+        << replay.replicated_packages().get(i) << endl;
+    }
+
+    cout << "Object Table" << endl;
+    for (size_t i = 0; i < replay.object_table().size(); ++i) {
+      cout << i << ")\t"
+        << replay.object_table().at(i) << endl;
     }
 
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;

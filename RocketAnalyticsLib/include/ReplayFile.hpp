@@ -32,16 +32,19 @@ namespace ReplayParser {
       Netstream netstream();
       ReplayTickInformation tick_information();
       ReplayReplicatedPackages replicated_packages();
+      std::vector<std::string> object_table();
 
 	  private:
 	    std::string r_file_path;
-
 	    ReplayHeader r_header;
 	    ReplayLevels r_levels;
 	    ReplayKeyframes r_keyframes;
       Netstream r_netstream;
       ReplayTickInformation r_tick_information;
       ReplayReplicatedPackages r_replicated_packages;
+      std::vector<std::string> r_object_table;
+
+      std::vector<std::string> deserialize_object_table(BinaryReader& br);
 	};
 
 } // namespace ReplayParser
