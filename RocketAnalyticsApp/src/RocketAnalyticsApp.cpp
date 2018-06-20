@@ -88,6 +88,12 @@ void test_replay(string& file_path) {
         << replay.object_table().at(i) << endl;
     }
 
+    cout << "Name Table" << endl;
+    for (size_t i = 0; i < replay.name_table().size(); ++i) {
+      cout << i << ")\t"
+        << replay.name_table().at(i) << endl;
+    }
+
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;
 	} catch (const std::runtime_error &e) {
 		e.what();

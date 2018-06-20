@@ -33,6 +33,7 @@ namespace ReplayParser {
       ReplayTickInformation tick_information();
       ReplayReplicatedPackages replicated_packages();
       std::vector<std::string> object_table();
+      std::vector<std::string> name_table();
 
 	  private:
 	    std::string r_file_path;
@@ -43,8 +44,10 @@ namespace ReplayParser {
       ReplayTickInformation r_tick_information;
       ReplayReplicatedPackages r_replicated_packages;
       std::vector<std::string> r_object_table;
+      std::vector<std::string> r_name_table;
 
       std::vector<std::string> deserialize_object_table(BinaryReader& br);
+      std::vector<std::string> deserialize_name_table(BinaryReader& br);
 	};
 
 } // namespace ReplayParser

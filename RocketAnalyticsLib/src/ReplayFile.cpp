@@ -19,6 +19,7 @@ namespace ReplayParser {
     r_tick_information = ReplayTickInformation::deserialize_tick_information(br);
     r_replicated_packages = ReplayReplicatedPackages::deserialize_replicated_packages(br);
     r_object_table = deserialize_object_table(br);
+    r_name_table = deserialize_name_table(br);
     br.close();
 	}
 
@@ -29,6 +30,15 @@ namespace ReplayParser {
       object_table.push_back(std::string(br.read_length_prefixed_string()));
     }
     return object_table;
+  }
+
+  std::vector<std::string> ReplayFile::deserialize_name_table(BinaryReader& br) {
+    std::vector<std::string> name_table;
+    uint32_t count = br.read_aligned_uint32();
+    for (uint32_t i = 0; i < count; ++i) {
+      name_table.push_back(std::string(br.read_length_prefixed_string()));
+    }
+    return name_table;
   }
 
 	ReplayHeader ReplayFile::header() {
@@ -57,6 +67,10 @@ namespace ReplayParser {
 
   std::vector<std::string> ReplayFile::object_table() {
     return r_object_table;
+  }
+
+  std::vector<std::string> ReplayFile::name_table() {
+    return r_name_table;
   }
 
 } // namespace ReplayParser
