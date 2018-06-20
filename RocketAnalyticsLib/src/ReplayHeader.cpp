@@ -14,6 +14,10 @@ using std::vector;
 namespace ReplayParser {
 
 	ReplayHeader::ReplayHeader() {
+    header_size = 0;
+    crc1 = 0;
+    body_size = 0;
+    crc2 = 0;
 	}
 
   ReplayHeader ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
