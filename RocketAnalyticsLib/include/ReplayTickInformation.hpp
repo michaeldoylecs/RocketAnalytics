@@ -9,13 +9,13 @@
 #ifndef REPLAYTICKINFORMATION_HPP
 #define REPLAYTICKINFORMATION_HPP
 
+#include "ReplayTick.hpp"
 #include <cstdint>
 #include <string>
 #include <vector>
 
 namespace ReplayParser {
 
-  class ReplayTick;
   class BinaryReader;
 
   class ReplayTickInformation {

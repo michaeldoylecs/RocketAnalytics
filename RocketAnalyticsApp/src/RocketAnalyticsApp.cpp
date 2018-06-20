@@ -2,7 +2,6 @@
 
 #include "../../RocketAnalyticsLib/include/BinaryReader.hpp"
 #include "../../RocketAnalyticsLib/include/ReplayFile.hpp"
-#include "../../RocketAnalyticsLib/include/ReplayHeader.hpp"
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -29,44 +28,59 @@ void test_binary_reader(const string file_path) {
 	}
 }
 
-void test_replay(const string file_path) {
+void test_replay(string& file_path) {
 	try {
 		cout << "---BEGIN TESTING ReplayFile---" << endl;
 		cout << "Filepath: " << file_path << endl;
 		ReplayFile replay = ReplayFile(file_path);
 
 		cout << "Header size: " <<
-			replay.get_header().get_header_size() << endl;
-		cout << "CRC1: " << replay.get_header().get_crc1() << endl;
-		cout << "Version: " << replay.get_header().get_version() << endl;
+			replay.header().get_header_size() << endl;
+		cout << "CRC1: " << replay.header().get_crc1() << endl;
+		cout << "Version: " << replay.header().get_version() << endl;
 		cout << "Version major: " <<
-			replay.get_header().get_version_major() << endl;
+			replay.header().get_version_major() << endl;
 		cout << "Version minor: " <<
-			replay.get_header().get_version_minor() << endl;
+			replay.header().get_version_minor() << endl;
 		cout << "Replay Identifier: " <<
-			replay.get_header().get_replay_identifier() << endl;
+			replay.header().get_replay_identifier() << endl;
 
 		cout << "Properties:" << endl;
-		for (size_t i = 0; i < replay.get_header().get_properties().size(); i++) {
+		for (size_t i = 0; i < replay.header().get_properties().size(); i++) {
 			cout << " > " <<
-				replay.get_header().get_properties().at(i).to_string() << endl;
+				replay.header().get_properties().at(i).to_string() << endl;
 		}
 
-		cout << "Body Size: " << replay.get_header().get_body_size() << endl;
-		cout << "CRC2: " << replay.get_header().get_crc2() << endl;
+		cout << "Body Size: " << replay.header().get_body_size() << endl;
+		cout << "CRC2: " << replay.header().get_crc2() << endl;
 
 		cout << "Replay Levels:" << endl;
-		for (size_t i = 0; i < replay.get_levels().get_level_count(); i++) {
-			cout << "> " << replay.get_levels().get_levels().at(i) << endl;
+		for (size_t i = 0; i < replay.levels().get_level_count(); i++) {
+			cout << "> " << replay.levels().get_levels().at(i) << endl;
 		}
 
 		cout << "Replay Keyframes:" << endl;
-		for (size_t i = 0; i < replay.get_keyframes().count(); i++) {
+		for (size_t i = 0; i < replay.keyframes().count(); i++) {
 			cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
-				"> " << replay.get_keyframes().get(i).time() << "\n\t" <<
-				"> " << replay.get_keyframes().get(i).frame() << "\n\t" <<
-				"> " << replay.get_keyframes().get(i).filePosition() << endl;
+				"> " << replay.keyframes().get(i).time() << "\n\t" <<
+				"> " << replay.keyframes().get(i).frame() << "\n\t" <<
+				"> " << replay.keyframes().get(i).filePosition() << endl;
 		}
+
+    cout << "Replay Netstream: " << "NOT IMPLEMENTED" << endl;
+
+    cout << "Replay Tick Information" << endl;
+    for (int i = 0; i < replay.tick_information().count(); ++i) {
+      cout << i << ")\n\t"
+        << "> " << replay.tick_information().get(i).type() << "\n\t"
+        << "> " << replay.tick_information().get(i).frame() << endl;
+    }
+
+    cout << "Replicated Packages" << endl;
+    for (int i = 0; i < replay.replicated_packages().count(); ++i) {
+      cout << i << ")\n\t"
+        << "> " << replay.replicated_packages().get(i) << endl;
+    }
 
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;
 	} catch (const std::runtime_error &e) {
@@ -76,7 +90,7 @@ void test_replay(const string file_path) {
 
 int main() {
 	try {
-		const string file_path =
+		string file_path =
 			"../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
 		//test_binary_reader(file_path);
 		test_replay(file_path);

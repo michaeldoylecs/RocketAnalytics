@@ -15,6 +15,7 @@ namespace ReplayParser {
 	  r_levels = ReplayLevels::deserialize_levels(br);
 	  r_keyframes = ReplayKeyframes::deserialize_keyframes(br);
 	  r_netstream = Netstream::deserialize_netstream(br);
+    br.read_aligned_uint32(); // Read empty int for debug_log
     r_tick_information = ReplayTickInformation::deserialize_tick_information(br);
     r_replicated_packages = ReplayReplicatedPackages::deserialize_replicated_packages(br);
     br.close();
