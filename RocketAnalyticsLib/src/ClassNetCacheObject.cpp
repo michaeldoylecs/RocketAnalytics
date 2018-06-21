@@ -17,8 +17,10 @@ namespace ReplayParser {
     std::uint32_t index,
     std::uint32_t parent,
     std::uint32_t id,
-    std::uint32_t prop_length)
-    : c_index(index), c_parent(parent), c_id(id), c_prop_length(prop_length) {}
+    std::uint32_t prop_length,
+    std::vector<std::pair<std::uint32_t, std::uint32_t>> properties)
+    : c_index(index), c_parent(parent), c_id(id),
+      c_prop_length(prop_length), c_properties(std::move(properties)) {}
 
   ClassNetCacheObject::~ClassNetCacheObject() = default;
 
@@ -38,4 +40,9 @@ namespace ReplayParser {
     return c_prop_length;
   }
 
-}
+  std::vector<std::pair<std::uint32_t, std::uint32_t>>
+  ClassNetCacheObject::properties() {
+    return c_properties;
+  }
+
+} // namespace ReplayParser

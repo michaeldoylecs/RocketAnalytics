@@ -108,6 +108,12 @@ void test_replay(string& file_path) {
         << "> " << replay.class_net_cache().at(i).parent() << "\n\t"
         << "> " << replay.class_net_cache().at(i).id() << "\n\t"
         << "> " << replay.class_net_cache().at(i).prop_length() << endl;
+      for (size_t p_i = 0; p_i < replay.class_net_cache().at(i).prop_length(); ++p_i) {
+        if (p_i == 0) {cout << "\tproperties:\n";}
+        cout << "\t" << p_i << ")\t("
+          << replay.class_net_cache().at(i).properties().at(p_i).first << ", "
+          << replay.class_net_cache().at(i).properties().at(p_i).second << ")" << endl;
+      }
     }
 
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;

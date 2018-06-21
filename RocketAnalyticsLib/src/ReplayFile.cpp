@@ -66,8 +66,14 @@ namespace ReplayParser {
       std::uint32_t parent = br.read_aligned_uint32();
       std::uint32_t id = br.read_aligned_uint32();
       std::uint32_t prop_length = br.read_aligned_uint32();
+      std::vector<std::pair<std::uint32_t, std::uint32_t>> properties;
+      for (std::uint32_t i = 0; i < prop_length; ++i) {
+        std::uint32_t prop_index = br.read_aligned_uint32();
+        std::uint32_t prop_id = br.read_aligned_uint32();
+        properties.emplace_back(prop_index, prop_id);
+      }
       class_net_cache.emplace_back(
-        ClassNetCacheObject(index, parent, id, prop_length)
+        ClassNetCacheObject(index, parent, id, prop_length, properties)
       );
     }
     return class_net_cache;
