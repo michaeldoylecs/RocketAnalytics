@@ -101,6 +101,15 @@ void test_replay(string& file_path) {
         << "> " << replay.class_index_map().at(i).second << endl;
     }
 
+    cout << "Class Net Cache" << endl;
+    for (size_t i = 0; i < replay.class_net_cache().size(); ++i) {
+      cout << i << ")\n\t"
+        << "> " << replay.class_net_cache().at(i).index() << "\n\t"
+        << "> " << replay.class_net_cache().at(i).parent() << "\n\t"
+        << "> " << replay.class_net_cache().at(i).id() << "\n\t"
+        << "> " << replay.class_net_cache().at(i).prop_length() << endl;
+    }
+
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;
 	} catch (const std::runtime_error &e) {
 		e.what();
