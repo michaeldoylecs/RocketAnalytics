@@ -94,6 +94,13 @@ void test_replay(string& file_path) {
         << replay.name_table().at(i) << endl;
     }
 
+    cout << "Class Index Map" << endl;
+    for (size_t i = 0; i < replay.class_index_map().size(); ++i) {
+      cout << i << ")\n\t"
+        << "> " << replay.class_index_map().at(i).first << "\n\t"
+        << "> " << replay.class_index_map().at(i).second << endl;
+    }
+
 		cout << "---END TESTING ReplayFile---" << "\n" << endl;
 	} catch (const std::runtime_error &e) {
 		e.what();
