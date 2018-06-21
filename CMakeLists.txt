@@ -54,6 +54,7 @@ endif ()
 add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/BinaryReader.cpp"
   "RocketAnalyticsLib/src/Byte.cpp"
+  "RocketAnalyticsLib/src/ClassNetCacheObject.cpp"
   "RocketAnalyticsLib/src/Keyframe.cpp"
   "RocketAnalyticsLib/src/Netstream.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"

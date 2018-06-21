@@ -10,6 +10,7 @@
 #ifndef REPLAYFILE_HPP
 #define REPLAYFILE_HPP
 
+#include "ClassNetCacheObject.hpp"
 #include "Netstream.hpp"
 #include "ReplayHeader.hpp"
 #include "ReplayKeyframes.hpp"
@@ -34,6 +35,7 @@ namespace ReplayParser {
       ReplayReplicatedPackages replicated_packages();
       std::vector<std::string> object_table();
       std::vector<std::string> name_table();
+      std::vector<ClassNetCacheObject> class_net_cache();
 
 	  private:
 	    std::string r_file_path;
@@ -45,9 +47,11 @@ namespace ReplayParser {
       ReplayReplicatedPackages r_replicated_packages;
       std::vector<std::string> r_object_table;
       std::vector<std::string> r_name_table;
+      std::vector<ClassNetCacheObject> r_class_net_cache;
 
       std::vector<std::string> deserialize_object_table(BinaryReader& br);
       std::vector<std::string> deserialize_name_table(BinaryReader& br);
+      std::vector<ClassNetCacheObject> deserialize_class_net_cache(BinaryReader& br);
 	};
 
 } // namespace ReplayParser

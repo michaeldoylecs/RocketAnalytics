@@ -16,10 +16,13 @@ namespace ReplayParser {
 	  r_keyframes = ReplayKeyframes::deserialize_keyframes(br);
 	  r_netstream = Netstream::deserialize_netstream(br);
     br.read_aligned_uint32(); // Read empty int for debug_log
-    r_tick_information = ReplayTickInformation::deserialize_tick_information(br);
-    r_replicated_packages = ReplayReplicatedPackages::deserialize_replicated_packages(br);
+    r_tick_information =
+      ReplayTickInformation::deserialize_tick_information(br);
+    r_replicated_packages =
+      ReplayReplicatedPackages::deserialize_replicated_packages(br);
     r_object_table = deserialize_object_table(br);
     r_name_table = deserialize_name_table(br);
+    r_class_net_cache = deserialize_class_net_cache(br);
     br.close();
 	}
 
@@ -39,6 +42,22 @@ namespace ReplayParser {
       name_table.push_back(std::string(br.read_length_prefixed_string()));
     }
     return name_table;
+  }
+
+  std::vector<ClassNetCacheObject>
+  ReplayFile::deserialize_class_net_cache(BinaryReader& br) {
+    std::vector<ClassNetCacheObject> class_net_cache;
+    uint32_t count = br.read_aligned_uint32();
+    for (uint32_t i = 0; i < count; ++i) {
+      std::uint32_t index = br.read_aligned_uint32();
+      std::uint32_t parent = br.read_aligned_uint32();
+      std::uint32_t id = br.read_aligned_uint32();
+      std::uint32_t prop_length = br.read_aligned_uint32();
+      class_net_cache.emplace_back(
+        ClassNetCacheObject(index, parent, id, prop_length)
+      );
+    }
+    return class_net_cache;
   }
 
 	ReplayHeader ReplayFile::header() {
@@ -71,6 +90,10 @@ namespace ReplayParser {
 
   std::vector<std::string> ReplayFile::name_table() {
     return r_name_table;
+  }
+
+  std::vector<ClassNetCacheObject> ReplayFile::class_net_cache() {
+    return r_class_net_cache;
   }
 
 } // namespace ReplayParser
