@@ -16,9 +16,6 @@ using std::string;
 using std::size_t;
 using std::array;
 
-// TODO(michaeldoylecs): Add flag to see if file_bytes exist.
-// Throw exception on bad read.
-
 namespace ReplayParser {
 
   BinaryReader::BinaryReader(const string &filepath) {
@@ -37,7 +34,6 @@ namespace ReplayParser {
     if (file_stream.is_open()) {
       size_t file_size = get_file_size(file_stream);
       file_bytes.resize(file_size);
-
       // TODO(michaeldoylecs): Replace named cast
       file_stream.read(reinterpret_cast<char*>(file_bytes.data()), file_size);
       file_stream.close();
@@ -72,7 +68,9 @@ namespace ReplayParser {
 
   float BinaryReader::read_aligned_float() {
     try {
-      const int FLOAT_SIZE = 4;
+      constexpr int FLOAT_SIZE = sizeof(float);
+      static_assert(FLOAT_SIZE == 4,
+        "BinaryReader::read_aligned_float() requires 'float' to be 4 bytes");
       array<Byte, FLOAT_SIZE> list_of_bytes;
       for (int index = 0; index < FLOAT_SIZE; index++) {
         list_of_bytes.at(index) = read_aligned_byte();
@@ -86,9 +84,10 @@ namespace ReplayParser {
   }
 
   float BinaryReader::bytes_to_float(array<Byte, 4> bytes) {
+    static_assert(sizeof(float) == 4,
+      "BinaryReader::bytes_to_float() requires 'float' to be 4 bytes");
     float combined_value = 0.0f;
-    // TODO(michaeldoylecs): Replaced non-trivial memcpy
-    memcpy(&combined_value, &bytes, sizeof(combined_value));
+    memcpy(&combined_value, &bytes, sizeof(combined_value)); // NOLINT
     return combined_value;
   }
 
@@ -121,9 +120,10 @@ namespace ReplayParser {
   }
 
   uint32_t BinaryReader::bytes_to_uint32(array<Byte, 4> bytes) {
+    static_assert(sizeof(uint32_t) == 4,
+      "BinaryReader::bytes_to_uint32() requires 'uin32_t' to be 4 bytes");
     uint32_t combined_value = 0;
-    // TODO(michaeldoylecs): Replace non-trivial memcpy
-    memcpy(&combined_value, &bytes, sizeof(combined_value));
+    memcpy(&combined_value, &bytes, sizeof(combined_value)); // NOLINT
     return combined_value;
   }
 
@@ -144,9 +144,10 @@ namespace ReplayParser {
   }
 
   uint64_t BinaryReader::bytes_to_uint64(array<Byte, 8> bytes) {
+    static_assert(sizeof(uint64_t),
+      "BinaryReader::byte_to_uint64() requires 'uint64_t' to be 8 bytes");
     uint64_t combined_value = 0;
-    // TODO(michaeldoylecs): Replace non-trivial memcpy
-    memcpy(&combined_value, &bytes, sizeof(combined_value));
+    memcpy(&combined_value, &bytes, sizeof(combined_value)); // NOLINT
     return combined_value;
   }
 
