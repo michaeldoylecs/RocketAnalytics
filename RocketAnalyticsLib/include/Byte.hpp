@@ -21,7 +21,10 @@ namespace ReplayParser {
     public:
       Byte();
       explicit Byte(std::uint8_t value);
-      Byte(const Byte &byte);
+      Byte(const Byte& byte);
+      
+      Byte& operator=(const Byte& other);
+
       std::byte get_value();
       std::int8_t get_bit(int index);
       std::string to_string();

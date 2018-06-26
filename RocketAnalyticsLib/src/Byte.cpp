@@ -22,6 +22,8 @@ namespace ReplayParser {
     this->value = byte.value;
   }
 
+  Byte& Byte::operator=(const Byte& other) = default;
+
   std::byte Byte::get_value() {
     return value;
   }
