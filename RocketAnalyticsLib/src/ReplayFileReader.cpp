@@ -24,6 +24,10 @@ namespace ReplayParser {
   }
 
   std::int8_t ReplayFileReader::read_int8() {
+    static_assert(sizeof(char) == 1,
+      "ReplayFileReader::read_int8 requires char to be 1 byte");
+    static_assert(sizeof(int8_t) == 1,
+      "ReplayFileReader::read_int8 requires int8_t to be 1 byte");
     std::int8_t raw_int = 0;
     if (!replay_file_stream) {
       std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -34,6 +38,10 @@ namespace ReplayParser {
   }
 
   std::int32_t ReplayFileReader::read_int32() {
+    static_assert(sizeof(char) == 1,
+      "ReplayFileReader::read_int32 requires char to be 1 byte");
+    static_assert(sizeof(int32_t) == 4,
+      "ReplayFileReader::read_int32 requires int32_t to be 4 bytes");
     std::int32_t raw_int = 0;
     if (!replay_file_stream) {
       std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -44,6 +52,10 @@ namespace ReplayParser {
   }
 
   std::int64_t ReplayFileReader::read_int64() {
+    static_assert(sizeof(char) == 1,
+      "ReplayFileReader::read_int64 requires char to be 1 byte");
+    static_assert(sizeof(int8_t) == 1,
+      "ReplayFileReader::read_int64 requires int64_t to be 8 bytes");
     std::int64_t raw_int = 0;
     if (!replay_file_stream) {
       std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -54,6 +66,10 @@ namespace ReplayParser {
   }
 
   float ReplayFileReader::read_float() {
+    static_assert(sizeof(char) == 1,
+      "ReplayFileReader::read_float requires char to be 1 byte");
+    static_assert(sizeof(int8_t) == 1,
+      "ReplayFileReader::read_float requires float to be 4 bytes");
     float raw_float = 0.0;
     if (!replay_file_stream) {
       std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -64,6 +80,10 @@ namespace ReplayParser {
   }
 
   bool ReplayFileReader::read_bool() {
+    static_assert(sizeof(char) == 1,
+      "ReplayFileReader::read_bool requires char to be 1 byte");
+    static_assert(sizeof(bool) == 1,
+      "ReplayFileReader::read_bool requires bool to be 1 byte");
     bool raw_bool = false;
     if (!replay_file_stream) {
       std::cout << "File stream not open for '" << replay_file_path << "'";
@@ -79,7 +99,8 @@ namespace ReplayParser {
       std::cout << "File stream not open for '" << replay_file_path << "'";
       return raw_string;
     }
-    replay_file_stream.read(reinterpret_cast<char *>(&raw_string), length); // NOLINT
+    raw_string.resize(length);
+    replay_file_stream.read(raw_string.data(), length);
     return raw_string;
   }
 
