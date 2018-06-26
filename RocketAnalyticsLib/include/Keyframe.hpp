@@ -6,8 +6,8 @@
  *		Represents a Keyframe.
  *****************************************************************************/
 
-#ifndef KEYFRAME_H
-#define KEYFRAME_H
+#ifndef KEYFRAME_HPP
+#define KEYFRAME_HPP
 
 #include <cstdint>
 
@@ -30,6 +30,6 @@ namespace ReplayParser {
 		std::uint32_t filePos;
 	};
 
-}
+} // namespace ReplayParser
 
 #endif
