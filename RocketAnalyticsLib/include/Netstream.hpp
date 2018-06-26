@@ -19,14 +19,14 @@ namespace ReplayParser {
 
   class Netstream {
     public:
-      Netstream();
+      Netstream() = default;
       static Netstream deserialize_netstream(BinaryReader& br);
 
     private:
-      std::uint32_t length;
+      uint32_t length{0};
       std::vector<Byte> data;
   };
 
-}
+} // namespace ReplayParser
 
 #endif
