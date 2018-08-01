@@ -58,7 +58,7 @@ add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/Keyframe.cpp"
   "RocketAnalyticsLib/src/Netstream.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"
-  "RocketAnalyticsLib/src/ReplayFileReader.cpp"
+#  "RocketAnalyticsLib/src/ReplayFileReader.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
   "RocketAnalyticsLib/src/ReplayKeyframes.cpp"
   "RocketAnalyticsLib/src/ReplayLevels.cpp"

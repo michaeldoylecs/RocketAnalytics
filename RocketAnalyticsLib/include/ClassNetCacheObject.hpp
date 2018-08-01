@@ -24,11 +24,6 @@ namespace ReplayParser {
         uint32_t id,
         uint32_t prop_length,
         std::vector<std::pair<uint32_t, uint32_t>> properties);
-      ClassNetCacheObject(const ClassNetCacheObject& other) = default;
-      ClassNetCacheObject(ClassNetCacheObject&& other) = default;
-      ClassNetCacheObject& operator=(ClassNetCacheObject&& other) = default;
-      ClassNetCacheObject& operator=(const ClassNetCacheObject& other) = default;
-      ~ClassNetCacheObject() = default;
 
       uint32_t index();
       uint32_t parent();

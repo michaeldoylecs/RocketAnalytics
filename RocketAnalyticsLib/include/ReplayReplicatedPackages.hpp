@@ -18,11 +18,11 @@ namespace ReplayParser {
 
   class ReplayReplicatedPackages {
     public:
-      ReplayReplicatedPackages();
-      ~ReplayReplicatedPackages();
-      static ReplayReplicatedPackages deserialize_replicated_packages(BinaryReader& br);
+      ReplayReplicatedPackages() = default;
+      static ReplayReplicatedPackages
+        deserialize_replicated_packages(BinaryReader& br);
       
-      void add(std::string package);
+      void add(const std::string& package);
       std::string get(int index);
       int count();
 
@@ -30,6 +30,6 @@ namespace ReplayParser {
       std::vector<std::string> replicated_packages;
   };
 
-}
+} // namespace ReplayParser
 
 #endif

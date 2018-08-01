@@ -7,23 +7,16 @@
  *****************************************************************************/
 
 #include "../include/ReplayTick.hpp"
+#include <utility>
 
 namespace ReplayParser {
-  
-  ReplayTick::ReplayTick() = default;
 
-  ReplayTick::ReplayTick(std::string type, std::uint32_t frame) {
-    this->tick_type = type;
-    this->tick_frame = frame;
-  }
+  ReplayTick::ReplayTick(std::string type, std::uint32_t frame)
+    : tick_type{std::move(type)}, tick_frame{frame} {}
 
-  ReplayTick::~ReplayTick() = default;
+  void ReplayTick::set_type(const std::string &type) { this->tick_type = type; }
 
-  void ReplayTick::set_type(std::string type) {
-    this->tick_type = type;
-  }
-
-  void ReplayTick::set_frame(std::uint32_t frame) {
+  void ReplayTick::set_frame(const std::uint32_t &frame) {
     this->tick_frame = frame;
   }
 
@@ -35,4 +28,4 @@ namespace ReplayParser {
     return this->tick_frame;
   }
 
-}
+} // namespace ReplayParser

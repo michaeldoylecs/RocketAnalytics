@@ -10,19 +10,9 @@
 
 namespace ReplayParser {
 
-  Byte::Byte() {
-    this->value = std::byte(0);
-  }
+  Byte::Byte() : value{0} {}
 
-  Byte::Byte(std::uint8_t value) {
-    this->value = std::byte(value);
-  }
-
-  Byte::Byte(const Byte &byte) {
-    this->value = byte.value;
-  }
-
-  Byte& Byte::operator=(const Byte& other) = default;
+  Byte::Byte(std::uint8_t rvalue) : value{std::byte(rvalue)} {}
 
   std::byte Byte::get_value() {
     return value;

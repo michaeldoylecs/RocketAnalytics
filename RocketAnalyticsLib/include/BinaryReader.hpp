@@ -13,7 +13,6 @@
 #include "Byte.hpp"
 #include <array>
 #include <vector>
-#include <array>
 
 namespace ReplayParser {
 

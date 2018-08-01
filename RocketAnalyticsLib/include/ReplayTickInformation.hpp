@@ -24,8 +24,8 @@ namespace ReplayParser {
       ~ReplayTickInformation();
       static ReplayTickInformation deserialize_tick_information(BinaryReader& br);
 
-      void add(ReplayTick tick);
-      void add(std::string type, std::uint32_t frame);
+      void add(const ReplayTick& tick);
+      void add(const std::string& type, uint32_t frame);
       ReplayTick get(int index);
       int count();
     
@@ -33,6 +33,6 @@ namespace ReplayParser {
       std::vector<ReplayTick> replay_ticks;
   };
 
-}
+} // namespace ReplayParser
 
 #endif

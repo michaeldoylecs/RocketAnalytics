@@ -7,13 +7,10 @@
  *	replay file.
  *****************************************************************************/
 
-#ifndef REPLAY_LEVELS_H
-#define REPLAY_LEVELS_H
+#ifndef REPLAYLEVELS_HPP
+#define REPLAYLEVELS_HPP
 
 #include "BinaryReader.hpp"
-
-using std::vector;
-using std::string;
 
 namespace ReplayParser {
 
@@ -21,13 +18,13 @@ namespace ReplayParser {
 	public:
 		static ReplayLevels deserialize_levels(BinaryReader& binary_reader);
 
-		vector<string> get_levels();
+    std::vector<std::string> get_levels();
 		size_t get_level_count();
 
 	private:
-		vector<string> levels;
+    std::vector<std::string> levels;
 	};
 
-}
+} // namespace ReplayParser
 
 #endif

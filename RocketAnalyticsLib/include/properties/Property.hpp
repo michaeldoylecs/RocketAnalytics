@@ -1,9 +1,9 @@
 /******************************************************************************
- *	Author:	Michael Doyle
- *	Date:	8/10/17
- *	File:	Property.hpp
- *	Description:
- *		Property represents a piece of data from a Rocket League replay file.
+ *  Author: Michael Doyle
+ *  Date: 8/10/17
+ *  File: Property.hpp
+ *  Description:
+ *    Property represents a piece of data from a Rocket League replay file.
  *****************************************************************************/
 
 #ifndef PROPERTY_H
@@ -16,34 +16,37 @@
 
 namespace ReplayParser {
 
-	enum class PType;
+  enum class PType;
 
-	class Property {
-		public:
-			Property();
-			Property(const Property &property);
+  class Property {
+    public:
+      Property();
+      Property(const Property &property) = default;
 
-			void set_none();
-			void set_int(std::string name, std::uint32_t value);
-			void set_string(std::string name, std::string value);
-			void set_name(std::string name, std::string value);
-			void set_bool(std::string name, std::uint8_t value);
-			void set_qword(std::string name, std::uint64_t value);
-			void set_byte(std::string name, std::string identifier, std::string value);
-			void set_float(std::string name, float value);
-			void set_array(std::string name, std::vector< std::vector<Property> > value);
-			std::string get_name();
-			PType get_type();
-			PropertyValue get_value();
-			std::string get_value_as_string();
-			std::string to_string();
+      void set_none();
+      void set_int(const std::string& name, const std::uint32_t& value);
+      void set_string(const std::string& name, const std::string& value);
+      void set_name(const std::string& name, const std::string& value);
+      void set_bool(const std::string& name, const std::uint8_t& value);
+      void set_qword(const std::string& name, const std::uint64_t& value);
+      void set_byte(const std::string& name, const std::string& identifier,
+                    const std::string& value);
+      void set_float(const std::string& name, const float& value);
+      void set_array(const std::string& name,
+                     const std::vector<std::vector<Property>>& value);
 
       bool operator== (const Property& rhs) const;
 
-		private:
-			std::string property_name;
-			PropertyValue property_value;
-	};
+      std::string get_name();
+      PType get_type();
+      PropertyValue get_value();
+      std::string get_value_as_string();
+      std::string to_string();
+
+    private:
+      std::string property_name;
+      PropertyValue property_value;
+  };
 
 } // namespace ReplayParser
 

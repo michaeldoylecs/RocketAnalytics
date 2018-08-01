@@ -31,4 +31,4 @@ namespace ReplayParser {
 		return levels.size();
 	}
 
-}
+} // namespace ReplayParser

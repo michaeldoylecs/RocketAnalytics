@@ -23,12 +23,6 @@ namespace ReplayParser {
   public:
     ReplayHeader() = default;
     static ReplayHeader deserialize_header(BinaryReader& binary_reader);
-    ReplayHeader(const ReplayHeader& other) = default;
-    ReplayHeader(ReplayHeader&& other) = default;
-    ReplayHeader& operator=(const ReplayHeader& other) = default;
-    ReplayHeader& operator=(ReplayHeader&& other) = default;
-
-    ~ReplayHeader() = default;
 
     uint32_t get_header_size();
     uint32_t get_crc1();
