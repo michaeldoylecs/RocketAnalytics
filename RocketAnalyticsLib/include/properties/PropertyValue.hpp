@@ -43,17 +43,17 @@ namespace ReplayParser {
       PropertyValue& operator= (const PropertyValue &propertyValue);
 
       void set_none();
-      void set_int(std::uint32_t int32);
-      void set_string(std::string string);
-      void set_name(std::string name);
-      void set_bool(std::uint8_t int8);
-      void set_qword(std::uint64_t qword);
-      void set_byte(ByteValue byte);
-      void set_byte(std::string identifier, std::string value);
-      void set_float(float f);
-      void set_array(std::vector< std::vector<Property> > property_list);
+      void set_int(const std::uint32_t int32);
+      void set_string(const std::string& string);
+      void set_name(const std::string& name);
+      void set_bool(const std::uint8_t int8);
+      void set_qword(const std::uint64_t qword);
+      void set_byte(const ByteValue& byte);
+      void set_byte(const std::string& identifier, const std::string& value);
+      void set_float(const float f);
+      void set_array(const std::vector<std::vector<Property>>& property_list);
 
-      PType get_type();
+      PType get_type() const;
       std::string get_value_as_string() const;
 
     private:
@@ -63,6 +63,6 @@ namespace ReplayParser {
       std::string array_properties_to_string() const;
   };
 
-}
+} // namespace ReplayParser
 
 #endif
