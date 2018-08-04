@@ -6,13 +6,13 @@
  *		Represents a a Replay's Keyframes.
  *****************************************************************************/
 
-#ifndef REPLAY_KEYFRAMES_H
-#define REPLAY_KEYFRAMES_H
+#ifndef REPLAYKEYFRAMES_HPP
+#define REPLAYKEYFRAMES_HPP
 
-#include <cstdint>
-#include <vector>
 #include "BinaryReader.hpp"
 #include "Keyframe.hpp"
+#include <cstdint>
+#include <vector>
 
 namespace ReplayParser {
 
@@ -22,8 +22,8 @@ namespace ReplayParser {
 	public:
     static ReplayKeyframes deserialize_keyframes(BinaryReader& binary_reader);
 
-    void add(Keyframe);
-    bool remove(Keyframe);
+    void add(Keyframe keyframe);
+    bool remove(Keyframe keyframe);
     Keyframe get(int index);
     uint32_t count();
 
@@ -31,6 +31,6 @@ namespace ReplayParser {
     std::vector<Keyframe> keyframes;
 	};
 
-}
+} // namespace ReplayParser
 
 #endif

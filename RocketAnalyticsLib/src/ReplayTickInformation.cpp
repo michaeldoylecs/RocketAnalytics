@@ -7,8 +7,8 @@
  *****************************************************************************/
 
 #include "../include/BinaryReader.hpp"
-#include "../include/ReplayTickInformation.hpp"
 #include "../include/ReplayTick.hpp"
+#include "../include/ReplayTickInformation.hpp"
 
 namespace ReplayParser {
 
@@ -18,7 +18,7 @@ namespace ReplayParser {
 
   ReplayTickInformation ReplayTickInformation::deserialize_tick_information(BinaryReader& br) {
     ReplayTickInformation tick_information;
-    std::uint32_t count = br.read_aligned_uint32();
+    uint32_t count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < count; ++i) {
       std::string type = br.read_length_prefixed_string();
       std::uint32_t frame = br.read_aligned_uint32();
@@ -27,11 +27,11 @@ namespace ReplayParser {
     return tick_information;
   }
 
-  void ReplayTickInformation::add(ReplayTick tick) {
+  void ReplayTickInformation::add(const ReplayTick& tick) {
     replay_ticks.push_back(tick);
   }
 
-  void ReplayTickInformation::add(std::string type, std::uint32_t frame) {
+  void ReplayTickInformation::add(const std::string& type, uint32_t frame) {
     ReplayTick tick = ReplayTick(type, frame);
     add(tick);
   }
@@ -44,4 +44,4 @@ namespace ReplayParser {
     return replay_ticks.size();
   }
 
-}
+} // namespace ReplayParser

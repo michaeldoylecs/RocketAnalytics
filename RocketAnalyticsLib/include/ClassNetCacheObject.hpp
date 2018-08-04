@@ -10,36 +10,35 @@
 #define CLASSNETCACHEOBJECT_HPP
 
 #include <cstdint>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace ReplayParser {
 
   class ClassNetCacheObject {
     public:
-      ClassNetCacheObject();
+      ClassNetCacheObject() = default;
       ClassNetCacheObject(
-          std::uint32_t index,
-          std::uint32_t parent,
-          std::uint32_t id,
-          std::uint32_t prop_length,
-          std::vector<std::pair<std::uint32_t, std::uint32_t>> properties);
-      ~ClassNetCacheObject();
+        uint32_t index,
+        uint32_t parent,
+        uint32_t id,
+        uint32_t prop_length,
+        std::vector<std::pair<uint32_t, uint32_t>> properties);
 
-      std::uint32_t index();
-      std::uint32_t parent();
-      std::uint32_t id();
-      std::uint32_t prop_length();
-      std::vector<std::pair<std::uint32_t, std::uint32_t>> properties();
+      uint32_t index();
+      uint32_t parent();
+      uint32_t id();
+      uint32_t prop_length();
+      std::vector<std::pair<uint32_t, uint32_t>> properties();
 
     private:
-      std::uint32_t c_index;
-      std::uint32_t c_parent;
-      std::uint32_t c_id;
-      std::uint32_t c_prop_length;
-      std::vector<std::pair<std::uint32_t, std::uint32_t>> c_properties;
+      uint32_t c_index{0};
+      uint32_t c_parent{0};
+      uint32_t c_id{0};
+      uint32_t c_prop_length{0};
+      std::vector<std::pair<uint32_t, uint32_t>> c_properties;
   };
 
-}
+} // namespace ReplayParser
 
 #endif

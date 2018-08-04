@@ -11,8 +11,6 @@
 
 namespace ReplayParser {
 
-  Netstream::Netstream() = default;
-
   Netstream Netstream::deserialize_netstream(BinaryReader& br) {
     Netstream netstream;
     netstream.length = br.read_aligned_uint32();
@@ -20,4 +18,4 @@ namespace ReplayParser {
     return netstream;
   }
 
-}
+} // namespace ReplayParser

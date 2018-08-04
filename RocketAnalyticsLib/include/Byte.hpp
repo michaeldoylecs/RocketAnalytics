@@ -8,8 +8,8 @@
  *	binary number representation of the given value.
  *****************************************************************************/
 
-#ifndef BYTE_H
-#define BYTE_H
+#ifndef BYTE_HPP
+#define BYTE_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -20,8 +20,8 @@ namespace ReplayParser {
 	class Byte {
     public:
       Byte();
-      explicit Byte(std::uint8_t value);
-      Byte(const Byte &byte);
+      explicit Byte(std::uint8_t rvalue);
+
       std::byte get_value();
       std::int8_t get_bit(int index);
       std::string to_string();

@@ -1,39 +1,41 @@
 /******************************************************************************
- *	Author:	Michael Doyle
- *	Date:	7/23/17
- *	File:	ReplayFileReader.hpp
- *	Description:
- *		ReplayFileReader handles the logic in reading Rocket League replay
- *	files.
+ *  Author: Michael Doyle
+ *  Date: 7/23/17
+ *  File: ReplayFileReader.hpp
+ *  Description:
+ *    ReplayFileReader handles the logic in reading Rocket League replay
+ *  files.
  *****************************************************************************/
 
-#ifndef REPLAY_FILE_READER_H
-#define REPLAY_FILE_READER_H
+#ifndef REPLAYFILEREADER_HPP
+#define REPLAYFILEREADER_HPP
 
 #include <cstdint>
-#include <string>
 #include <fstream>
+#include <string>
 
 namespace ReplayParser {
 
-	class ReplayFile;
+  class ReplayFile;
 
-	class ReplayFileReader {
-		public:
-			ReplayFileReader();
-			ReplayFileReader(std::string filepath);
-			~ReplayFileReader();
-			std::int8_t	read_int8();
-			std::int32_t read_int32();
-			std::int64_t read_int64();
-			float read_float();
-			bool read_bool();
-			std::string	read_string(int length);
+  class ReplayFileReader {
+    public:
+      ReplayFileReader() = default;
+      explicit ReplayFileReader(std::string& filepath);
+      ~ReplayFileReader();
 
-		private:
-			std::ifstream replay_file_stream;
-			std::string replay_file_path;
-	};
+      int8_t read_int8();
+      int32_t read_int32();
+      int64_t read_int64();
+      float read_float();
+      bool read_bool();
+      std::string read_string(int length);
 
-}
+    private:
+      std::ifstream replay_file_stream;
+      std::string replay_file_path;
+  };
+
+} // namespace ReplayParser
+
 #endif

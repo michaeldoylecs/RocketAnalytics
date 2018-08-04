@@ -12,11 +12,8 @@
 
 namespace ReplayParser {
 
-  ReplayReplicatedPackages::ReplayReplicatedPackages() = default;
-
-  ReplayReplicatedPackages::~ReplayReplicatedPackages() = default;
-
-  ReplayReplicatedPackages ReplayReplicatedPackages::deserialize_replicated_packages(BinaryReader& br) {
+  ReplayReplicatedPackages
+  ReplayReplicatedPackages::deserialize_replicated_packages(BinaryReader& br) {
     ReplayReplicatedPackages replicated_packages;
     uint32_t count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < count; ++i) {
@@ -25,7 +22,7 @@ namespace ReplayParser {
     return replicated_packages;
   }
 
-  void ReplayReplicatedPackages::add(std::string package) {
+  void ReplayReplicatedPackages::add(const std::string& package) {
     replicated_packages.push_back(package);
   }
 
@@ -37,4 +34,4 @@ namespace ReplayParser {
     return replicated_packages.size();
   }
 
-}
+} // namespace ReplayParser

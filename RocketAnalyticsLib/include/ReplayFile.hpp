@@ -19,14 +19,14 @@
 #include "ReplayTickInformation.hpp"
 #include <cstdint>
 #include <fstream>
-#include <utility>
 #include <string>
+#include <utility>
 
 namespace ReplayParser {
 
 	class ReplayFile {
 	  public:
-	    explicit ReplayFile(std::string& file);
+	    explicit ReplayFile(std::string file);
 
 	    ReplayHeader header();
 	    ReplayLevels levels();

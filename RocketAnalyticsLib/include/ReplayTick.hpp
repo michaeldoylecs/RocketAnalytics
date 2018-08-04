@@ -16,19 +16,18 @@ namespace ReplayParser {
   
   class ReplayTick {
     public:
-      ReplayTick();
+      ReplayTick() = default;
       ReplayTick(std::string type, std::uint32_t frame);
-      ~ReplayTick();
 
-      void set_type(std::string type);
-      void set_frame(uint32_t frame);
+      void set_type(const std::string& type);
+      void set_frame(const uint32_t& frame);
       std::string type();
       std::uint32_t frame();
     private:
       std::string tick_type;
-      std::uint32_t tick_frame;
+      std::uint32_t tick_frame{};
   };
   
-}
+} // namespace ReplayParser
 
 #endif

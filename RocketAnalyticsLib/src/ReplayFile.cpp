@@ -9,7 +9,8 @@
 
 namespace ReplayParser {
 
-	ReplayFile::ReplayFile(std::string& file): r_file_path(std::move(file)) {
+	ReplayFile::ReplayFile(std::string file)
+  : r_file_path(std::move(file)) {
 	  BinaryReader br = BinaryReader(r_file_path);
 	  r_header = ReplayHeader::deserialize_header(br);
 	  r_levels = ReplayLevels::deserialize_levels(br);
