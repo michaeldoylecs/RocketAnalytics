@@ -132,6 +132,5 @@ int main() {
   catch (const std::runtime_error &e) {
     e.what();
   }
-  std::cin.get();
   return 0;
 }
