@@ -13,10 +13,9 @@
 #include "ClassNetCacheObject.hpp"
 #include "Netstream.hpp"
 #include "ReplayHeader.hpp"
-#include "ReplayKeyframes.hpp"
-#include "ReplayLevels.hpp"
+#include "Keyframe.hpp"
 #include "ReplayReplicatedPackages.hpp"
-#include "ReplayTickInformation.hpp"
+#include "ReplayTick.hpp"
 #include <cstdint>
 #include <fstream>
 #include <string>
@@ -29,29 +28,34 @@ namespace ReplayParser {
 	    explicit ReplayFile(std::string file);
 
 	    ReplayHeader header();
-	    ReplayLevels levels();
-	    ReplayKeyframes keyframes();
+      std::vector<std::string> levels();
+      std::vector<Keyframe> keyframes();
       Netstream netstream();
-      ReplayTickInformation tick_information();
-      ReplayReplicatedPackages replicated_packages();
+      std::vector<ReplayTick> tick_information();
+      std::vector<std::string> replicated_packages();
       std::vector<std::string> object_table();
       std::vector<std::string> name_table();
       std::vector<std::pair<std::string, std::uint32_t>> class_index_map();
       std::vector<ClassNetCacheObject> class_net_cache();
+      std::string serialize_to_json();
 
 	  private:
 	    std::string r_file_path;
 	    ReplayHeader r_header;
-	    ReplayLevels r_levels;
-	    ReplayKeyframes r_keyframes;
+      std::vector<std::string> r_levels;
+      std::vector<Keyframe> r_keyframes;
       Netstream r_netstream;
-      ReplayTickInformation r_tick_information;
-      ReplayReplicatedPackages r_replicated_packages;
+      std::vector<ReplayTick> r_tick_information;
+      std::vector<std::string> r_replicated_packages;
       std::vector<std::string> r_object_table;
       std::vector<std::string> r_name_table;
       std::vector<std::pair<std::string, std::uint32_t>> r_class_index_map;
       std::vector<ClassNetCacheObject> r_class_net_cache;
 
+      std::vector<std::string> deserialize_levels(BinaryReader& br);
+      std::vector<Keyframe> deserialize_keyframes(BinaryReader& br);
+      std::vector<ReplayTick> deserialize_tick_information(BinaryReader& br);
+      std::vector<std::string> deserialize_replicated_packages(BinaryReader& br);
       std::vector<std::string> deserialize_object_table(BinaryReader& br);
       std::vector<std::string> deserialize_name_table(BinaryReader& br);
       std::vector<std::pair<std::string, std::uint32_t>>
