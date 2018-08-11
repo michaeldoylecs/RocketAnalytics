@@ -16,15 +16,15 @@ namespace ReplayParser {
 		this->filePos = filePosition;
 	}
 
-	float Keyframe::time() {
+	float Keyframe::time() const {
 		return this->timeStamp;
 	}
 
-	uint32_t Keyframe::frame() {
+	uint32_t Keyframe::frame() const {
 		return this->frameNum;
 	}
 
-	uint32_t Keyframe::filePosition() {
+	uint32_t Keyframe::filePosition() const {
 		return this->filePos;
 	}
 

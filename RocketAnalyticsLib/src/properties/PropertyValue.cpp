@@ -8,6 +8,7 @@
 #include "../../include/properties/Property.hpp"
 #include "../../include/properties/PropertyType.hpp"
 #include "../../include/properties/PropertyValue.hpp"
+#include "../../third-party/include/json.hpp"
 
 namespace ReplayParser {
 
@@ -203,31 +204,17 @@ namespace ReplayParser {
   }
 
   std::string PropertyValue::array_properties_to_string() const {
-    std::string string_value;
-    size_t property_count = property_value.list.size(); // NOLINT
-    std::vector<Property> property_array;
-    for (size_t i = 0; i < property_count; i++) {
-      property_array = property_value.list[i]; // NOLINT
-      Property property;
-      int index = 0;
-      string_value += std::to_string(i) + ":\n  ";
-      while (true) {
-        property = property_array[index];
-        if (property.get_type() != PType::NONE) {
-          if (index > 0) {
-            string_value += ",\n  ";
-          }
-          string_value += property.get_name() + ": ";
-          string_value += property.get_value_as_string();
-          index++;
-        }
-        else {
-          string_value += "\n";
-          break;
-        }
+    nlohmann::json serialized_props;
+    auto& array_props = property_value.list; // NOLINT
+    for (const auto& property : array_props) {
+      nlohmann::json prop;
+      for (const auto& prop_value : property) {
+        if (prop_value.get_type() == PType::NONE) { continue; }
+        prop[prop_value.get_name()] = prop_value.get_value_as_string();
       }
+      serialized_props.push_back(prop);
     }
-    return string_value;
+    return serialized_props.dump(4);
   }
 
   PropertyValue::UValue::UValue() {} // NOLINT

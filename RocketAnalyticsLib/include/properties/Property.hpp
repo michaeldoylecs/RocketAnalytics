@@ -37,11 +37,12 @@ namespace ReplayParser {
 
       bool operator== (const Property& rhs) const;
 
-      std::string get_name();
-      PType get_type();
-      PropertyValue get_value();
-      std::string get_value_as_string();
-      std::string to_string();
+      std::string get_name() const;
+      PType get_type() const;
+      PropertyValue get_value() const;
+      std::string get_value_as_string() const;
+      std::string to_string() const;
+      std::string serialize_json() const;
 
     private:
       std::string property_name;

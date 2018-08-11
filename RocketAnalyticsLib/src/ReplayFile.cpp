@@ -6,7 +6,6 @@
 
 #include "../include/ReplayFile.hpp"
 #include "../include/BinaryReader.hpp"
-#include "../third-party/include/json.hpp"
 
 namespace ReplayParser {
 
@@ -169,29 +168,132 @@ namespace ReplayParser {
 
   std::string ReplayFile::serialize_to_json() {
     nlohmann::json replay;
-
-    // File information
-    replay["header"]["file_info"]["header_size"] = r_header.get_header_size();
-    replay["header"]["file_info"]["crc"] = r_header.get_crc1();
-    replay["header"]["file_info"]["version"] = r_header.get_version();
-    replay["header"]["file_info"]["identifier"] = r_header.get_replay_identifier();
-
-    // Properties
-    auto properties = r_header.get_properties();
-    for (auto prop : properties) {
-      replay["header"]["properties"][prop.get_name()] = prop.get_value_as_string();
-    }
-
-    replay["header"]["body_size"] = r_header.get_body_size();
-    replay["header"]["crc2"] = r_header.get_crc2();
-
-    // Levels
-    auto levels = r_levels;
-    for (size_t i = 0; i < levels.size(); i++) {
-      replay["levels"][std::to_string(i)] = levels[i];
-    }
-
+    replay["header"] = header_to_json();
+    replay["levels"] = levels_to_json();
+    replay["keyframes"] = keyframes_to_json();
+    replay["tickInformation"] = tick_information_to_json();
+    replay["replicatedPackages"] = replicated_packages_to_json();
+    replay["objectTable"] = object_table_to_json(); 
+    replay["nameTable"] = name_table_to_json();
+    replay["cacheIndexMap"] = class_index_map_to_json();
+    replay["classNetCache"] = class_net_cache_to_json();
     return replay.dump(4);
+  }
+
+  nlohmann::json ReplayFile::header_to_json() const {
+    nlohmann::json header_json;
+    header_json["fileInfo"]["headerSize"] = r_header.get_header_size();
+    header_json["fileInfo"]["crc"] = r_header.get_crc1();
+    header_json["fileInfo"]["version"] = r_header.get_version();
+    header_json["fileInfo"]["identifier"] = r_header.get_replay_identifier();
+    header_json["properties"] = properties_to_json();
+    header_json["bodySize"] = r_header.get_body_size();
+    header_json["crc2"] = r_header.get_crc2();
+    return header_json;
+  }
+
+  nlohmann::json ReplayFile::properties_to_json() const {
+    nlohmann::json prop_json;
+    auto properties = r_header.get_properties();
+    for (const auto& prop : properties) {
+      if (prop.get_type() == PType::NONE) { continue; }
+      auto prop_value = nlohmann::json::parse(prop.serialize_json());
+      prop_json.merge_patch(prop_value);
+    }
+    return prop_json;
+  }
+
+  nlohmann::json ReplayFile::levels_to_json() const {
+    nlohmann::json levels_json;
+    for (const auto& level : r_levels) {
+      levels_json.push_back(level);
+    }
+    return levels_json;
+  } 
+
+  nlohmann::json ReplayFile::keyframes_to_json() const {
+    nlohmann::json keyframes_json;
+    for (const auto& keyframe : r_keyframes) {
+      nlohmann::json kf_json = {
+        {"time", keyframe.time()},
+        {"frame", keyframe.frame()},
+        {"filePosition", keyframe.filePosition()}
+      };
+      keyframes_json.push_back(kf_json);
+    }
+    return keyframes_json;
+  }
+
+  nlohmann::json ReplayFile::tick_information_to_json() const {
+    nlohmann::json ticks_json;
+    for (const auto& tick : r_tick_information) {
+      nlohmann::json t_json = {
+        {"type", tick.type()},
+        {"frame", tick.frame()}
+      };
+      ticks_json.push_back(t_json);
+    }
+    return ticks_json;
+  }
+
+  nlohmann::json ReplayFile::replicated_packages_to_json() const {
+    nlohmann::json packages_json;
+    for (const auto& package : r_replicated_packages) {
+      packages_json.push_back(package);
+    }
+    return packages_json;
+  }
+
+  nlohmann::json ReplayFile::object_table_to_json() const {
+    nlohmann::json table_json;
+    for (const auto& object : r_object_table) {
+      table_json.push_back(object);
+    }
+    return table_json;
+  }
+
+  nlohmann::json ReplayFile::name_table_to_json() const {
+    nlohmann::json table_json;
+    for (const auto& name : r_name_table) {
+      table_json.push_back(name);
+    }
+    return table_json;
+  }
+
+  nlohmann::json ReplayFile::class_index_map_to_json() const {
+    nlohmann::json class_index_json;
+    for (const auto& [c, i] : r_class_index_map) {
+      nlohmann::json temp_pair = {
+        {"class", c},
+        {"index", i}
+      };
+      class_index_json.push_back(temp_pair);
+    }
+    return class_index_json;
+  }
+
+  nlohmann::json ReplayFile::class_net_cache_to_json() const {
+    nlohmann::json net_cache_json;
+    for (const auto& cache_obj : r_class_net_cache) {
+      nlohmann::json cache_obj_json = {
+        {"index", cache_obj.index()},
+        {"parent", cache_obj.parent()},
+        {"id", cache_obj.id()},
+        {"propLength", cache_obj.prop_length()}
+      };
+      nlohmann::json props_json;
+      auto props = cache_obj.properties();
+      for (const auto& [index, id] : props) {
+        nlohmann::json prop_json = {
+          {"index", index},
+          {"id", id}
+        };
+        props_json.push_back(prop_json);
+      }
+      cache_obj_json["properties"] = props_json;
+      net_cache_json.push_back(cache_obj_json);
+    }
+    return net_cache_json;
   }
 
 } // namespace ReplayParser

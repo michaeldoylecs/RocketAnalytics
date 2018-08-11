@@ -6,6 +6,7 @@
 
 #include "../../include/properties/PropertyValue.hpp"
 #include "../../include/properties/Property.hpp"
+#include "../../third-party/include/json.hpp"
 
 namespace ReplayParser {
 
@@ -69,24 +70,24 @@ namespace ReplayParser {
     );
   }
 
-  std::string Property::get_name() {
+  std::string Property::get_name() const {
     return property_name;
   }
 
-  PType Property::get_type() {
+  PType Property::get_type() const {
     return property_value.get_type();
   }
 
-  PropertyValue Property::get_value() {
+  PropertyValue Property::get_value() const {
     return property_value;
   }
 
-  std::string Property::get_value_as_string() {
+  std::string Property::get_value_as_string() const {
     return property_value.get_value_as_string();
   }
 
   // TODO(michaeldoylecs): IMPROVE: Maintain level of abstraction
-  std::string Property::to_string() {
+  std::string Property::to_string() const {
     std::string to_string_value;
     to_string_value += get_name() + ": ";
     if (get_type() == PType::ARRAY_PROPERTY) {
@@ -94,6 +95,17 @@ namespace ReplayParser {
     }
     to_string_value += get_value_as_string();
     return to_string_value;
+  }
+
+  std::string Property::serialize_json() const {
+    nlohmann::json prop;
+    std::string id = get_name();
+    if (get_type() == PType::ARRAY_PROPERTY) {
+      prop[id] = nlohmann::json::parse(get_value_as_string());
+    } else {
+      prop[id] = get_value_as_string();
+    }
+    return prop.dump(4);
   }
 
 } // namespace ReplayParser

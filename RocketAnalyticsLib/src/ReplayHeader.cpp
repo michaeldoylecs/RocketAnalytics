@@ -160,39 +160,39 @@ namespace ReplayParser {
     crc2 = parsed_crc2;
   }
 
-  uint32_t ReplayHeader::get_header_size() {
+  uint32_t ReplayHeader::get_header_size() const {
     return header_size;
   }
 
-  uint32_t ReplayHeader::get_crc1() {
+  uint32_t ReplayHeader::get_crc1() const {
     return crc1;
   }
 
-  string ReplayHeader::get_version() {
+  string ReplayHeader::get_version() const {
     return version.to_string();
   }
 
-  uint32_t ReplayHeader::get_version_major() {
+  uint32_t ReplayHeader::get_version_major() const {
     return version.get_major_value();
   }
 
-  uint32_t ReplayHeader::get_version_minor() {
+  uint32_t ReplayHeader::get_version_minor() const {
     return version.get_minor_value();
   }
 
-  string ReplayHeader::get_replay_identifier() {
+  string ReplayHeader::get_replay_identifier() const {
     return replay_identifier;
   }
 
-  vector<Property> ReplayHeader::get_properties() {
+  vector<Property> ReplayHeader::get_properties() const {
     return replay_properties;
   }
 
-  uint32_t ReplayHeader::get_body_size() {
+  uint32_t ReplayHeader::get_body_size() const {
     return body_size;
   }
 
-  uint32_t ReplayHeader::get_crc2() {
+  uint32_t ReplayHeader::get_crc2() const {
     return crc2;
   }
 

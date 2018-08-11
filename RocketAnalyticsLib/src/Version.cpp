@@ -16,15 +16,15 @@ namespace ReplayParser {
     version_minor = minor;
   }
 
-  std::uint32_t Version::get_major_value() {
+  std::uint32_t Version::get_major_value() const {
     return version_major;
   }
 
-  std::uint32_t Version::get_minor_value() {
+  std::uint32_t Version::get_minor_value() const {
     return version_minor;
   }
 
-  std::string Version::to_string() {
+  std::string Version::to_string() const {
     return std::to_string(version_major) +
         "." + std::to_string(version_minor);
   }

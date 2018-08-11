@@ -14,8 +14,8 @@
 #include "Netstream.hpp"
 #include "ReplayHeader.hpp"
 #include "Keyframe.hpp"
-#include "ReplayReplicatedPackages.hpp"
 #include "ReplayTick.hpp"
+#include "../third-party/include/json.hpp"
 #include <cstdint>
 #include <fstream>
 #include <string>
@@ -62,6 +62,17 @@ namespace ReplayParser {
         deserialize_class_index_map(BinaryReader& br);
       std::vector<ClassNetCacheObject>
         deserialize_class_net_cache(BinaryReader& br);
+     
+      nlohmann::json header_to_json() const;
+      nlohmann::json properties_to_json() const;
+      nlohmann::json levels_to_json() const;
+      nlohmann::json keyframes_to_json() const;
+      nlohmann::json tick_information_to_json() const;
+      nlohmann::json replicated_packages_to_json() const;
+      nlohmann::json object_table_to_json() const;
+      nlohmann::json name_table_to_json() const;
+      nlohmann::json class_index_map_to_json() const;
+      nlohmann::json class_net_cache_to_json() const;
 	};
 
 } // namespace ReplayParser

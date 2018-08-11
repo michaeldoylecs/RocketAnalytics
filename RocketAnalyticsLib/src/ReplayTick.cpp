@@ -20,11 +20,11 @@ namespace ReplayParser {
     this->tick_frame = frame;
   }
 
-  std::string ReplayTick::type() {
+  std::string ReplayTick::type() const {
     return this->tick_type;
   }
 
-  std::uint32_t ReplayTick::frame() {
+  std::uint32_t ReplayTick::frame() const {
     return this->tick_frame;
   }
 

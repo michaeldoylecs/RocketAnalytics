@@ -19,24 +19,24 @@ namespace ReplayParser {
     : c_index(index), c_parent(parent), c_id(id),
       c_prop_length(prop_length), c_properties(std::move(properties)) {}
 
-  uint32_t ClassNetCacheObject::index() {
+  uint32_t ClassNetCacheObject::index() const {
     return c_index;
   }
 
-  uint32_t ClassNetCacheObject::parent() {
+  uint32_t ClassNetCacheObject::parent() const {
     return c_parent;
   }
 
-  uint32_t ClassNetCacheObject::id() {
+  uint32_t ClassNetCacheObject::id() const {
     return c_id;
   }
 
-  uint32_t ClassNetCacheObject::prop_length() {
+  uint32_t ClassNetCacheObject::prop_length() const {
     return c_prop_length;
   }
 
   std::vector<std::pair<uint32_t, uint32_t>>
-  ClassNetCacheObject::properties() {
+  ClassNetCacheObject::properties() const {
     return c_properties;
   }
 

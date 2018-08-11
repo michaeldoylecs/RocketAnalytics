@@ -24,15 +24,15 @@ namespace ReplayParser {
     ReplayHeader() = default;
     static ReplayHeader deserialize_header(BinaryReader& binary_reader);
 
-    uint32_t get_header_size();
-    uint32_t get_crc1();
-    std::string get_version();
-    uint32_t get_version_major();
-    uint32_t get_version_minor();
-    std::string get_replay_identifier();
-    std::vector<Property> get_properties();
-    uint32_t get_body_size();
-    uint32_t get_crc2();
+    uint32_t get_header_size() const;
+    uint32_t get_crc1() const;
+    std::string get_version() const;
+    uint32_t get_version_major() const;
+    uint32_t get_version_minor() const;
+    std::string get_replay_identifier() const;
+    std::vector<Property> get_properties() const;
+    uint32_t get_body_size() const;
+    uint32_t get_crc2() const;
 
   private:
     uint32_t header_size{0};

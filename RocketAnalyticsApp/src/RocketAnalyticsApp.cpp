@@ -6,117 +6,129 @@
 #include <iostream>
 #include <string>
 
-using std::cout;
-using std::endl;
-using std::string;
 using namespace ReplayParser;
 
-void test_binary_reader(const string file_path) {
+void test_binary_reader(const std::string& file_path) {
   try {
-    cout << "---BEGING TESTING BinaryReader---" << endl;
-    cout << "Filepath: " << file_path << endl;
+    std::cout << "---BEGING TESTING BinaryReader---" << std::endl;
+    std::cout << "Filepath: " << file_path << std::endl;
     BinaryReader b_reader(file_path);
-    cout << "Headersize: " << b_reader.read_aligned_uint32() << endl;
-    cout << "CRC: " << b_reader.read_aligned_uint32() << endl;
-    cout << "Version: " << b_reader.read_aligned_uint32() << "." <<
-      b_reader.read_aligned_uint32() << endl;
-    cout << "ReplayIdentifier: " <<
-      b_reader.read_length_prefixed_string() << endl;
-    cout << "---END TESTING BinaryReader---" << "\n" << endl;
+    std::cout << "Headersize: " << b_reader.read_aligned_uint32() << std::endl;
+    std::cout << "CRC: " << b_reader.read_aligned_uint32() << std::endl;
+    std::cout << "Version: " << b_reader.read_aligned_uint32() << "." <<
+      b_reader.read_aligned_uint32() << std::endl;
+    std::cout << "ReplayIdentifier: " <<
+      b_reader.read_length_prefixed_string() << std::endl;
+    std::cout << "---END TESTING BinaryReader---" << "\n" << std::endl;
   } catch (const std::runtime_error &e) {
     e.what();
   }
 }
 
-void test_replay(string& file_path) {
+void test_replay(const std::string& file_path) {
   try {
-    cout << "---BEGIN TESTING ReplayFile---" << endl;
-    cout << "Filepath: " << file_path << endl;
+    std::cout << "---BEGIN TESTING ReplayFile---" << std::endl;
+    std::cout << "Filepath: " << file_path << std::endl;
     ReplayFile replay = ReplayFile(file_path);
 
-    cout << "Header size: " <<
-      replay.header().get_header_size() << endl;
-    cout << "CRC1: " << replay.header().get_crc1() << endl;
-    cout << "Version: " << replay.header().get_version() << endl;
-    cout << "Version major: " <<
-      replay.header().get_version_major() << endl;
-    cout << "Version minor: " <<
-      replay.header().get_version_minor() << endl;
-    cout << "Replay Identifier: " <<
-      replay.header().get_replay_identifier() << endl;
+    std::cout << "Header size: " <<
+      replay.header().get_header_size() << std::endl;
+    std::cout << "CRC1: " << replay.header().get_crc1() << std::endl;
+    std::cout << "Version: " << replay.header().get_version() << std::endl;
+    std::cout << "Version major: " <<
+      replay.header().get_version_major() << std::endl;
+    std::cout << "Version minor: " <<
+      replay.header().get_version_minor() << std::endl;
+    std::cout << "Replay Identifier: " <<
+      replay.header().get_replay_identifier() << std::endl;
 
-    cout << "Properties:" << endl;
+    std::cout << "Properties:" << std::endl;
     for (size_t i = 0; i < replay.header().get_properties().size(); i++) {
-      cout << " > " <<
-        replay.header().get_properties().at(i).to_string() << endl;
+      std::cout << " > " <<
+        replay.header().get_properties().at(i).to_string() << std::endl;
     }
 
-    cout << "Body Size: " << replay.header().get_body_size() << endl;
-    cout << "CRC2: " << replay.header().get_crc2() << endl;
+    std::cout << "Body Size: " << replay.header().get_body_size() << std::endl;
+    std::cout << "CRC2: " << replay.header().get_crc2() << std::endl;
 
-    cout << "Replay Levels:" << endl;
-    for (size_t i = 0; i < replay.levels().get_level_count(); i++) {
-      cout << "> " << replay.levels().get_levels().at(i) << endl;
+    std::cout << "Replay Levels:" << std::endl;
+    for (size_t i = 0; i < replay.levels().size(); i++) {
+      std::cout << "> " << replay.levels().at(i) << std::endl;
     }
 
-    cout << "Replay Keyframes:" << endl;
-    for (size_t i = 0; i < replay.keyframes().count(); i++) {
-      cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
-        "> " << replay.keyframes().get(i).time() << "\n\t" <<
-        "> " << replay.keyframes().get(i).frame() << "\n\t" <<
-        "> " << replay.keyframes().get(i).filePosition() << endl;
+    std::cout << "Replay Keyframes:" << std::endl;
+    for (size_t i = 0; i < replay.keyframes().size(); i++) {
+      std::cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
+        "> " << replay.keyframes().at(i).time() << "\n\t" <<
+        "> " << replay.keyframes().at(i).frame() << "\n\t" <<
+        "> " << replay.keyframes().at(i).filePosition() << std::endl;
     }
 
-    cout << "Replay Netstream: " << "NOT IMPLEMENTED" << endl;
+    std::cout << "Replay Netstream: " << "NOT IMPLEMENTED" << std::endl;
 
-    cout << "Replay Tick Information" << endl;
-    for (int i = 0; i < replay.tick_information().count(); ++i) {
-      cout << i << ")\n\t"
-        << "> " << replay.tick_information().get(i).type() << "\n\t"
-        << "> " << replay.tick_information().get(i).frame() << endl;
+    std::cout << "Replay Tick Information" << std::endl;
+    for (size_t i = 0; i < replay.tick_information().size(); ++i) {
+      std::cout << i << ")\n\t"
+        << "> " << replay.tick_information().at(i).type() << "\n\t"
+        << "> " << replay.tick_information().at(i).frame() << std::endl;
     }
 
-    cout << "Replicated Packages" << endl;
-    for (int i = 0; i < replay.replicated_packages().count(); ++i) {
-      cout << i << ")\t"
-        << replay.replicated_packages().get(i) << endl;
+    std::cout << "Replicated Packages" << std::endl;
+    for (size_t i = 0; i < replay.replicated_packages().size(); ++i) {
+      std::cout << i << ")\t"
+        << replay.replicated_packages().at(i) << std::endl;
     }
 
-    cout << "Object Table" << endl;
+    std::cout << "Object Table" << std::endl;
     for (size_t i = 0; i < replay.object_table().size(); ++i) {
-      cout << i << ")\t"
-        << replay.object_table().at(i) << endl;
+      std::cout << i << ")\t"
+        << replay.object_table().at(i) << std::endl;
     }
 
-    cout << "Name Table" << endl;
+    std::cout << "Name Table" << std::endl;
     for (size_t i = 0; i < replay.name_table().size(); ++i) {
-      cout << i << ")\t"
-        << replay.name_table().at(i) << endl;
+      std::cout << i << ")\t"
+        << replay.name_table().at(i) << std::endl;
     }
 
-    cout << "Class Index Map" << endl;
+    std::cout << "Class Index Map" << std::endl;
     for (size_t i = 0; i < replay.class_index_map().size(); ++i) {
-      cout << i << ")\n\t"
+      std::cout << i << ")\n\t"
         << "> " << replay.class_index_map().at(i).first << "\n\t"
-        << "> " << replay.class_index_map().at(i).second << endl;
+        << "> " << replay.class_index_map().at(i).second << std::endl;
     }
 
-    cout << "Class Net Cache" << endl;
+    std::cout << "Class Net Cache" << std::endl;
     for (size_t i = 0; i < replay.class_net_cache().size(); ++i) {
-      cout << i << ")\n\t"
+      std::cout << i << ")\n\t"
         << "> " << replay.class_net_cache().at(i).index() << "\n\t"
         << "> " << replay.class_net_cache().at(i).parent() << "\n\t"
         << "> " << replay.class_net_cache().at(i).id() << "\n\t"
-        << "> " << replay.class_net_cache().at(i).prop_length() << endl;
+        << "> " << replay.class_net_cache().at(i).prop_length() << std::endl;
       for (size_t p_i = 0; p_i < replay.class_net_cache().at(i).prop_length(); ++p_i) {
-        if (p_i == 0) {cout << "\tproperties:\n";}
-        cout << "\t" << p_i << ")\t("
+        if (p_i == 0) {std::cout << "\tproperties:\n";}
+        std::cout << "\t" << p_i << ")\t("
           << replay.class_net_cache().at(i).properties().at(p_i).first << ", "
-          << replay.class_net_cache().at(i).properties().at(p_i).second << ")" << endl;
+          << replay.class_net_cache().at(i).properties().at(p_i).second << ")" << std::endl;
       }
     }
 
-    cout << "---END TESTING ReplayFile---" << "\n" << endl;
+    std::cout << "---END TESTING ReplayFile---" << "\n" << std::endl;
+  } catch (const std::runtime_error &e) {
+    e.what();
+  }
+}
+
+void test_replay_to_json(const std::string& file_path) {
+  try {
+    std::cout << "---BEGIN TESTING ReplayFile---" << std::endl;
+    
+    std::cout << "Filepath: " << file_path << std::endl;
+    ReplayFile replay = ReplayFile(file_path);
+    std::cout << "Serialize to JSON:" << std::endl;
+    std::cout << replay.serialize_to_json() << std::endl;
+    
+    std::cout << "---END TESTING ReplayFile---" << "\n" << std::endl;
   } catch (const std::runtime_error &e) {
     e.what();
   }
@@ -124,10 +136,8 @@ void test_replay(string& file_path) {
 
 int main() {
   try {
-    string file_path =
-      "../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
-    //test_binary_reader(file_path);
-    test_replay(file_path);
+    std::string file_path = "../Testing/0A797CAB49E97F824000D9BB757BF7F9.replay";
+    test_replay_to_json(file_path);
   }
   catch (const std::runtime_error &e) {
     e.what();
