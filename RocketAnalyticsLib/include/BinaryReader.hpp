@@ -41,7 +41,7 @@ namespace ReplayParser {
       std::uint32_t bytes_to_uint32(std::array<Byte, 4> bytes);
       std::uint64_t bytes_to_uint64(std::array<Byte, 8> bytes);
       std::string read_string_of_n_length(std::uint32_t length);
-      std::size_t get_file_size(std::ifstream &file_stream);
+      std::size_t file_size(std::ifstream &file_stream);
       void increment_byte_position();
       void increment_bit_position();
   };

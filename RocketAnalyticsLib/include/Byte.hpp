@@ -22,12 +22,12 @@ namespace ReplayParser {
       Byte();
       explicit Byte(std::uint8_t rvalue);
 
-      std::byte get_value();
-      std::int8_t get_bit(int index);
+      std::byte value();
+      std::int8_t bit(int index);
       std::string to_string();
 
     private:
-      std::byte value;
+      std::byte b_value;
   };
 
 } // namespace ReplayParser

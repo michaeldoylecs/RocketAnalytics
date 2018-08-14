@@ -23,9 +23,9 @@ struct ByteValueTests : ::testing::Test {
 };
 
 TEST_F(ByteValueTests, ByteValueReadIdentifier) {
-  EXPECT_EQ(byte_value->get_id(), identifier);
+  EXPECT_EQ(byte_value->id(), identifier);
 }
 
 TEST_F(ByteValueTests, ByteValueReadValue) {
-  EXPECT_EQ(byte_value->get_value(), value);
+  EXPECT_EQ(byte_value->value(), value);
 }

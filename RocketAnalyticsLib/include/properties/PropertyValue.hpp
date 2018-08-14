@@ -53,8 +53,8 @@ namespace ReplayParser {
       void set_float(const float f);
       void set_array(const std::vector<std::vector<Property>>& property_list);
 
-      PType get_type() const;
-      std::string get_value_as_string() const;
+      PType type() const;
+      std::string to_string() const;
 
     private:
       PType property_type;

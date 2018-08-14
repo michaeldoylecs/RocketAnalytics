@@ -13,11 +13,11 @@ namespace ReplayParser {
     byte_value = value;
   }
 
-  std::string ByteValue::get_id() {
+  std::string ByteValue::id() {
     return byte_id;
   }
 
-  std::string ByteValue::get_value() {
+  std::string ByteValue::value() {
     return byte_value;
   }
 

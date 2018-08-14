@@ -182,21 +182,21 @@ namespace ReplayParser {
 
   nlohmann::json ReplayFile::header_to_json() const {
     nlohmann::json header_json;
-    header_json["fileInfo"]["headerSize"] = r_header.get_header_size();
-    header_json["fileInfo"]["crc"] = r_header.get_crc1();
-    header_json["fileInfo"]["version"] = r_header.get_version();
-    header_json["fileInfo"]["identifier"] = r_header.get_replay_identifier();
+    header_json["fileInfo"]["headerSize"] = r_header.size();
+    header_json["fileInfo"]["crc"] = r_header.crc1();
+    header_json["fileInfo"]["version"] = r_header.version();
+    header_json["fileInfo"]["identifier"] = r_header.replay_id();
     header_json["properties"] = properties_to_json();
-    header_json["bodySize"] = r_header.get_body_size();
-    header_json["crc2"] = r_header.get_crc2();
+    header_json["bodySize"] = r_header.body_size();
+    header_json["crc2"] = r_header.crc2();
     return header_json;
   }
 
   nlohmann::json ReplayFile::properties_to_json() const {
     nlohmann::json prop_json;
-    auto properties = r_header.get_properties();
+    auto properties = r_header.properties();
     for (const auto& prop : properties) {
-      if (prop.get_type() == PType::NONE) { continue; }
+      if (prop.type() == PType::NONE) { continue; }
       auto prop_value = nlohmann::json::parse(prop.serialize_json());
       prop_json.merge_patch(prop_value);
     }
@@ -217,7 +217,7 @@ namespace ReplayParser {
       nlohmann::json kf_json = {
         {"time", keyframe.time()},
         {"frame", keyframe.frame()},
-        {"filePosition", keyframe.filePosition()}
+        {"filePosition", keyframe.filePos()}
       };
       keyframes_json.push_back(kf_json);
     }

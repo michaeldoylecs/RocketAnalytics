@@ -64,46 +64,46 @@ namespace ReplayParser {
 
   bool Property::operator== (const Property& rhs) const {
     return (
-      (this->property_name == rhs.property_name)
-      && (this->property_value.get_value_as_string()
-        == rhs.property_value.get_value_as_string())
+      (property_name == rhs.property_name)
+      && (property_value.to_string()
+        == rhs.property_value.to_string())
     );
   }
 
-  std::string Property::get_name() const {
+  std::string Property::name() const {
     return property_name;
   }
 
-  PType Property::get_type() const {
-    return property_value.get_type();
+  PType Property::type() const {
+    return property_value.type();
   }
 
-  PropertyValue Property::get_value() const {
+  PropertyValue Property::value() const {
     return property_value;
   }
 
-  std::string Property::get_value_as_string() const {
-    return property_value.get_value_as_string();
+  std::string Property::value_as_string() const {
+    return property_value.to_string();
   }
 
   // TODO(michaeldoylecs): IMPROVE: Maintain level of abstraction
   std::string Property::to_string() const {
     std::string to_string_value;
-    to_string_value += get_name() + ": ";
-    if (get_type() == PType::ARRAY_PROPERTY) {
+    to_string_value += name() + ": ";
+    if (type() == PType::ARRAY_PROPERTY) {
       to_string_value += "\n";
     }
-    to_string_value += get_value_as_string();
+    to_string_value += value_as_string();
     return to_string_value;
   }
 
   std::string Property::serialize_json() const {
     nlohmann::json prop;
-    std::string id = get_name();
-    if (get_type() == PType::ARRAY_PROPERTY) {
-      prop[id] = nlohmann::json::parse(get_value_as_string());
+    std::string id = name();
+    if (type() == PType::ARRAY_PROPERTY) {
+      prop[id] = nlohmann::json::parse(value_as_string());
     } else {
-      prop[id] = get_value_as_string();
+      prop[id] = value_as_string();
     }
     return prop.dump(4);
   }

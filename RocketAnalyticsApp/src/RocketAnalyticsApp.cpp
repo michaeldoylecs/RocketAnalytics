@@ -32,24 +32,24 @@ void test_replay(const std::string& file_path) {
     ReplayFile replay = ReplayFile(file_path);
 
     std::cout << "Header size: " <<
-      replay.header().get_header_size() << std::endl;
-    std::cout << "CRC1: " << replay.header().get_crc1() << std::endl;
-    std::cout << "Version: " << replay.header().get_version() << std::endl;
+      replay.header().size() << std::endl;
+    std::cout << "CRC1: " << replay.header().crc1() << std::endl;
+    std::cout << "Version: " << replay.header().version() << std::endl;
     std::cout << "Version major: " <<
-      replay.header().get_version_major() << std::endl;
+      replay.header().version_major() << std::endl;
     std::cout << "Version minor: " <<
-      replay.header().get_version_minor() << std::endl;
+      replay.header().version_minor() << std::endl;
     std::cout << "Replay Identifier: " <<
-      replay.header().get_replay_identifier() << std::endl;
+      replay.header().replay_id() << std::endl;
 
     std::cout << "Properties:" << std::endl;
-    for (size_t i = 0; i < replay.header().get_properties().size(); i++) {
+    for (size_t i = 0; i < replay.header().properties().size(); i++) {
       std::cout << " > " <<
-        replay.header().get_properties().at(i).to_string() << std::endl;
+        replay.header().properties().at(i).to_string() << std::endl;
     }
 
-    std::cout << "Body Size: " << replay.header().get_body_size() << std::endl;
-    std::cout << "CRC2: " << replay.header().get_crc2() << std::endl;
+    std::cout << "Body Size: " << replay.header().body_size() << std::endl;
+    std::cout << "CRC2: " << replay.header().crc2() << std::endl;
 
     std::cout << "Replay Levels:" << std::endl;
     for (size_t i = 0; i < replay.levels().size(); i++) {
@@ -61,7 +61,7 @@ void test_replay(const std::string& file_path) {
       std::cout << i << ")\n\t" << std::fixed << std::setprecision(4) <<
         "> " << replay.keyframes().at(i).time() << "\n\t" <<
         "> " << replay.keyframes().at(i).frame() << "\n\t" <<
-        "> " << replay.keyframes().at(i).filePosition() << std::endl;
+        "> " << replay.keyframes().at(i).filePos() << std::endl;
     }
 
     std::cout << "Replay Netstream: " << "NOT IMPLEMENTED" << std::endl;

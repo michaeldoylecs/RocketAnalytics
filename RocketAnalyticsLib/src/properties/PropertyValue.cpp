@@ -157,11 +157,11 @@ namespace ReplayParser {
     }
   }
 
-  PType PropertyValue::get_type() const {
+  PType PropertyValue::type() const {
     return property_type;
   }
 
-  std::string PropertyValue::get_value_as_string() const {
+  std::string PropertyValue::to_string() const {
     if (property_type == PType::INT_PROPERTY) {
       std::uint32_t stored_value = property_value.int32; // NOLINT
       std::string converted_value = std::to_string(stored_value);
@@ -186,8 +186,8 @@ namespace ReplayParser {
     }
     if (property_type == PType::BYTE_PROPERTY) {
       ByteValue byte = property_value.byte; // NOLINT
-      std::string byte_identifier = byte.get_id();
-      std::string byte_value = byte.get_value();
+      std::string byte_identifier = byte.id();
+      std::string byte_value = byte.value();
       std::string converted_value = byte_identifier + ": " + byte_value;
       return converted_value;
     }
@@ -209,8 +209,8 @@ namespace ReplayParser {
     for (const auto& property : array_props) {
       nlohmann::json prop;
       for (const auto& prop_value : property) {
-        if (prop_value.get_type() == PType::NONE) { continue; }
-        prop[prop_value.get_name()] = prop_value.get_value_as_string();
+        if (prop_value.type() == PType::NONE) { continue; }
+        prop[prop_value.name()] = prop_value.value_as_string();
       }
       serialized_props.push_back(prop);
     }

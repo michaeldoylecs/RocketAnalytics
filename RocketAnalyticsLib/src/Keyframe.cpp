@@ -1,7 +1,7 @@
 /******************************************************************************
- *	Author:	Michael Doyle
- *	Date:	3/31/18
- *	File:	Keyframe.cpp
+ *  Author: Michael Doyle
+ *  Date: 3/31/18
+ *  File: Keyframe.cpp
  *****************************************************************************/
 
 #include "../include/Keyframe.hpp"
@@ -10,33 +10,33 @@ using std::uint32_t;
 
 namespace ReplayParser {
 
-	Keyframe::Keyframe(float time, uint32_t frame, uint32_t filePosition) {
-		this->timeStamp = time;
-		this->frameNum = frame;
-		this->filePos = filePosition;
-	}
+  Keyframe::Keyframe(float time, uint32_t frame, uint32_t filePos) {
+    k_time = time;
+    k_frame = frame;
+    k_filePos = filePos;
+  }
 
-	float Keyframe::time() const {
-		return this->timeStamp;
-	}
+  float Keyframe::time() const {
+    return k_time;
+  }
 
-	uint32_t Keyframe::frame() const {
-		return this->frameNum;
-	}
+  uint32_t Keyframe::frame() const {
+    return k_frame;
+  }
 
-	uint32_t Keyframe::filePosition() const {
-		return this->filePos;
-	}
+  uint32_t Keyframe::filePos() const {
+    return k_filePos;
+  }
 
-	bool Keyframe::operator==(const Keyframe &k1) const {
-    return (this->timeStamp == k1.timeStamp &&
-      this->frameNum == k1.frameNum &&
-      this->filePos == k1.filePos);
-	}
+  bool Keyframe::operator==(const Keyframe &k1) const {
+    return (k_time == k1.k_time &&
+      k_frame == k1.k_frame &&
+      k_filePos == k1.k_filePos);
+  }
   
-	bool Keyframe::operator!=(const Keyframe &k1) const {
-    return (this->timeStamp != k1.timeStamp ||
-      this->frameNum != k1.frameNum ||
-      this->filePos != k1.filePos);
-	}
+  bool Keyframe::operator!=(const Keyframe &k1) const {
+    return (k_time != k1.k_time ||
+      k_frame != k1.k_frame ||
+      k_filePos != k1.k_filePos);
+  }
 } // namespace ReplayParser

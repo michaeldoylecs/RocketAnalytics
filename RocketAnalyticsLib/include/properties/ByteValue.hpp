@@ -19,8 +19,8 @@ namespace ReplayParser {
     public:
       ByteValue() = default;
       ByteValue(const std::string& id, const std::string& value);
-      std::string get_id();
-      std::string get_value();
+      std::string id();
+      std::string value();
 
     private:
       std::string byte_id;

@@ -27,5 +27,5 @@ struct KeyframeTests: testing::Test {
 TEST_F(KeyframeTests, KeyframeAccessTests) {
   EXPECT_EQ(keyframe.time(), timeStamp);
   EXPECT_EQ(keyframe.frame(), frameNum);
-  EXPECT_EQ(keyframe.filePosition(), filePos);
+  EXPECT_EQ(keyframe.filePos(), filePos);
 }

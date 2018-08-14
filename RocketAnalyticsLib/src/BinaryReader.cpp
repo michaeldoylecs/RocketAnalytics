@@ -26,9 +26,9 @@ namespace ReplayParser {
   void BinaryReader::read_file(const std::string& filepath) {
     std::ifstream file_stream(filepath, std::ios::binary | std::ios::in);
     if (file_stream.is_open()) {
-      size_t file_size = get_file_size(file_stream);
-      file_bytes.resize(file_size);
-      file_stream.read(reinterpret_cast<char*>(file_bytes.data()), file_size); // NOLINT
+      auto f_size = file_size(file_stream);
+      file_bytes.resize(f_size);
+      file_stream.read(reinterpret_cast<char*>(file_bytes.data()), f_size); // NOLINT
       file_stream.close();
     }
     else {
@@ -36,7 +36,7 @@ namespace ReplayParser {
     }
   }
 
-  size_t BinaryReader::get_file_size(std::ifstream &file_stream) {
+  size_t BinaryReader::file_size(std::ifstream &file_stream) {
     size_t file_start = file_stream.tellg();
     file_stream.seekg(0, std::ios::end);
     size_t file_size = file_stream.tellg();
@@ -87,7 +87,7 @@ namespace ReplayParser {
   uint8_t BinaryReader::read_aligned_uint8() {
     try {
       Byte next_byte = read_aligned_byte();
-      uint8_t read_value = std::to_integer<uint32_t>(next_byte.get_value());
+      uint8_t read_value = std::to_integer<uint32_t>(next_byte.value());
       return read_value;
     }
     catch (const std::runtime_error &e) {
@@ -156,7 +156,7 @@ namespace ReplayParser {
       std::string read_string;
       for (std::uint32_t i = 0; i < length; i++) {
         Byte next_byte = read_aligned_byte();
-        auto byte_value = std::to_integer<std::uint8_t>(next_byte.get_value());
+        auto byte_value = std::to_integer<std::uint8_t>(next_byte.value());
         char next_char;
         memcpy(&next_char, &byte_value, sizeof(next_char));
         read_string += next_char;

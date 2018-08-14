@@ -19,8 +19,8 @@ namespace ReplayParser {
     public:
       Version() = default;
       Version(std::uint32_t major, std::uint32_t minor);
-      std::uint32_t get_major_value() const;
-      std::uint32_t get_minor_value() const;
+      std::uint32_t major_value() const;
+      std::uint32_t minor_value() const;
       void set_version(std::uint32_t major, std::uint32_t minor);
       std::string to_string() const;
 

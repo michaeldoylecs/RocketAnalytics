@@ -19,46 +19,45 @@ namespace ReplayParser {
     replay_header.parse_version(binary_reader);
     replay_header.check_for_empty_bits(binary_reader);
     replay_header.parse_replay_identifier(binary_reader);
-    replay_header.parse_properties(binary_reader, replay_header.replay_properties);
+    replay_header.parse_properties(binary_reader,
+      replay_header.h_properties);
     replay_header.parse_body_size(binary_reader);
     replay_header.parse_crc2(binary_reader);
     return replay_header;
   }
 
   void ReplayHeader::parse_header_size(BinaryReader& binary_reader) {
-    uint32_t parsed_header_size = binary_reader.read_aligned_uint32();
-    header_size = parsed_header_size;
+    h_size = binary_reader.read_aligned_uint32();
   }
 
   void ReplayHeader::parse_crc1(BinaryReader& binary_reader) {
-    uint32_t parsed_crc1 = binary_reader.read_aligned_uint32();
-    crc1 = parsed_crc1;
+    h_crc1 = binary_reader.read_aligned_uint32();
   }
 
   void ReplayHeader::parse_version(BinaryReader& binary_reader) {
-    uint32_t version_major = binary_reader.read_aligned_uint32();
-    uint32_t version_minor = binary_reader.read_aligned_uint32();
-    version.set_version(version_major, version_minor);
+    auto version_major = binary_reader.read_aligned_uint32();
+    auto version_minor = binary_reader.read_aligned_uint32();
+    h_version.set_version(version_major, version_minor);
   }
 
   void ReplayHeader::parse_replay_identifier(BinaryReader& binary_reader) {
-    string parsed_replay_identifier = binary_reader.read_length_prefixed_string();
-    replay_identifier = parsed_replay_identifier;
+    h_replay_id = binary_reader.read_length_prefixed_string();
   }
 
   // TODO(michaeldoylecs): There must be a better way to handle discrepancies
   // between replay versions
   void ReplayHeader::check_for_empty_bits(BinaryReader& binary_reader) {
-    if (version.get_major_value() >= 868 && version.get_minor_value() >= 18) {
+    if (h_version.major_value() >= 868 && h_version.minor_value() >= 18) {
       binary_reader.read_aligned_uint32();
     }
   }
 
-  void ReplayHeader::parse_properties(BinaryReader& binary_reader, vector<Property>& properties) {
+  void ReplayHeader::parse_properties(BinaryReader& binary_reader,
+  vector<Property>& properties) {
     while (true) {
-      Property property = parse_property(binary_reader);
+      auto property = parse_property(binary_reader);
       properties.push_back(property);
-      if (property.get_type() == PType::NONE) {
+      if (property.type() == PType::NONE) {
         break;
       }
     }
@@ -151,49 +150,47 @@ namespace ReplayParser {
   }
 
   void ReplayHeader::parse_body_size(BinaryReader& binary_reader) {
-    uint32_t parsed_body_size = binary_reader.read_aligned_uint32();
-    body_size = parsed_body_size;
+    h_body_size = binary_reader.read_aligned_uint32();
   }
 
   void ReplayHeader::parse_crc2(BinaryReader& binary_reader) {
-    uint32_t parsed_crc2 = binary_reader.read_aligned_uint32();
-    crc2 = parsed_crc2;
+    h_crc2 = binary_reader.read_aligned_uint32();
   }
 
-  uint32_t ReplayHeader::get_header_size() const {
-    return header_size;
+  uint32_t ReplayHeader::size() const {
+    return h_size;
   }
 
-  uint32_t ReplayHeader::get_crc1() const {
-    return crc1;
+  uint32_t ReplayHeader::crc1() const {
+    return h_crc1;
   }
 
-  string ReplayHeader::get_version() const {
-    return version.to_string();
+  string ReplayHeader::version() const {
+    return h_version.to_string();
   }
 
-  uint32_t ReplayHeader::get_version_major() const {
-    return version.get_major_value();
+  uint32_t ReplayHeader::version_major() const {
+    return h_version.major_value();
   }
 
-  uint32_t ReplayHeader::get_version_minor() const {
-    return version.get_minor_value();
+  uint32_t ReplayHeader::version_minor() const {
+    return h_version.minor_value();
   }
 
-  string ReplayHeader::get_replay_identifier() const {
-    return replay_identifier;
+  string ReplayHeader::replay_id() const {
+    return h_replay_id;
   }
 
-  vector<Property> ReplayHeader::get_properties() const {
-    return replay_properties;
+  vector<Property> ReplayHeader::properties() const {
+    return h_properties;
   }
 
-  uint32_t ReplayHeader::get_body_size() const {
-    return body_size;
+  uint32_t ReplayHeader::body_size() const {
+    return h_body_size;
   }
 
-  uint32_t ReplayHeader::get_crc2() const {
-    return crc2;
+  uint32_t ReplayHeader::crc2() const {
+    return h_crc2;
   }
 
 } // namespace ReplayParser

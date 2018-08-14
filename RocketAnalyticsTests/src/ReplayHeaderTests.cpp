@@ -114,17 +114,17 @@ struct ReplayHeaderTest :testing::Test {
 };
 
 TEST_F(ReplayHeaderTest, DeserializeHeader) {
-	EXPECT_EQ(replay_header.get_header_size(), EXPECTED_HEADER_SIZE);
-	EXPECT_EQ(replay_header.get_crc1(), EXPECTED_CRC1);
-	EXPECT_EQ(replay_header.get_version_major(), EXPECTED_VERSION_MAJOR);
-	EXPECT_EQ(replay_header.get_version_minor(), EXPECTED_VERSION_MINOR);
-	EXPECT_EQ(replay_header.get_replay_identifier(), EXPECTED_REPLAY_IDENTIFIER);
-	EXPECT_EQ(replay_header.get_properties().at(0), EXPECTED_REPLAY_PROPERTY_0);
-	EXPECT_EQ(replay_header.get_properties().at(5), EXPECTED_REPLAY_PROPERTY_5);
-	EXPECT_EQ(replay_header.get_properties().at(6), EXPECTED_REPLAY_PROPERTY_6);
-	EXPECT_EQ(replay_header.get_properties().at(12), EXPECTED_REPLAY_PROPERTY_12);
-	EXPECT_EQ(replay_header.get_properties().at(17), EXPECTED_REPLAY_PROPERTY_17);
-  EXPECT_EQ(replay_header.get_body_size(), EXPECTED_BODY_SIZE);
-	EXPECT_EQ(replay_header.get_crc2(), EXPECTED_CRC2);
+	EXPECT_EQ(replay_header.size(), EXPECTED_HEADER_SIZE);
+	EXPECT_EQ(replay_header.crc1(), EXPECTED_CRC1);
+	EXPECT_EQ(replay_header.version_major(), EXPECTED_VERSION_MAJOR);
+	EXPECT_EQ(replay_header.version_minor(), EXPECTED_VERSION_MINOR);
+	EXPECT_EQ(replay_header.replay_id(), EXPECTED_REPLAY_IDENTIFIER);
+	EXPECT_EQ(replay_header.properties().at(0), EXPECTED_REPLAY_PROPERTY_0);
+	EXPECT_EQ(replay_header.properties().at(5), EXPECTED_REPLAY_PROPERTY_5);
+	EXPECT_EQ(replay_header.properties().at(6), EXPECTED_REPLAY_PROPERTY_6);
+	EXPECT_EQ(replay_header.properties().at(12), EXPECTED_REPLAY_PROPERTY_12);
+	EXPECT_EQ(replay_header.properties().at(17), EXPECTED_REPLAY_PROPERTY_17);
+  EXPECT_EQ(replay_header.body_size(), EXPECTED_BODY_SIZE);
+	EXPECT_EQ(replay_header.crc2(), EXPECTED_CRC2);
 }
 

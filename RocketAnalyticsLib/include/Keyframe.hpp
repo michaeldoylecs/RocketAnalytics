@@ -15,19 +15,19 @@ namespace ReplayParser {
 
   class Keyframe {
   public:
-    Keyframe(float time, std::uint32_t frame, std::uint32_t filePosition);
+    Keyframe(float time, std::uint32_t frame, std::uint32_t filePos);
 
     float time() const;
     std::uint32_t frame() const;
-    std::uint32_t filePosition() const;
+    std::uint32_t filePos() const;
 
     bool operator==(const Keyframe &k1) const;
     bool operator!=(const Keyframe &k1) const;
 
   private:
-    float timeStamp;
-    std::uint32_t frameNum;
-    std::uint32_t filePos;
+    float k_time;
+    std::uint32_t k_frame;
+    std::uint32_t k_filePos;
   };
 
 } // namespace ReplayParser

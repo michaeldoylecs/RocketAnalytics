@@ -16,11 +16,11 @@ namespace ReplayParser {
     version_minor = minor;
   }
 
-  std::uint32_t Version::get_major_value() const {
+  std::uint32_t Version::major_value() const {
     return version_major;
   }
 
-  std::uint32_t Version::get_minor_value() const {
+  std::uint32_t Version::minor_value() const {
     return version_minor;
   }
 
