@@ -10,7 +10,7 @@
 using std::string;
 using std::vector;
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   ReplayHeader ReplayHeader::deserialize_header(BinaryReader& binary_reader) {
     ReplayHeader replay_header;
@@ -193,4 +193,4 @@ namespace ReplayParser {
     return h_crc2;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

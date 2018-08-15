@@ -8,7 +8,7 @@
 #include "../../include/properties/Property.hpp"
 #include "../../third-party/include/json.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   Property::Property() {
     set_none();
@@ -108,4 +108,4 @@ namespace ReplayParser {
     return prop.dump(4);
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

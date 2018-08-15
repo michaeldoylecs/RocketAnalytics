@@ -5,7 +5,7 @@
 #include "../../build/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../RocketAnalyticsLib/include/Version.hpp"
 
-using ReplayParser::Version;
+using rocketanalytics::Version;
 using std::string;
 using std::to_string;
 using std::uint32_t;

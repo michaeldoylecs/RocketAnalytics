@@ -13,7 +13,7 @@
 #include <map>
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   enum class PType {
     NONE,
@@ -36,6 +36,6 @@ namespace ReplayParser {
       static const std::map<PType, std::string>& type_string_map();
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

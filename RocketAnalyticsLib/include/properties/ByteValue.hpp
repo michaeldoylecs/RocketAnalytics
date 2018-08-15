@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class ByteValue {
     public:
@@ -27,6 +27,6 @@ namespace ReplayParser {
       std::string byte_value;
   };
   
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

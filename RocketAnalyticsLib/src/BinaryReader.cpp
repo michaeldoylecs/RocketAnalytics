@@ -10,7 +10,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   BinaryReader::BinaryReader(const std::string& filepath) {
     try {
@@ -205,4 +205,4 @@ namespace ReplayParser {
     bit_position = 0;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

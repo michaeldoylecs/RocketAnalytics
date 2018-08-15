@@ -5,9 +5,9 @@
 #include "../../build/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../RocketAnalyticsLib/include/ReplayHeader.hpp"
 
-using ReplayParser::ReplayHeader;
-using ReplayParser::BinaryReader;
-using ReplayParser::Property;
+using rocketanalytics::ReplayHeader;
+using rocketanalytics::BinaryReader;
+using rocketanalytics::Property;
 
 Property init_property_0() {
   Property prop;

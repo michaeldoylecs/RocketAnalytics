@@ -16,7 +16,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   // TODO: Can these be cleaned up?
   class Property;
@@ -63,6 +63,6 @@ namespace ReplayParser {
       std::string array_properties_to_string() const;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

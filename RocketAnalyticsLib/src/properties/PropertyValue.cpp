@@ -10,7 +10,7 @@
 #include "../../include/properties/PropertyValue.hpp"
 #include "../../third-party/include/json.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   PropertyValue::PropertyValue() : property_type{PType::NONE} {}
 
@@ -221,4 +221,4 @@ namespace ReplayParser {
 
   PropertyValue::UValue::~UValue() {} // NOLINT
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

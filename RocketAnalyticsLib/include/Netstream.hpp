@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace ReplayParser {
+namespace rocketanalytics {
   
   class BinaryReader;
   class Byte;
@@ -27,6 +27,6 @@ namespace ReplayParser {
       std::vector<Byte> data;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

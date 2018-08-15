@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class Version {
     public:
@@ -29,6 +29,6 @@ namespace ReplayParser {
       std::uint32_t version_minor;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

@@ -6,7 +6,7 @@
 
 #include "../../include/properties/ByteValue.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   ByteValue::ByteValue(const std::string& id, const std::string& value) {
     byte_id = id;
@@ -21,4 +21,4 @@ namespace ReplayParser {
     return byte_value;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

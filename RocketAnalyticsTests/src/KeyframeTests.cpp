@@ -9,7 +9,7 @@
 #include "../../build/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../RocketAnalyticsLib/include/Keyframe.hpp"
 
-using ReplayParser::Keyframe;
+using rocketanalytics::Keyframe;
 
 struct KeyframeTests: testing::Test {
   Keyframe keyframe = Keyframe(0, 0, 0);

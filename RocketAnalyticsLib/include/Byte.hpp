@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
 	class Byte {
     public:
@@ -30,6 +30,6 @@ namespace ReplayParser {
       std::byte b_value;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

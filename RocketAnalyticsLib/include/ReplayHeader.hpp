@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class ReplayHeader {
   public:
@@ -56,6 +56,6 @@ namespace ReplayParser {
 
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

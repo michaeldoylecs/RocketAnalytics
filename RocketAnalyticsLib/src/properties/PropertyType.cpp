@@ -7,7 +7,7 @@
 #include "../../include/properties/PropertyType.hpp"
 #include <iostream>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   const std::map<PType, std::string>& PropertyType::type_string_map() {
     try {
@@ -43,4 +43,4 @@ namespace ReplayParser {
     return PType::NONE;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

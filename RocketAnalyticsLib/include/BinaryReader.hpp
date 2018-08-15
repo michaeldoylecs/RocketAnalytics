@@ -14,7 +14,7 @@
 #include <array>
 #include <vector>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class ifstream;
 
@@ -46,6 +46,6 @@ namespace ReplayParser {
       void increment_bit_position();
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

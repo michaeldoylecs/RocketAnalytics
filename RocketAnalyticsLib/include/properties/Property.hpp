@@ -14,7 +14,7 @@
 #include <string>
 #include <cstdint>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   enum class PType;
 
@@ -49,6 +49,6 @@ namespace ReplayParser {
       PropertyValue property_value;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

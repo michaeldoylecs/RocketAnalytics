@@ -8,7 +8,7 @@
 
 #include "../include/ClassNetCacheObject.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   ClassNetCacheObject::ClassNetCacheObject(
     uint32_t index,
@@ -40,4 +40,4 @@ namespace ReplayParser {
     return c_properties;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

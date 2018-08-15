@@ -5,7 +5,7 @@
 #include "../../build/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../RocketAnalyticsLib/include/Byte.hpp"
 
-using ReplayParser::Byte;
+using rocketanalytics::Byte;
 
 struct ByteTests: testing::Test{
 	Byte byte;

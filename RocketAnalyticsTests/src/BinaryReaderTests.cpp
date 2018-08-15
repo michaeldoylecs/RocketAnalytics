@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 
-using ReplayParser::BinaryReader;
+using rocketanalytics::BinaryReader;
 
 // TODO(michaeldoylecs): Write better tests for BinaryReader
 

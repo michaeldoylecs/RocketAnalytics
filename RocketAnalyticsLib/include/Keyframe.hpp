@@ -11,7 +11,7 @@
 
 #include <cstdint>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class Keyframe {
   public:
@@ -30,6 +30,6 @@ namespace ReplayParser {
     std::uint32_t k_filePos;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

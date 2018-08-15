@@ -7,7 +7,7 @@
 #include "../include/ReplayFile.hpp"
 #include "../include/BinaryReader.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   ReplayFile::ReplayFile(std::string file)
   : r_file_path(std::move(file)) {
@@ -296,4 +296,4 @@ namespace ReplayParser {
     return net_cache_json;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

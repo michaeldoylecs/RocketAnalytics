@@ -8,7 +8,7 @@
 
 using std::uint32_t;
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   Keyframe::Keyframe(float time, uint32_t frame, uint32_t filePos) {
     k_time = time;
@@ -39,4 +39,4 @@ namespace ReplayParser {
       k_frame != k1.k_frame ||
       k_filePos != k1.k_filePos);
   }
-} // namespace ReplayParser
+} // namespace rocketanalytics

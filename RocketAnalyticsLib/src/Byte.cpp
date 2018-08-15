@@ -8,7 +8,7 @@
 #include <bitset>
 #include <sstream>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   Byte::Byte() : b_value{0} {}
 
@@ -65,4 +65,4 @@ namespace ReplayParser {
     return bit_string;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

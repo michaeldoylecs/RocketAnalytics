@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
   
   class ReplayTick {
     public:
@@ -28,6 +28,6 @@ namespace ReplayParser {
       std::uint32_t tick_frame{};
   };
   
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

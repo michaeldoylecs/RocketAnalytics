@@ -9,7 +9,7 @@
 #include "../include/Netstream.hpp"
 #include "../include/BinaryReader.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   Netstream Netstream::deserialize_netstream(BinaryReader& br) {
     Netstream netstream;
@@ -18,4 +18,4 @@ namespace ReplayParser {
     return netstream;
   }
 
-} // namespace ReplayParser
+} // namespace rocketanalytics

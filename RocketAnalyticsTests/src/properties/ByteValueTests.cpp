@@ -5,7 +5,7 @@
 #include "../../../build/googletest-src/googletest/include/gtest/gtest.h"
 #include "../../../RocketAnalyticsLib/include/properties/ByteValue.hpp"
 
-using namespace ReplayParser;
+using namespace rocketanalytics;
 
 struct ByteValueTests : ::testing::Test {
   ByteValue *byte_value;

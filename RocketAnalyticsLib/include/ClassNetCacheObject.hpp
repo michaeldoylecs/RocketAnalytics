@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   class ClassNetCacheObject {
     public:
@@ -39,6 +39,6 @@ namespace ReplayParser {
       std::vector<std::pair<uint32_t, uint32_t>> c_properties;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

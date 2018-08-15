@@ -6,7 +6,7 @@
 #include "../../../RocketAnalyticsLib/include/properties/Property.hpp"
 #include "../../../RocketAnalyticsLib/include/properties/PropertyType.hpp"
 
-using namespace ReplayParser;
+using namespace rocketanalytics;
 
 struct PropertyTests : ::testing::Test {
   Property *property;

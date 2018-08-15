@@ -21,7 +21,7 @@
 #include <string>
 #include <utility>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
 	class ReplayFile {
 	  public:
@@ -75,6 +75,6 @@ namespace ReplayParser {
       nlohmann::json class_net_cache_to_json() const;
 	};
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif

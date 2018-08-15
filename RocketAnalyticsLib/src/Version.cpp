@@ -6,7 +6,7 @@
 
 #include "../include/Version.hpp"
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
   Version::Version(std::uint32_t major, std::uint32_t minor)
     : version_major{major}, version_minor{minor} {}
@@ -28,4 +28,4 @@ namespace ReplayParser {
     return std::to_string(version_major) +
         "." + std::to_string(version_minor);
   }
-} // namespace ReplayParser
+} // namespace rocketanalytics

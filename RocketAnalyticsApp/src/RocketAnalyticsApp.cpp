@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-using namespace ReplayParser;
+using namespace rocketanalytics;
 
 void test_binary_reader(const std::string& file_path) {
   try {

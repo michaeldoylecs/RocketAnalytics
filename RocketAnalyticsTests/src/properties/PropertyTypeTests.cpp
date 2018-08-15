@@ -6,7 +6,7 @@
 #include "../../../RocketAnalyticsLib/include/properties/PropertyType.hpp"
 #include <cstdint>
 
-using namespace ReplayParser;
+using namespace rocketanalytics;
 
 TEST(PropertyTypeTests, NonePropertyTypeToString) {
   PType type = PType::NONE;
