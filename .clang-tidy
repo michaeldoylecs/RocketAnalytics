@@ -1,2 +1,2 @@
-Checks: '*,-fuchsia-default-arguments,-fuchsia-overloaded-operator,-google-runtime-references'
+Checks: '*,-fuchsia-default-arguments,-fuchsia-overloaded-operator,-google-runtime-references,-retext-profanities'
 FormatStyle: 'llvm'
