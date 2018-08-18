@@ -1,12 +1,12 @@
 // RocketAnalyticsApp.cpp : Defines the entry point for the console application.
 
 #include "../../RocketAnalyticsLib/include/BinaryReader.hpp"
-#include "../../RocketAnalyticsLib/include/ReplayFile.hpp"
+#include "../../RocketAnalyticsLib/include/RocketAnalytics.hpp"
 #include <iomanip>
 #include <iostream>
 #include <string>
 
-using namespace rocketanalytics;
+using namespace rocketanalytics; // NOLINT
 
 void test_binary_reader(const std::string& file_path) {
   try {

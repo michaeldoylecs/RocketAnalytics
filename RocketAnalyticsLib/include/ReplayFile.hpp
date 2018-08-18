@@ -23,9 +23,9 @@
 
 namespace rocketanalytics {
 
-	class ReplayFile {
+	class ReplayFileImpl {
 	  public:
-	    explicit ReplayFile(std::string file);
+	    explicit ReplayFileImpl(std::string file);
 
 	    ReplayHeader header();
       std::vector<std::string> levels();

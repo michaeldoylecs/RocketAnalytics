@@ -60,6 +60,7 @@ add_library (RocketAnalytics
   "RocketAnalyticsLib/src/ReplayFile.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
   "RocketAnalyticsLib/src/ReplayTick.cpp"
+  "RocketAnalyticsLib/src/RocketAnalytics.cpp"
   "RocketAnalyticsLib/src/Version.cpp"
   "RocketAnalyticsLib/src/properties/ByteValue.cpp"
   "RocketAnalyticsLib/src/properties/Property.cpp"

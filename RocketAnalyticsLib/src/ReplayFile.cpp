@@ -9,24 +9,28 @@
 
 namespace rocketanalytics {
 
-  ReplayFile::ReplayFile(std::string file)
+  ReplayFileImpl::ReplayFileImpl(std::string file)
   : r_file_path(std::move(file)) {
-    BinaryReader br = BinaryReader(r_file_path);
-    r_header = ReplayHeader::deserialize_header(br);
-    r_levels = deserialize_levels(br);
-    r_keyframes = deserialize_keyframes(br);
-    r_netstream = Netstream::deserialize_netstream(br);
-    br.read_aligned_uint32(); // Read empty int for debug_log
-    r_tick_information = deserialize_tick_information(br);
-    r_replicated_packages = deserialize_replicated_packages(br);
-    r_object_table = deserialize_object_table(br);
-    r_name_table = deserialize_name_table(br);
-    r_class_index_map = deserialize_class_index_map(br);
-    r_class_net_cache = deserialize_class_net_cache(br);
-    br.close();
+    try {
+      BinaryReader br = BinaryReader(r_file_path);
+      r_header = ReplayHeader::deserialize_header(br);
+      r_levels = deserialize_levels(br);
+      r_keyframes = deserialize_keyframes(br);
+      r_netstream = Netstream::deserialize_netstream(br);
+      br.read_aligned_uint32(); // Read empty int for debug_log
+      r_tick_information = deserialize_tick_information(br);
+      r_replicated_packages = deserialize_replicated_packages(br);
+      r_object_table = deserialize_object_table(br);
+      r_name_table = deserialize_name_table(br);
+      r_class_index_map = deserialize_class_index_map(br);
+      r_class_net_cache = deserialize_class_net_cache(br);
+      br.close();
+    } catch (const std::runtime_error &e) {
+      throw;
+    }
   }
 
-  std::vector<std::string> ReplayFile::deserialize_levels(BinaryReader& br) {
+  std::vector<std::string> ReplayFileImpl::deserialize_levels(BinaryReader& br) {
     std::vector<std::string> levels;
     std::uint32_t level_count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < level_count; i++) {
@@ -36,7 +40,7 @@ namespace rocketanalytics {
     return levels;
   }
 
-  std::vector<Keyframe> ReplayFile::deserialize_keyframes(BinaryReader& br) {
+  std::vector<Keyframe> ReplayFileImpl::deserialize_keyframes(BinaryReader& br) {
     std::vector<Keyframe> keyframes;
     std::uint32_t keyframe_count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < keyframe_count; ++i) {
@@ -49,7 +53,7 @@ namespace rocketanalytics {
   }
 
   std::vector<ReplayTick>
-  ReplayFile::deserialize_tick_information(BinaryReader& br) {
+  ReplayFileImpl::deserialize_tick_information(BinaryReader& br) {
     std::vector<ReplayTick> tick_information;
     std::uint32_t count = br.read_aligned_uint32();
     for (std::uint32_t i = 0; i < count; ++i) {
@@ -61,7 +65,7 @@ namespace rocketanalytics {
   }
 
   std::vector<std::string>
-  ReplayFile::deserialize_replicated_packages(BinaryReader& br) {
+  ReplayFileImpl::deserialize_replicated_packages(BinaryReader& br) {
     std::vector<std::string> replicated_packages;
     uint32_t count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < count; ++i) {
@@ -72,7 +76,7 @@ namespace rocketanalytics {
   }
 
   std::vector<std::string>
-  ReplayFile::deserialize_object_table(BinaryReader& br) {
+  ReplayFileImpl::deserialize_object_table(BinaryReader& br) {
     std::vector<std::string> object_table;
     std::uint32_t count = br.read_aligned_uint32();
     for (std::uint32_t i = 0; i < count; ++i) {
@@ -82,7 +86,7 @@ namespace rocketanalytics {
   }
 
   std::vector<std::string>
-  ReplayFile::deserialize_name_table(BinaryReader& br) {
+  ReplayFileImpl::deserialize_name_table(BinaryReader& br) {
     std::vector<std::string> name_table;
     uint32_t count = br.read_aligned_uint32();
     for (std::uint32_t i = 0; i < count; ++i) {
@@ -92,7 +96,7 @@ namespace rocketanalytics {
   }
 
   std::vector<std::pair<std::string, std::uint32_t>>
-  ReplayFile::deserialize_class_index_map(BinaryReader& br) { 
+  ReplayFileImpl::deserialize_class_index_map(BinaryReader& br) { 
     std::vector<std::pair<std::string, std::uint32_t>> class_index_map;
     std::uint32_t count = br.read_aligned_uint32();
     for (std::uint32_t i = 0; i < count; ++i) {
@@ -104,7 +108,7 @@ namespace rocketanalytics {
   }
 
   std::vector<ClassNetCacheObject>
-  ReplayFile::deserialize_class_net_cache(BinaryReader& br) {
+  ReplayFileImpl::deserialize_class_net_cache(BinaryReader& br) {
     std::vector<ClassNetCacheObject> class_net_cache;
     uint32_t count = br.read_aligned_uint32();
     for (uint32_t i = 0; i < count; ++i) {
@@ -125,48 +129,48 @@ namespace rocketanalytics {
     return class_net_cache;
   }
 
-  ReplayHeader ReplayFile::header() {
+  ReplayHeader ReplayFileImpl::header() {
     return r_header;
   }
 
-  std::vector<std::string> ReplayFile::levels() {
+  std::vector<std::string> ReplayFileImpl::levels() {
     return r_levels;
   }
 
-  std::vector<Keyframe> ReplayFile::keyframes() {
+  std::vector<Keyframe> ReplayFileImpl::keyframes() {
     return r_keyframes;
   }
 
-  Netstream ReplayFile::netstream() {
+  Netstream ReplayFileImpl::netstream() {
     return r_netstream;
   }
 
-  std::vector<ReplayTick> ReplayFile::tick_information() {
+  std::vector<ReplayTick> ReplayFileImpl::tick_information() {
     return r_tick_information;
   }
 
-  std::vector<std::string> ReplayFile::replicated_packages() {
+  std::vector<std::string> ReplayFileImpl::replicated_packages() {
     return r_replicated_packages;
   }
 
-  std::vector<std::string> ReplayFile::object_table() {
+  std::vector<std::string> ReplayFileImpl::object_table() {
     return r_object_table;
   }
 
-  std::vector<std::string> ReplayFile::name_table() {
+  std::vector<std::string> ReplayFileImpl::name_table() {
     return r_name_table;
   }
 
   std::vector<std::pair<std::string, std::uint32_t>>
-  ReplayFile::class_index_map() {
+  ReplayFileImpl::class_index_map() {
     return r_class_index_map;
   }
 
-  std::vector<ClassNetCacheObject> ReplayFile::class_net_cache() {
+  std::vector<ClassNetCacheObject> ReplayFileImpl::class_net_cache() {
     return r_class_net_cache;
   }
 
-  std::string ReplayFile::serialize_to_json() {
+  std::string ReplayFileImpl::serialize_to_json() {
     nlohmann::json replay;
     replay["header"] = header_to_json();
     replay["levels"] = levels_to_json();
@@ -180,7 +184,7 @@ namespace rocketanalytics {
     return replay.dump(4);
   }
 
-  nlohmann::json ReplayFile::header_to_json() const {
+  nlohmann::json ReplayFileImpl::header_to_json() const {
     nlohmann::json header_json;
     header_json["fileInfo"]["headerSize"] = r_header.size();
     header_json["fileInfo"]["crc"] = r_header.crc1();
@@ -192,7 +196,7 @@ namespace rocketanalytics {
     return header_json;
   }
 
-  nlohmann::json ReplayFile::properties_to_json() const {
+  nlohmann::json ReplayFileImpl::properties_to_json() const {
     nlohmann::json prop_json;
     auto properties = r_header.properties();
     for (const auto& prop : properties) {
@@ -203,7 +207,7 @@ namespace rocketanalytics {
     return prop_json;
   }
 
-  nlohmann::json ReplayFile::levels_to_json() const {
+  nlohmann::json ReplayFileImpl::levels_to_json() const {
     nlohmann::json levels_json;
     for (const auto& level : r_levels) {
       levels_json.push_back(level);
@@ -211,7 +215,7 @@ namespace rocketanalytics {
     return levels_json;
   } 
 
-  nlohmann::json ReplayFile::keyframes_to_json() const {
+  nlohmann::json ReplayFileImpl::keyframes_to_json() const {
     nlohmann::json keyframes_json;
     for (const auto& keyframe : r_keyframes) {
       nlohmann::json kf_json = {
@@ -224,7 +228,7 @@ namespace rocketanalytics {
     return keyframes_json;
   }
 
-  nlohmann::json ReplayFile::tick_information_to_json() const {
+  nlohmann::json ReplayFileImpl::tick_information_to_json() const {
     nlohmann::json ticks_json;
     for (const auto& tick : r_tick_information) {
       nlohmann::json t_json = {
@@ -236,7 +240,7 @@ namespace rocketanalytics {
     return ticks_json;
   }
 
-  nlohmann::json ReplayFile::replicated_packages_to_json() const {
+  nlohmann::json ReplayFileImpl::replicated_packages_to_json() const {
     nlohmann::json packages_json;
     for (const auto& package : r_replicated_packages) {
       packages_json.push_back(package);
@@ -244,7 +248,7 @@ namespace rocketanalytics {
     return packages_json;
   }
 
-  nlohmann::json ReplayFile::object_table_to_json() const {
+  nlohmann::json ReplayFileImpl::object_table_to_json() const {
     nlohmann::json table_json;
     for (const auto& object : r_object_table) {
       table_json.push_back(object);
@@ -252,7 +256,7 @@ namespace rocketanalytics {
     return table_json;
   }
 
-  nlohmann::json ReplayFile::name_table_to_json() const {
+  nlohmann::json ReplayFileImpl::name_table_to_json() const {
     nlohmann::json table_json;
     for (const auto& name : r_name_table) {
       table_json.push_back(name);
@@ -260,7 +264,7 @@ namespace rocketanalytics {
     return table_json;
   }
 
-  nlohmann::json ReplayFile::class_index_map_to_json() const {
+  nlohmann::json ReplayFileImpl::class_index_map_to_json() const {
     nlohmann::json class_index_json;
     for (const auto& [c, i] : r_class_index_map) {
       nlohmann::json temp_pair = {
@@ -272,7 +276,7 @@ namespace rocketanalytics {
     return class_index_json;
   }
 
-  nlohmann::json ReplayFile::class_net_cache_to_json() const {
+  nlohmann::json ReplayFileImpl::class_net_cache_to_json() const {
     nlohmann::json net_cache_json;
     for (const auto& cache_obj : r_class_net_cache) {
       nlohmann::json cache_obj_json = {

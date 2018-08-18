@@ -19,7 +19,7 @@ namespace rocketanalytics {
       read_file(filepath);
     }
     catch(const std::runtime_error &e) {
-      file_bytes.resize(0);
+      throw;
     }
   }
 
@@ -32,7 +32,7 @@ namespace rocketanalytics {
       file_stream.close();
     }
     else {
-      throw std::runtime_error("Failed to open file exception");
+      throw std::runtime_error("Failed to open file " + filepath);
     }
   }
 
