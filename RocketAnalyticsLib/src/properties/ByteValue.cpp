@@ -1,38 +1,24 @@
 /******************************************************************************
- *	Author:	Michael Doyle
- *	Date:	8/12/17
- *	File:	ByteValue.cpp
+ *  Author: Michael Doyle
+ *  Date: 8/12/17
+ *  File: ByteValue.cpp
  *****************************************************************************/
 
 #include "../../include/properties/ByteValue.hpp"
 
-namespace ReplayParser {
-	
-	ByteValue::ByteValue() {
-		byte_identifier = "";
-		byte_value = "";
-	}
+namespace rocketanalytics {
 
+  ByteValue::ByteValue(const std::string& id, const std::string& value) {
+    byte_id = id;
+    byte_value = value;
+  }
 
-	ByteValue::ByteValue(const ByteValue &byte) {
-		byte_identifier = byte.byte_identifier;
-		byte_value = byte.byte_value;
-	}
+  std::string ByteValue::id() {
+    return byte_id;
+  }
 
+  std::string ByteValue::value() {
+    return byte_value;
+  }
 
-	ByteValue::ByteValue(std::string identifier, std::string value) {
-		byte_identifier = identifier;
-		byte_value = value;
-	}
-
-
-	std::string ByteValue::get_identifer() {
-		return byte_identifier;
-	}
-
-
-	std::string ByteValue::get_value() {
-		return byte_value;
-	}
-
-}
+} // namespace rocketanalytics

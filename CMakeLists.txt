@@ -1,12 +1,12 @@
 # Initial CMake configurations
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
+  set(CMAKE_BUILD_TYPE Release)
 endif()
 
 # CMakeLists for RocketAnalytics
 cmake_minimum_required (VERSION 3.9)
 project (
-  RocketAnalyticsLib
+  RocketAnalytics
   VERSION 0.2
   DESCRIPTION "Rocket League replay parsing library"
 )
@@ -49,19 +49,17 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories ("${gtest_SOURCE_DIR}/include")
 endif ()
 
-# Compiler flags
-# set (CMAKE_CXX_FLAGS
-# "-std=c++14 -Wall -Wextra -Wpedantic -Wzero-as-null-pointer-constant"
-# )
-
 # Configure RocketAnalyticsLib Build
-add_library (RocketAnalyticsLib
+add_library (RocketAnalytics
   "RocketAnalyticsLib/src/BinaryReader.cpp"
   "RocketAnalyticsLib/src/Byte.cpp"
+  "RocketAnalyticsLib/src/ClassNetCacheObject.cpp"
+  "RocketAnalyticsLib/src/Keyframe.cpp"
+  "RocketAnalyticsLib/src/Netstream.cpp"
   "RocketAnalyticsLib/src/ReplayFile.cpp"
-  "RocketAnalyticsLib/src/ReplayFileReader.cpp"
   "RocketAnalyticsLib/src/ReplayHeader.cpp"
-  "RocketAnalyticsLib/src/ReplayLevels.cpp"
+  "RocketAnalyticsLib/src/ReplayTick.cpp"
+  "RocketAnalyticsLib/src/RocketAnalytics.cpp"
   "RocketAnalyticsLib/src/Version.cpp"
   "RocketAnalyticsLib/src/properties/ByteValue.cpp"
   "RocketAnalyticsLib/src/properties/Property.cpp"
@@ -69,25 +67,38 @@ add_library (RocketAnalyticsLib
   "RocketAnalyticsLib/src/properties/PropertyValue.cpp"
 )
 
-# TODO: Add public interface header
 # RocketAnalyticsLib header files
-target_include_directories (RocketAnalyticsLib
+target_include_directories (RocketAnalytics
   PRIVATE
     ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include
     ${PROJECT_SOURCE_DIR}/RocketAnalyticsLib/include/properties
 )
 
 # RocketAnalyticsLib properties
-set_target_properties (RocketAnalyticsLib PROPERTIES
+set_target_properties (RocketAnalytics PROPERTIES
   VERSION ${PROJECT_VERSION}
   CXX_STANDARD_REQUIRED 17
   CXX_STANDARD_REQUIRED ON
 )
 
+# Configure RocketAnalytics Test Application
+add_executable (RocketAnalyticsApp
+  "RocketAnalyticsApp/src/RocketAnalyticsApp.cpp"
+)
+
+set_target_properties (RocketAnalyticsApp PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  CXX_STANDARD_REQUIRED 17
+  CXX_STANDARD_REQUIRED ON
+)
+
+target_link_libraries (RocketAnalyticsApp RocketAnalytics)
+
 # Configure Tests Build
 add_executable (unitTests
   "RocketAnalyticsTests/src/BinaryReaderTests.cpp"
   "RocketAnalyticsTests/src/ByteTests.cpp"
+  "RocketAnalyticsTests/src/KeyframeTests.cpp"
   "RocketAnalyticsTests/src/ReplayHeaderTests.cpp"
   "RocketAnalyticsTests/src/RocketAnalyticsTests.cpp"
   "RocketAnalyticsTests/src/VersionTests.cpp"
@@ -97,7 +108,7 @@ add_executable (unitTests
   "RocketAnalyticsTests/src/properties/PropertyValueTests.cpp"
 )
 
-target_link_libraries (unitTests gtest gmock_main RocketAnalyticsLib)
+target_link_libraries (unitTests gtest gmock_main RocketAnalytics)
 
 # Tests header files
 target_include_directories (unitTests

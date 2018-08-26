@@ -1,0 +1,2 @@
+Checks: '*,-fuchsia-default-arguments,-fuchsia-overloaded-operator,-google-runtime-references'
+FormatStyle: 'llvm'

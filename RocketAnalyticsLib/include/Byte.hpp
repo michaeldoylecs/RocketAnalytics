@@ -8,28 +8,28 @@
  *	binary number representation of the given value.
  *****************************************************************************/
 
-#ifndef BYTE_H
-#define BYTE_H
+#ifndef BYTE_HPP
+#define BYTE_HPP
 
 #include <cstddef>
 #include <cstdint>
 #include <string>
 
-namespace ReplayParser {
+namespace rocketanalytics {
 
 	class Byte {
-		public:
-			Byte();
-			explicit Byte(std::uint8_t value);
-			Byte(const Byte &byte);
-			std::byte get_value();
-      std::int8_t get_bit(int index);
-			std::string to_string();
+    public:
+      Byte();
+      explicit Byte(std::uint8_t rvalue);
 
-		private:
-      std::byte value;
+      std::byte value();
+      std::int8_t bit(int index);
+      std::string to_string();
+
+    private:
+      std::byte b_value;
   };
 
-} // namespace ReplayParser
+} // namespace rocketanalytics
 
 #endif
