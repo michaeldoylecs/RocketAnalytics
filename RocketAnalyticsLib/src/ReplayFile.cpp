@@ -181,7 +181,7 @@ namespace rocketanalytics {
     replay["nameTable"] = name_table_to_json();
     replay["cacheIndexMap"] = class_index_map_to_json();
     replay["classNetCache"] = class_net_cache_to_json();
-    return replay.dump(4);
+    return replay.dump(2);
   }
 
   nlohmann::json ReplayFileImpl::header_to_json() const {

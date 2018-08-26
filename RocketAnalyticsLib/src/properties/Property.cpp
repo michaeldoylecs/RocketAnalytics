@@ -105,7 +105,7 @@ namespace rocketanalytics {
     } else {
       prop[id] = value_as_string();
     }
-    return prop.dump(4);
+    return prop.dump(2);
   }
 
 } // namespace rocketanalytics
