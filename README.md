@@ -50,7 +50,7 @@ The library is contained inside of the `rocketanalytics` namespace. The only
 header file that needs to be included is `RocketAnalytics.hpp`. It contains
 all of the necessary implementations to handle the replay file parsing.
 
-Starting out, parsing a replay is very simple. All we need to do it give
+Starting out, parsing a replay is very simple. All we need to do is give
 the `ReplayFile` constructor a valid path to a replay file.
 
 ```cpp
@@ -66,6 +66,8 @@ int main() {
 
 We now have a parsed replay file. So, what can we do with it? We can access
 individual parts of the replay, or we can serialize the whole thing to JSON.
+An example of the JSON output can be found
+[here](https://gist.github.com/michaeldoylecs/55b8c9fce9d9370adb95b4c2a58ae134).
 
 ```cpp
 #include "../include/RocketAnalytics.hpp"               // Include the header file
@@ -137,8 +139,8 @@ Does the library currently support a specific feature? Lets finds out!
 The function signatures for a ReplayFile can be found in
 `include/ReplayFile.hpp`. Additional function signatures for class-specific
  values returned from a ReplayFile can also be found in their respective header
- files (e.g. `ReplayHeader.hpp`, `Keyframe.hpp`, `ReplayTick.hpp`, and
- `ClassNetCacheObject.hpp`).
+ files (e.g. `ReplayHeader.hpp`, `Keyframe.hpp`, `ReplayTick.hpp`,
+ `ClassNetCacheObject.hpp`, etc).
 
 ## Issues
 If you have any issues, please open a ticket
