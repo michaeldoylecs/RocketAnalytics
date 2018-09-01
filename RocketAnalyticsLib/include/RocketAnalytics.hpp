@@ -10,7 +10,7 @@
 #ifndef ROCKETANALYTICS_HPP
 #define ROCKETANALYTICS_HPP
 
-#include "ReplayFile.hpp"
+#include "ReplayFileImpl.hpp"
 #include <memory>
 
 namespace rocketanalytics {

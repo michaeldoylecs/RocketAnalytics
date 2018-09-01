@@ -4,7 +4,7 @@
  *  File: ReplayFile.cpp
  *****************************************************************************/
 
-#include "../include/ReplayFile.hpp"
+#include "../include/ReplayFileImpl.hpp"
 #include "../include/BinaryReader.hpp"
 
 namespace rocketanalytics {
